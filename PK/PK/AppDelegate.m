@@ -6,6 +6,8 @@
 //  Copyright Kevin Yue 2013. All rights reserved.
 //
 
+//I WROTE THIS
+
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
