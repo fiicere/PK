@@ -3,7 +3,7 @@
 //  PK
 //
 //  Created by Kevin Yue on 7/1/13.
-//  Copyright Kevin Yue 2013. All rights reserved.
+//  Copyright Phillip Seo 2013. All rights reserved.
 //
 
 #import "cocos2d.h"
