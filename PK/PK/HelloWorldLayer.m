@@ -13,10 +13,18 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
+//Touch Handler
+#import "CCTouchDispatcher.h"
+
+//Adding 2 sprites:
+CCSprite *seeker1;
+CCSprite *cocosGuy;
+
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
+
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -40,70 +48,54 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
-		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-
-		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-	
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-		
-		
-		
-		//
-		// Leaderboards and Achievements
-		//
-		
-		// Default font size will be 28 points.
-		[CCMenuItemFont setFontSize:28];
-		
-		// to avoid a retain-cycle with the menuitem and blocks
-		__block id copy_self = self;
-		
-		// Achievement Menu Item using blocks
-		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
-			
-			
-			GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-			achivementViewController.achievementDelegate = copy_self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:achivementViewController animated:YES];
-			
-			[achivementViewController release];
-		}];
-		
-		// Leaderboard Menu Item using blocks
-		CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
-			
-			
-			GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-			leaderboardViewController.leaderboardDelegate = copy_self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
-			
-			[leaderboardViewController release];
-		}];
-
-		
-		CCMenu *menu = [CCMenu menuWithItems:itemAchievement, itemLeaderboard, nil];
-		
-		[menu alignItemsHorizontallyWithPadding:20];
-		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
-		
-		// Add the menu to the layer
-		[self addChild:menu];
-
+        // create and initialize our seeker sprite, and add it to this layer
+        seeker1 = [CCSprite spriteWithFile: @"seeker.png"];
+        seeker1.position = ccp( 50, 100 );
+        [self addChild:seeker1];
+        
+        // do the same for our cocos2d guy, reusing the app icon as its image
+        cocosGuy = [CCSprite spriteWithFile: @"Icon.png"];
+        cocosGuy.position = ccp( 200, 300 );
+        [self addChild:cocosGuy];
+        
+        // schedule a repeating callback on every frame
+        [self schedule:@selector(nextFrame:)];
+        
+        // to enable touch detection
+        self.isTouchEnabled = YES;
 	}
+    
 	return self;
+}
+
+
+// Causes the seeker to move every tick
+- (void) nextFrame:(ccTime)dt {
+    seeker1.position = ccp( seeker1.position.x + 100*dt, seeker1.position.y );
+    if (seeker1.position.x > CCDirector.sharedDirector.winSize.width) {
+        seeker1.position = ccp(0 , seeker1.position.y );
+    }
+}
+
+
+// Changes type of touch detection
+// TODO: Figure out what calls this...
+-(void) registerWithTouchDispatcher
+{
+	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+}
+
+// We need to claim on-touch events, even if we do nothing with them
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    return YES;
+}
+
+// We also need to claim end-of-touch events
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+	CGPoint location = [self convertTouchToNodeSpace: touch];
+    
+	[cocosGuy stopAllActions];
+	[cocosGuy runAction: [CCMoveTo actionWithDuration:1 position:location]];
 }
 
 // on "dealloc" you need to release all your retained objects
