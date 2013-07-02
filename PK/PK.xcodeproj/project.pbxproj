@@ -143,6 +143,8 @@
 		467A58A4178211A100DD3319 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 467A58A3178211A100DD3319 /* IntroLayer.m */; };
 		467A58AB17833D2D00DD3319 /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A58AA17833D2D00DD3319 /* seeker.png */; };
 		467A58AE178355D000DD3319 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 467A58AD178355D000DD3319 /* Projectile.m */; };
+		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
+		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -430,6 +432,8 @@
 		467A58AA17833D2D00DD3319 /* seeker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seeker.png; path = Resources/seeker.png; sourceTree = "<group>"; };
 		467A58AC178355D000DD3319 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
 		467A58AD178355D000DD3319 /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projectile.m; sourceTree = "<group>"; };
+		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
+		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +512,8 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A64D17817834A810035BDB3 /* EnemySaucer.tif */,
+				5A64D17A17834AE10035BDB3 /* PlayerShip.tif */,
 				467A58AA17833D2D00DD3319 /* seeker.png */,
 				467A570D178211A000DD3319 /* Default.png */,
 				467A570F178211A000DD3319 /* Default@2x.png */,
@@ -951,6 +957,8 @@
 				467A5723178211A000DD3319 /* iTunesArtwork in Resources */,
 				467A587C178211A100DD3319 /* ChangeLog in Resources */,
 				467A58AB17833D2D00DD3319 /* seeker.png in Resources */,
+				5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */,
+				5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

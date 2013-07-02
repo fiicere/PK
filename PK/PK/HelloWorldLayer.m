@@ -49,12 +49,12 @@ CCSprite *cocosGuy;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
         // create and initialize our seeker sprite, and add it to this layer
-        seeker1 = [CCSprite spriteWithFile: @"seeker.png"];
+        seeker1 = [CCSprite spriteWithFile: @"EnemySaucer.tif"];
         seeker1.position = ccp( 50, 100 );
         [self addChild:seeker1];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        cocosGuy = [CCSprite spriteWithFile: @"Icon.png"];
+        cocosGuy = [CCSprite spriteWithFile: @"PlayerShip.tif"];
         cocosGuy.position = ccp( 200, 300 );
         [self addChild:cocosGuy];
         
