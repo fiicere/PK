@@ -90,29 +90,66 @@ CGFloat width;
 -(void) addUFO{
     CCSprite *ufo = [CCSprite spriteWithFile: @"EnemySaucer.tif"];
     
-    // add the UFO randomly off the right edge of the screen
+    // Radius of ufo sprite
+    CGFloat r = MAX(ufo.boundingBox.size.width, ufo.boundingBox.size.height)/2;
+    
+    // UFO's starting and ending coords
     CGFloat y = fmod((CGFloat)arc4random(), height);
-    CGFloat x = width + 50;
+    CGFloat x = width + r;
+    CGFloat yEnd = fmod((CGFloat)arc4random(), height);
+    CGFloat xEnd = -r;
+    
+    // Randomly choose where the UFO enters from
+    int rand = arc4random() % 4;
+    
+    // Randomly choose the UFO's speed
+    Duration d = (arc4random() % 2) + 2;
+    
+    switch (rand) {
+        case 0:
+            // Right to left movement
+            // Use value above
+            break;
+        case 1:
+            // Left to right movement
+            y = fmod((CGFloat)arc4random(), height);
+            x = -r;
+            yEnd = fmod((CGFloat)arc4random(), height);
+            xEnd = width + r;
+            break;
+        case 2:
+            // Top down movement
+            y = height + r;
+            x = fmod((CGFloat) arc4random(), width);
+            yEnd = -r;
+            xEnd = fmod((CGFloat) arc4random(), width);
+            break;
+        case 3:
+            // Down up movement
+            y = -r;
+            x = fmod((CGFloat) arc4random(), width);
+            yEnd = height+r;
+            xEnd = fmod((CGFloat) arc4random(), width);
+            break;
+        default:
+            printf("WTF?");
+            break;
+    }
     
     ufo.position = ccp(x, y);
     
     [self addChild:ufo];
     
-    [self setUFOMovement:ufo];
-}
-
--(void) setUFOMovement:(CCSprite*)ufo{
-    Duration d = (arc4random() % 2) + 2;
-    CGFloat h = fmod((CGFloat)arc4random(), height);
-    CCMoveTo *move = [CCMoveTo actionWithDuration:d position:ccp(0, h)];
+    CCMoveTo *move = [CCMoveTo actionWithDuration:d position:ccp(xEnd, yEnd)];
     
     CCCallBlockN *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
     }];
     
     [ufo runAction:[CCSequence actions:move, moveDone, nil]];
-    
 }
+
+
 
 
 // Changes type of touch detection
