@@ -27,6 +27,10 @@ CGFloat width;
 const double SPEED = 750;
 const double LIFESPAN = 3;
 
+// Agent Arrays
+NSMutableArray * _ufo;
+NSMutableArray * _projectiles;
+
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
@@ -68,8 +72,12 @@ const double LIFESPAN = 3;
         // to enable touch detection
         self.isTouchEnabled = YES;
         
-        // Spawn UFOs
+        // Spawn UFOs timer
         [self schedule:@selector(gameLogic:) interval:1.0];
+        
+        // Configure agent arrays
+        _ufo = [[NSMutableArray alloc] init];
+        _projectiles = [[NSMutableArray alloc] init];
 	}
     
 	return self;
@@ -82,9 +90,37 @@ const double LIFESPAN = 3;
 }
 
 
-// Causes the seeker to move every tick
+// Runs every tick
 - (void) nextFrame:(ccTime)dt {
+    [self checkCollisions];
+}
 
+- (void) checkCollisions{
+//    printf("\n # projectiles = %d", _projectiles.count);
+//    printf(" # ufos = %d", _ufo.count);
+
+    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
+    for (CCSprite *pro in _projectiles) {
+        
+        NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
+        for (CCSprite *ufo in _ufo) {
+            if (CGRectIntersectsRect(pro.boundingBox, ufo.boundingBox)) {
+                [ufosToDelete addObject:ufo];
+                [projectilesToDelete addObject:pro];
+            }
+        }
+        
+        for (CCSprite *ufo in ufosToDelete) {
+            [_ufo removeObject:ufo];
+            [self removeChild:ufo cleanup:YES];
+        }
+        [ufosToDelete release];
+    }
+    for (CCSprite *projectile in projectilesToDelete) {
+        [_projectiles removeObject:projectile];
+        [self removeChild:projectile cleanup:YES];
+    }
+    [projectilesToDelete release];
 }
 
 // Runs every second
@@ -142,13 +178,17 @@ const double LIFESPAN = 3;
     }
     
     ufo.position = ccp(x, y);
-    
     [self addChild:ufo];
+    
+    // manage ufo list
+    ufo.tag = 1;
+    [_ufo addObject:ufo];
     
     CCMoveTo *move = [CCMoveTo actionWithDuration:d position:ccp(xEnd, yEnd)];
     
     CCCallBlockN *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
+        [_ufo removeObject:node];
     }];
     
     [ufo runAction:[CCSequence actions:move, moveDone, nil]];
@@ -171,16 +211,15 @@ const double LIFESPAN = 3;
 
 // We also need to claim end-of-touch events
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    // Get touch location
     CGPoint loc = [self convertTouchToNodeSpace: touch];
-    
+    [self addProjectile:loc];
+}
+
+- (void) addProjectile:(CGPoint)loc{
     // Add bullet
     CCSprite *projectile = [CCSprite spriteWithFile:@"PlasmaBall.tif"];
     projectile.position = ship.position;
     [self addChild:projectile];
-    
-    // Find bullet radius
-    CGFloat r = MAX(projectile.boundingBox.size.width, projectile.boundingBox.size.height)/2;
     
     // Find the offset between the touch event and the projectile
     CGPoint offset = ccpSub(loc, projectile.position);
@@ -191,10 +230,14 @@ const double LIFESPAN = 3;
     CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
     CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
+        [_projectiles removeObject:node];
     }];
     
     [projectile runAction:[CCSequence actions:move, moveDone, nil]];
-
+    
+    // manage ufo list
+    projectile.tag = 1;
+    [_projectiles addObject:projectile];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -204,7 +247,15 @@ const double LIFESPAN = 3;
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
 	
-	// don't forget to call "super dealloc"
+
+    
+    // release agent arrays
+    [_ufo release];
+    _ufo = nil;
+    [_projectiles release];
+    _projectiles = nil;
+    
+	// Always call superalloc
 	[super dealloc];
 }
 
