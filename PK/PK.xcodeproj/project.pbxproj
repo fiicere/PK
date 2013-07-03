@@ -145,6 +145,7 @@
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D17D178370020035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17C178370020035BDB3 /* PlasmaBall.tif */; };
+		5A64D17F178489CE0035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17E178489CE0035BDB3 /* Explosion256.tif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -433,6 +434,7 @@
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D17C178370020035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PlasmaBall.tif; sourceTree = "<group>"; };
+		5A64D17E178489CE0035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Explosion256.tif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -509,6 +511,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A64D17E178489CE0035BDB3 /* Explosion256.tif */,
 				5A64D17C178370020035BDB3 /* PlasmaBall.tif */,
 				5A64D17817834A810035BDB3 /* EnemySaucer.tif */,
 				5A64D17A17834AE10035BDB3 /* PlayerShip.tif */,
@@ -958,6 +961,7 @@
 				5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */,
 				5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */,
 				5A64D17D178370020035BDB3 /* PlasmaBall.tif in Resources */,
+				5A64D17F178489CE0035BDB3 /* Explosion256.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
