@@ -17,8 +17,10 @@
 #import "CCTouchDispatcher.h"
 
 //Adding 2 sprites:
-CCSprite *seeker1;
-CCSprite *cocosGuy;
+CCSprite *ship;
+
+CGFloat height;
+CGFloat width;
 
 #pragma mark - HelloWorldLayer
 
@@ -34,10 +36,10 @@ CCSprite *cocosGuy;
 	
 	// 'layer' is an autorelease object.
 	HelloWorldLayer *layer = [HelloWorldLayer node];
-	
+    
 	// add layer as a child to scene
 	[scene addChild: layer];
-	
+    
 	// return the scene
 	return scene;
 }
@@ -48,33 +50,68 @@ CCSprite *cocosGuy;
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
-        // create and initialize our seeker sprite, and add it to this layer
-        seeker1 = [CCSprite spriteWithFile: @"EnemySaucer.tif"];
-        seeker1.position = ccp( 50, 100 );
-        [self addChild:seeker1];
+        [self setupVariables];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        cocosGuy = [CCSprite spriteWithFile: @"PlayerShip.tif"];
-        cocosGuy.position = ccp( 200, 300 );
-        [self addChild:cocosGuy];
+        ship = [CCSprite spriteWithFile: @"PlayerShip.tif"];
+        ship.position = ccp( width/2, height/2 );
+        [self addChild:ship];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
         
         // to enable touch detection
         self.isTouchEnabled = YES;
+        
+        // Spawn UFOs
+        [self schedule:@selector(gameLogic:) interval:1.0];
 	}
     
 	return self;
 }
 
+-(void) setupVariables
+{
+    height = CCDirector.sharedDirector.winSize.height;
+    width = CCDirector.sharedDirector.winSize.width;
+}
+
 
 // Causes the seeker to move every tick
 - (void) nextFrame:(ccTime)dt {
-    seeker1.position = ccp( seeker1.position.x + 100*dt, seeker1.position.y );
-    if (seeker1.position.x > CCDirector.sharedDirector.winSize.width) {
-        seeker1.position = ccp(0 , seeker1.position.y );
-    }
+
+}
+
+// Runs every second
+-(void)gameLogic:(ccTime)dt {
+    [self addUFO];
+}
+
+-(void) addUFO{
+    CCSprite *ufo = [CCSprite spriteWithFile: @"EnemySaucer.tif"];
+    
+    // add the UFO randomly off the right edge of the screen
+    CGFloat y = fmod((CGFloat)arc4random(), height);
+    CGFloat x = width + 50;
+    
+    ufo.position = ccp(x, y);
+    
+    [self addChild:ufo];
+    
+    [self setUFOMovement:ufo];
+}
+
+-(void) setUFOMovement:(CCSprite*)ufo{
+    Duration d = (arc4random() % 2) + 2;
+    CGFloat h = fmod((CGFloat)arc4random(), height);
+    CCMoveTo *move = [CCMoveTo actionWithDuration:d position:ccp(0, h)];
+    
+    CCCallBlockN *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        [node removeFromParentAndCleanup:YES];
+    }];
+    
+    [ufo runAction:[CCSequence actions:move, moveDone, nil]];
+    
 }
 
 
@@ -94,8 +131,8 @@ CCSprite *cocosGuy;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
 	CGPoint location = [self convertTouchToNodeSpace: touch];
     
-	[cocosGuy stopAllActions];
-	[cocosGuy runAction: [CCMoveTo actionWithDuration:1 position:location]];
+	[ship stopAllActions];
+	[ship runAction: [CCMoveTo actionWithDuration:1 position:location]];
 }
 
 // on "dealloc" you need to release all your retained objects
