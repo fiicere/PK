@@ -13,14 +13,19 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-//Touch Handler
+// Touch Handler
 #import "CCTouchDispatcher.h"
 
-//Adding 2 sprites:
+// Adding 2 sprites:
 CCSprite *ship;
 
+// Screen size
 CGFloat height;
 CGFloat width;
+
+// Projectile stats
+const double SPEED = 750;
+const double LIFESPAN = 3;
 
 #pragma mark - HelloWorldLayer
 
@@ -166,7 +171,30 @@ CGFloat width;
 
 // We also need to claim end-of-touch events
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-	 
+    // Get touch location
+    CGPoint loc = [self convertTouchToNodeSpace: touch];
+    
+    // Add bullet
+    CCSprite *projectile = [CCSprite spriteWithFile:@"PlasmaBall.tif"];
+    projectile.position = ship.position;
+    [self addChild:projectile];
+    
+    // Find bullet radius
+    CGFloat r = MAX(projectile.boundingBox.size.width, projectile.boundingBox.size.height)/2;
+    
+    // Find the offset between the touch event and the projectile
+    CGPoint offset = ccpSub(loc, projectile.position);
+    CGFloat dx = offset.x * SPEED * LIFESPAN / sqrt(offset.x*offset.x + offset.y*offset.y);
+    CGFloat dy = offset.y * SPEED * LIFESPAN / sqrt(offset.x*offset.x + offset.y*offset.y);
+    
+    
+    CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
+    CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        [node removeFromParentAndCleanup:YES];
+    }];
+    
+    [projectile runAction:[CCSequence actions:move, moveDone, nil]];
+
 }
 
 // on "dealloc" you need to release all your retained objects
