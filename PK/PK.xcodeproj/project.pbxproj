@@ -146,6 +146,7 @@
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
 		5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18617848B9F0035BDB3 /* Explosion256.tif */; };
+		5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18817848D730035BDB3 /* PlasmaBall.tif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -435,6 +436,7 @@
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
 		5A64D18617848B9F0035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
+		5A64D18817848D730035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlasmaBall.tif; path = Resources/PlasmaBall.tif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +513,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A64D18817848D730035BDB3 /* PlasmaBall.tif */,
 				5A64D18617848B9F0035BDB3 /* Explosion256.tif */,
 				5A64D18417848B830035BDB3 /* Explosion64.tif */,
 				5A64D17817834A810035BDB3 /* EnemySaucer.tif */,
@@ -962,6 +965,7 @@
 				5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */,
 				5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */,
 				5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */,
+				5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
