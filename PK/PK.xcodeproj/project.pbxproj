@@ -144,8 +144,8 @@
 		467A58AB17833D2D00DD3319 /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A58AA17833D2D00DD3319 /* seeker.png */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
-		5A64D18117848A980035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18017848A980035BDB3 /* Explosion256.tif */; };
-		5A64D18317848AA40035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18217848AA40035BDB3 /* Explosion256.tif */; };
+		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
+		5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18617848B9F0035BDB3 /* Explosion256.tif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -433,8 +433,8 @@
 		467A58AA17833D2D00DD3319 /* seeker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seeker.png; path = Resources/seeker.png; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
-		5A64D18017848A980035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
-		5A64D18217848AA40035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
+		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
+		5A64D18617848B9F0035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,15 +511,15 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A64D18617848B9F0035BDB3 /* Explosion256.tif */,
+				5A64D18417848B830035BDB3 /* Explosion64.tif */,
 				5A64D17817834A810035BDB3 /* EnemySaucer.tif */,
 				5A64D17A17834AE10035BDB3 /* PlayerShip.tif */,
 				467A58AA17833D2D00DD3319 /* seeker.png */,
-				5A64D18217848AA40035BDB3 /* Explosion256.tif */,
 				467A570D178211A000DD3319 /* Default.png */,
 				467A570F178211A000DD3319 /* Default@2x.png */,
 				467A5711178211A000DD3319 /* Default-568h@2x.png */,
 				467A5713178211A000DD3319 /* Default-Landscape~ipad.png */,
-				5A64D18017848A980035BDB3 /* Explosion256.tif */,
 				467A5715178211A000DD3319 /* Icon-72.png */,
 				467A5717178211A000DD3319 /* Icon-Small-50.png */,
 				467A5719178211A000DD3319 /* Icon-Small.png */,
@@ -960,8 +960,8 @@
 				467A58AB17833D2D00DD3319 /* seeker.png in Resources */,
 				5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */,
 				5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */,
-				5A64D18117848A980035BDB3 /* Explosion256.tif in Resources */,
-				5A64D18317848AA40035BDB3 /* Explosion256.tif in Resources */,
+				5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */,
+				5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
