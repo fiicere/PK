@@ -166,10 +166,7 @@ CGFloat width;
 
 // We also need to claim end-of-touch events
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-	CGPoint location = [self convertTouchToNodeSpace: touch];
-    
-	[ship stopAllActions];
-	[ship runAction: [CCMoveTo actionWithDuration:1 position:location]];
+	 
 }
 
 // on "dealloc" you need to release all your retained objects
