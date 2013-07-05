@@ -66,6 +66,7 @@ NSMutableArray * _projectiles;
         
         // do the same for our cocos2d guy, reusing the app icon as its image
         ship = [CCSprite spriteWithFile: @"PlayerShip.tif"];
+        [ship setScale:.4];
         ship.position = ccp( width/2, height/2 );
         [self addChild:ship];
         
