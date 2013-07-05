@@ -16,7 +16,8 @@
 // Touch Handler
 #import "CCTouchDispatcher.h"
 
-#import "GameOverLayer.h";
+#import "GameOverLayer.h"
+#import "EnemiesLayer.h"
 
 // Adding 2 sprites:
 CCSprite *ship;
@@ -31,8 +32,11 @@ const double SPEED = 750;
 const double LIFESPAN = 3;
 
 // Agent Arrays
-NSMutableArray * _ufo;
 NSMutableArray * _projectiles;
+
+// Layers
+HelloWorldLayer *sl;
+EnemiesLayer *el;
 
 #pragma mark - HelloWorldLayer
 
@@ -47,10 +51,14 @@ NSMutableArray * _projectiles;
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+    sl = [HelloWorldLayer node];
+    
+    // Add enemies layer
+    el = [EnemiesLayer node];
     
 	// add layer as a child to scene
-	[scene addChild: layer];
+	[scene addChild: sl];
+    [scene addChild: el];
     
 	// return the scene
 	return scene;
@@ -80,7 +88,6 @@ NSMutableArray * _projectiles;
         [self schedule:@selector(gameLogic:) interval:1.0];
         
         // Configure agent arrays
-        _ufo = [[NSMutableArray alloc] init];
         _projectiles = [[NSMutableArray alloc] init];
 	}
     
@@ -97,18 +104,20 @@ NSMutableArray * _projectiles;
 // Runs every tick
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
+    el.position = ccp(el.position.x + el->xVel, el.position.y + el->yVel);
 }
 
 - (void) checkCollisions{
 //    printf("\n # projectiles = %d", _projectiles.count);
-//    printf(" # ufos = %d", _ufo.count);
 
     NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
     for (CCSprite *pro in _projectiles) {
         
         NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
-        for (CCSprite *ufo in _ufo) {
-            if (CGRectIntersectsRect(pro.boundingBox, ufo.boundingBox)) {
+        for (CCSprite *ufo in el.children) {
+            CGRect ufoBox = ufo.boundingBox;
+            ufoBox.origin = el.position;
+            if (CGRectIntersectsRect(pro.boundingBox, ufoBox)) {
                 score += 1;
                 [ufosToDelete addObject:ufo];
                 [projectilesToDelete addObject:pro];
@@ -116,8 +125,7 @@ NSMutableArray * _projectiles;
         }
         
         for (CCSprite *ufo in ufosToDelete) {
-            [_ufo removeObject:ufo];
-            [self removeChild:ufo cleanup:YES];
+            [el removeChild:ufo cleanup:YES];
         }
         [ufosToDelete release];
     }
@@ -127,7 +135,7 @@ NSMutableArray * _projectiles;
     }
     [projectilesToDelete release];
     
-    for (CCSprite *ufo in _ufo) {
+    for (CCSprite *ufo in el.children) {
         if (CGRectIntersectsRect(ship.boundingBox, ufo.boundingBox)) {
             CCScene *gameOverScene = [GameOverLayer sceneWithScore:score];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
@@ -139,7 +147,6 @@ NSMutableArray * _projectiles;
 -(void)gameLogic:(ccTime)dt {
     [self addUFO];
 }
-
 -(void) addUFO{
     CCSprite *ufo = [CCSprite spriteWithFile: @"EnemySaucer.tif"];
     
@@ -190,24 +197,17 @@ NSMutableArray * _projectiles;
     }
     
     ufo.position = ccp(x, y);
-    [self addChild:ufo];
+    [el addChild:ufo];
     
-    // manage ufo list
-    ufo.tag = 1;
-    [_ufo addObject:ufo];
     
     CCMoveTo *move = [CCMoveTo actionWithDuration:d position:ccp(xEnd, yEnd)];
     
     CCCallBlockN *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
-        [_ufo removeObject:node];
     }];
     
     [ufo runAction:[CCSequence actions:move, moveDone, nil]];
 }
-
-
-
 
 // Changes type of touch detection
 // TODO: Figure out what calls this...
@@ -225,6 +225,7 @@ NSMutableArray * _projectiles;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint loc = [self convertTouchToNodeSpace: touch];
     [self addProjectile:loc];
+    [el shotFired:loc];
 }
 
 - (void) addProjectile:(CGPoint)loc{
@@ -262,8 +263,6 @@ NSMutableArray * _projectiles;
 
     
     // release agent arrays
-    [_ufo release];
-    _ufo = nil;
     [_projectiles release];
     _projectiles = nil;
     
