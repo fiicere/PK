@@ -19,14 +19,14 @@
 }
 
 - (id)initWithWon:(int)score {
-    if ((self = [super initWithColor:ccc4(255, 255, 255, 255)])) {
+    if ((self = [super initWithColor:ccc4(0, 0, 0, 255)])) {
         
         NSString * message = [NSString stringWithFormat:@"Game Over: \nFinal Score = %d", score];
 
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CCLabelTTF * label = [CCLabelTTF labelWithString:message fontName:@"Arial" fontSize:32];
-        label.color = ccc3(0,0,0);
+        label.color = ccc3(255,255,255);
         label.position = ccp(winSize.width/2, winSize.height/2);
         [self addChild:label];
         
