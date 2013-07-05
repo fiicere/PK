@@ -21,7 +21,7 @@
 - (id)initWithWon:(int)score {
     if ((self = [super initWithColor:ccc4(255, 255, 255, 255)])) {
         
-        NSString * message = [NSString stringWithFormat:@"Game Over: \nFinal Score ", score];
+        NSString * message = [NSString stringWithFormat:@"Game Over: \nFinal Score = %d", score];
 
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
