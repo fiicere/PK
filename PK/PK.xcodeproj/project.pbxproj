@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4666247117873641004DD174 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666247017873641004DD174 /* GameOverLayer.m */; };
 		467A56F8178211A000DD3319 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56F7178211A000DD3319 /* QuartzCore.framework */; };
 		467A56FA178211A000DD3319 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56F9178211A000DD3319 /* OpenGLES.framework */; };
 		467A56FC178211A000DD3319 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56FB178211A000DD3319 /* OpenAL.framework */; };
@@ -150,6 +151,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4666246F17873641004DD174 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		4666247017873641004DD174 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		467A56F4178211A000DD3319 /* PK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		467A56F7178211A000DD3319 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		467A56F9178211A000DD3319 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -503,6 +506,8 @@
 				467A58A0178211A100DD3319 /* HelloWorldLayer.m */,
 				467A58A2178211A100DD3319 /* IntroLayer.h */,
 				467A58A3178211A100DD3319 /* IntroLayer.m */,
+				4666246F17873641004DD174 /* GameOverLayer.h */,
+				4666247017873641004DD174 /* GameOverLayer.m */,
 				467A570C178211A000DD3319 /* Resources */,
 				467A5724178211A000DD3319 /* libs */,
 				467A5898178211A100DD3319 /* Supporting Files */,
@@ -1088,6 +1093,7 @@
 				467A589E178211A100DD3319 /* AppDelegate.m in Sources */,
 				467A58A1178211A100DD3319 /* HelloWorldLayer.m in Sources */,
 				467A58A4178211A100DD3319 /* IntroLayer.m in Sources */,
+				4666247117873641004DD174 /* GameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

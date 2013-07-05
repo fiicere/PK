@@ -16,12 +16,15 @@
 // Touch Handler
 #import "CCTouchDispatcher.h"
 
+#import "GameOverLayer.h";
+
 // Adding 2 sprites:
 CCSprite *ship;
 
 // Screen size
 CGFloat height;
 CGFloat width;
+int score;
 
 // Projectile stats
 const double SPEED = 750;
@@ -105,6 +108,7 @@ NSMutableArray * _projectiles;
         NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
         for (CCSprite *ufo in _ufo) {
             if (CGRectIntersectsRect(pro.boundingBox, ufo.boundingBox)) {
+                score += 1;
                 [ufosToDelete addObject:ufo];
                 [projectilesToDelete addObject:pro];
             }
@@ -121,6 +125,13 @@ NSMutableArray * _projectiles;
         [self removeChild:projectile cleanup:YES];
     }
     [projectilesToDelete release];
+    
+    for (CCSprite *ufo in _ufo) {
+        if (CGRectIntersectsRect(ship.boundingBox, ufo.boundingBox)) {
+            CCScene *gameOverScene = [GameOverLayer sceneWithScore:score];
+            [[CCDirector sharedDirector] replaceScene:gameOverScene];
+        }
+    }
 }
 
 // Runs every second
