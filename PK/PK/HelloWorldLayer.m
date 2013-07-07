@@ -104,7 +104,7 @@ EnemiesLayer *el;
 // Runs every tick
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
-    el.position = ccp(el.position.x + el->xVel, el.position.y + el->yVel);
+    [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
 }
 
 - (void) checkCollisions{
@@ -115,8 +115,7 @@ EnemiesLayer *el;
         
         NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
         for (CCSprite *ufo in el.children) {
-            CGRect ufoBox = ufo.boundingBox;
-            ufoBox.origin = el.position;
+            CGRect ufoBox = CGRectOffset(ufo.boundingBox, el.position.x, el.position.y);
             if (CGRectIntersectsRect(pro.boundingBox, ufoBox)) {
                 score += 1;
                 [ufosToDelete addObject:ufo];
@@ -136,7 +135,8 @@ EnemiesLayer *el;
     [projectilesToDelete release];
     
     for (CCSprite *ufo in el.children) {
-        if (CGRectIntersectsRect(ship.boundingBox, ufo.boundingBox)) {
+        CGRect ufoBox = CGRectOffset(ufo.boundingBox, el.position.x, el.position.y);
+        if (CGRectIntersectsRect(ship.boundingBox, ufoBox)) {
             CCScene *gameOverScene = [GameOverLayer sceneWithScore:score];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -196,7 +196,7 @@ EnemiesLayer *el;
             break;
     }
     
-    ufo.position = ccp(x, y);
+    ufo.position = ccp(x - el.position.x, y - el.position.y);
     [el addChild:ufo];
     
     
