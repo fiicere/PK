@@ -105,7 +105,7 @@ EnemiesLayer *el;
 // Runs every tick
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
-    [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
+    [el setPosition:ccp(el.position.x + el.xVel, el.position.y + el.yVel)];
 }
 
 - (void) checkCollisions{
