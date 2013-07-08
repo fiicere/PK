@@ -114,6 +114,10 @@ FocusedLayer *el;
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
+>>>>>>> parent of 5941e3d... Created New Classes, Fixed Correctness Issue
 =======
     [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
 >>>>>>> parent of 5941e3d... Created New Classes, Fixed Correctness Issue
