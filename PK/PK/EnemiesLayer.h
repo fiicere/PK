@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface BackgroundLayer : CCLayer {
+@interface EnemiesLayer : CCLayer {
     @public
         CGFloat xVel;
         CGFloat yVel;
