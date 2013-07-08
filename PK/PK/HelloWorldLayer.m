@@ -18,25 +18,30 @@
 
 #import "GameOverLayer.h"
 #import "EnemiesLayer.h"
+#import "PhysicsSprite.h"
+#import "FocusedLayer.h"
 
 // Adding 2 sprites:
-CCSprite *ship;
+PhysicsSprite *ship;
 
 // Screen size
 CGFloat height;
 CGFloat width;
 int score;
 
-// Projectile stats
+// Ship stats
 const double SPEED = 750;
 const double LIFESPAN = 3;
+
+// Bullet stats
+const CGFloat BULLETFORCE = 1.5;
 
 // Agent Arrays
 NSMutableArray * _projectiles;
 
 // Layers
 HelloWorldLayer *sl;
-EnemiesLayer *el;
+FocusedLayer *el;
 
 #pragma mark - HelloWorldLayer
 
@@ -54,7 +59,7 @@ EnemiesLayer *el;
     sl = [HelloWorldLayer node];
     
     // Add enemies layer
-    el = [EnemiesLayer node];
+    el = [FocusedLayer node];
     
 	// add layer as a child to scene
 	[scene addChild: sl];
@@ -73,9 +78,12 @@ EnemiesLayer *el;
         [self setupVariables];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        ship = [CCSprite spriteWithFile: @"PlayerShip.tif"];
+        ship = [PhysicsSprite spriteWithFile: @"PlayerShip.tif"];
         [ship setScale:.4];
+        [ship fixPosition];
+        [el setFocus:ship];
         ship.position = ccp( width/2, height/2 );
+        
         [self addChild:ship];
         
         // schedule a repeating callback on every frame
@@ -105,7 +113,10 @@ EnemiesLayer *el;
 // Runs every tick
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
-    [el setPosition:ccp(el.position.x + el.xVel, el.position.y + el.yVel)];
+<<<<<<< HEAD
+=======
+    [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
+>>>>>>> parent of 5941e3d... Created New Classes, Fixed Correctness Issue
 }
 
 - (void) checkCollisions{
@@ -225,8 +236,7 @@ EnemiesLayer *el;
 // We also need to claim end-of-touch events
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint loc = [self convertTouchToNodeSpace: touch];
-    [self addProjectile:loc];
-    [el shotFired:loc];
+    [self addProjectile:loc];    
 }
 
 - (void) addProjectile:(CGPoint)loc{
@@ -237,16 +247,19 @@ EnemiesLayer *el;
     
     // Find the offset between the touch event and the projectile
     CGPoint offset = ccpSub(loc, projectile.position);
-    CGFloat dx = offset.x * SPEED * LIFESPAN / sqrt(offset.x*offset.x + offset.y*offset.y);
-    CGFloat dy = offset.y * SPEED * LIFESPAN / sqrt(offset.x*offset.x + offset.y*offset.y);
+    CGFloat norm = sqrt(offset.x*offset.x + offset.y*offset.y);
+    CGFloat dx = offset.x * SPEED * LIFESPAN / norm;
+    CGFloat dy = offset.y * SPEED * LIFESPAN / norm;
     
+    // Recoil
+    [ship setVelocitydX:(BULLETFORCE * offset.x/norm) dY:(BULLETFORCE * offset.y/norm)];
     
+    // Projectile Actions
     CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
     CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
         [_projectiles removeObject:node];
     }];
-    
     [projectile runAction:[CCSequence actions:move, moveDone, nil]];
     
     // manage ufo list

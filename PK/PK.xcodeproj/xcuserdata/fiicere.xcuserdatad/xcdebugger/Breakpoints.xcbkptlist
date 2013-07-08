@@ -51,18 +51,32 @@
          landmarkName = "-initWithWon:"
          landmarkType = "5">
       </FileBreakpoint>
+<<<<<<< HEAD
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PK/FocusedLayer.h"
-         timestampString = "395010516.011284"
+         timestampString = "395014763.380507"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
          landmarkName = "xVel"
          landmarkType = "19">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "PK/PhysicsSprite.m"
+         timestampString = "395013927.638095"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "13"
+         endingLineNumber = "13">
+      </FileBreakpoint>
+=======
+>>>>>>> parent of 5941e3d... Created New Classes, Fixed Correctness Issue
    </FileBreakpoints>
 </Bucket>

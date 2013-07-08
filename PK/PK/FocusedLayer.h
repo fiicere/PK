@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PhysicsSprite.h"
 #import "cocos2d.h"
 
 @interface FocusedLayer : CCLayer {
@@ -15,5 +16,6 @@
 @property (nonatomic, assign) CGFloat xVel;
 @property (nonatomic, assign) CGFloat yVel;
 
+-(void) setFocus:(PhysicsSprite*) newFocus;
 
 @end
