@@ -10,18 +10,8 @@
 #import "cocos2d.h"
 
 @interface PhysicsSprite : CCSprite {
-    
 }
 @property (nonatomic, assign) CGFloat xVel;
 @property (nonatomic, assign) CGFloat yVel;
-
-// Fixes the sprite in position
--(void)fixPosition;
-
--(void)setFriction;
-
--(void)setVelocitydX:(CGFloat)newXVel dY:(CGFloat)newYVel;
-
--(void)incVelocitydX:(CGFloat)dX dY:(CGFloat)dY;
 
 @end
