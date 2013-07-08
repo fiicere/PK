@@ -9,35 +9,37 @@
 #import "FocusedLayer.h"
 #import "PhysicsSprite.h"
 
-PhysicsSprite *focus;
-
 
 @implementation FocusedLayer
 
+-(id)init{
+    printf("ERROR: Cannot create FocusedLayer without a focus!!!");
+    return [self initWithFocus:nil];
+}
+
 // on "init" you need to initialize your instance
--(id) init
+-(id) initWithFocus:(PhysicsSprite*)focus
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
+        [self setupVariables];
         // schedule a repeating callback on every frame
-        [self schedule:@selector(onTick:)];
+        [self schedule:@selector(nextFrame:)];
 	}
+    
 	return self;
 }
 
-// Sets the FocusedLayer to follow agent
--(void) setFocus:(PhysicsSprite*) newFocus{
-    focus = newFocus;
+-(void) setupVariables:(PhysicsSprite*)focus
+{
+    _xVel = focus.xVel;
+    _yVel = focus.yVel;
 }
 
+
 // Runs every tick
-- (void) onTick:(ccTime)dt {
-    if (focus == nil) {
-        return;
-    }
-    _xVel = - focus.xVel;
-    _yVel = - focus.yVel;
+- (void) nextFrame:(ccTime)dt {
     [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];
 }
 

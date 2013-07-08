@@ -10,10 +10,9 @@
 #import "cocos2d.h"
 
 @interface EnemiesLayer : CCLayer {
-    @public
-        CGFloat xVel;
-        CGFloat yVel;
 }
+@property (nonatomic, assign) CGFloat xVel;
+@property (nonatomic, assign) CGFloat yVel;
 
 -(void)shotFired:(CGPoint)loc;
 
