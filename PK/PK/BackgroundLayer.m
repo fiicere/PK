@@ -6,7 +6,7 @@
 //  Copyright 2013 Kevin Yue. All rights reserved.
 //
 
-#import "EnemiesLayer.h"
+#import "BackgroundLayer.h"
 
 CGFloat height;
 CGFloat width;
@@ -14,7 +14,7 @@ CGFloat width;
 const CGFloat FRICTION = .01;
 const CGFloat BULLETFORCE = 1.5;
 
-@implementation EnemiesLayer
+@implementation BackgroundLayer
 
 // on "init" you need to initialize your instance
 -(id) init

@@ -17,7 +17,7 @@
 #import "CCTouchDispatcher.h"
 
 #import "GameOverLayer.h"
-#import "EnemiesLayer.h"
+#import "BackgroundLayer.h"
 
 // Adding 2 sprites:
 CCSprite *ship;
@@ -36,7 +36,7 @@ NSMutableArray * _projectiles;
 
 // Layers
 HelloWorldLayer *sl;
-EnemiesLayer *el;
+BackgroundLayer *el;
 
 #pragma mark - HelloWorldLayer
 
@@ -54,7 +54,7 @@ EnemiesLayer *el;
     sl = [HelloWorldLayer node];
     
     // Add enemies layer
-    el = [EnemiesLayer node];
+    el = [BackgroundLayer node];
     
 	// add layer as a child to scene
 	[scene addChild: sl];
@@ -98,6 +98,7 @@ EnemiesLayer *el;
 {
     height = CCDirector.sharedDirector.winSize.height;
     width = CCDirector.sharedDirector.winSize.width;
+    score = 0;
 }
 
 
