@@ -73,7 +73,7 @@ EnemiesLayer *el;
         [self setupVariables];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        ship = [CCSprite spriteWithFile: @"PlayerShip.tif"];
+        ship = [CCSprite spriteWithFile: @"Player.tif"];
         ship.position = ccp( width/2, height/2 );
         [self addChild:ship];
         
@@ -148,7 +148,7 @@ EnemiesLayer *el;
     [self addUFO];
 }
 -(void) addUFO{
-    CCSprite *ufo = [CCSprite spriteWithFile: @"EnemySaucer.tif"];
+    CCSprite *ufo = [CCSprite spriteWithFile: @"EnemyA.tif"];
     
     // Radius of ufo sprite
     CGFloat r = MAX(ufo.boundingBox.size.width, ufo.boundingBox.size.height)/2;
@@ -230,7 +230,7 @@ EnemiesLayer *el;
 
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
-    CCSprite *projectile = [CCSprite spriteWithFile:@"PlasmaBall.tif"];
+    CCSprite *projectile = [CCSprite spriteWithFile:@"Shot.tif"];
     projectile.position = ship.position;
     [self addChild:projectile];
     
