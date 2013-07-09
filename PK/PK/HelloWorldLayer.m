@@ -105,7 +105,18 @@ EnemiesLayer *el;
 // Runs every tick
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
+<<<<<<< HEAD
     [el setPosition:ccp(el.position.x + el.xVel, el.position.y + el.yVel)];
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
+>>>>>>> parent of 5941e3d... Created New Classes, Fixed Correctness Issue
+=======
+    [el setPosition:ccp(el.position.x + el->xVel, el.position.y + el->yVel)];
+>>>>>>> parent of 5941e3d... Created New Classes, Fixed Correctness Issue
+>>>>>>> adcbaf063ed11b22ac3e88cbad5de8f7b8a24476
 }
 
 - (void) checkCollisions{
