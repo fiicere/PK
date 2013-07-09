@@ -11,7 +11,7 @@
 // Constants
 const CGFloat FRICTION = .02;
 const CGFloat LIMITS_OF_REALITY = 500;
-const CGFloat COLLISION_OVERLAP = 0;
+const CGFloat COLLISION_OVERLAP = 1.3;
 const bool debug = true;
 
 // My info
@@ -116,11 +116,12 @@ CGFloat realityMaxY;
     }
 }
 
+// Returns world-frame bounding box
 -(CGRect) getBoundingBox{
     CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
     CGFloat myY = [self.parent convertToWorldSpace:self.position].y;
 
-    CGRect myBox = CGRectMake(myX, myY, myWidth, myHeight);
+    CGRect myBox = CGRectMake(myX, myY, myWidth*COLLISION_OVERLAP, myHeight*COLLISION_OVERLAP);
     return myBox;
 }
 
