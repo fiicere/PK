@@ -10,7 +10,7 @@
 
 // Constants
 const CGFloat FRICTION = .02;
-const CGFloat LIMITS_OF_REALITY = 100;
+const CGFloat LIMITS_OF_REALITY = 500;
 
 // World info
 CGFloat width;
