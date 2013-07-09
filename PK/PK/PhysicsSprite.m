@@ -10,12 +10,13 @@
 
 // Constants
 const CGFloat FRICTION = .02;
-const CGFloat LIMITS_OF_REALITY = 100;
+const CGFloat LIMITS_OF_REALITY = 500;
 const CGFloat COLLISION_OVERLAP = .25;
 
 // My info
 CGFloat myWidth;
 CGFloat myHeight;
+
 
 // World info
 CGFloat screenWidth;
