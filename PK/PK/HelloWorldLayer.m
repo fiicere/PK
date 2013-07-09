@@ -33,9 +33,10 @@ int score;
 const double SPEED = 750;
 const int RECOIL = -100;
 
-// UFO speed variations
+// UFO stats
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
+const int UFOSPERSEC = 3;
 
 // Layers
 HelloWorldLayer *sl;
@@ -151,7 +152,9 @@ FocusedLayer *pl;
 
 // Runs every second
 -(void)gameLogic:(ccTime)dt {
-    [self addUFO];
+    for (int i=0; i<UFOSPERSEC; i++) {
+        [self addUFO];
+    }
 }
 
 -(void) addUFO{
