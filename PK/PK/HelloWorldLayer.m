@@ -31,15 +31,11 @@ int score;
 
 // Projectile stats
 const double SPEED = 750;
-const double LIFESPAN = 3;
+const int RECOIL = -100;
 
-
-const int BULLETFORCE = 100;
+// UFO speed variations
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
-
-// Agent Arrays
-NSMutableArray * _projectiles;
 
 // Layers
 HelloWorldLayer *sl;
@@ -71,6 +67,7 @@ FocusedLayer *pl;
 	// add layer as a child to scene
 	[scene addChild: sl];
     [scene addChild: el];
+    [scene addChild: pl];
     
 	// return the scene
 	return scene;
@@ -103,9 +100,6 @@ FocusedLayer *pl;
         
         // Spawn UFOs timer
         [self schedule:@selector(gameLogic:) interval:1.0];
-        
-        // Configure agent arrays
-        _projectiles = [[NSMutableArray alloc] init];
 	}
     
 	return self;
@@ -126,12 +120,13 @@ FocusedLayer *pl;
 
 - (void) checkCollisions{
     NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-    for (CCSprite *pro in _projectiles) {
+    for (CCSprite *pro in pl.children) {
+        CGRect proBox = CGRectOffset(pro.boundingBox, pl.position.x, pl.position.y);
         
         NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
         for (CCSprite *ufo in el.children) {
             CGRect ufoBox = CGRectOffset(ufo.boundingBox, el.position.x, el.position.y);
-            if (CGRectIntersectsRect(pro.boundingBox, ufoBox)) {
+            if (CGRectIntersectsRect(proBox, ufoBox)) {
                 score += 1;
                 [ufosToDelete addObject:ufo];
                 [projectilesToDelete addObject:pro];
@@ -144,8 +139,7 @@ FocusedLayer *pl;
         [ufosToDelete release];
     }
     for (CCSprite *projectile in projectilesToDelete) {
-        [_projectiles removeObject:projectile];
-        [self removeChild:projectile cleanup:YES];
+        [pl removeChild:projectile cleanup:YES];
     }
     [projectilesToDelete release];
     
@@ -243,29 +237,25 @@ FocusedLayer *pl;
 
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
-    CCSprite *projectile = [CCSprite spriteWithFile:@"PlasmaBall.tif"];
+    PhysicsSprite *projectile = [[PhysicsSprite alloc] createWithFile:@"PlasmaBall.tif"];
     projectile.position = ship.position;
-    [self addChild:projectile];
+    [pl addChild:projectile];
     
     // Find the offset between the touch event and the projectile
     CGPoint offset = ccpSub(loc, projectile.position);
     CGFloat norm = sqrt(offset.x*offset.x + offset.y*offset.y);
-    CGFloat dx = offset.x * SPEED * LIFESPAN / norm;
-    CGFloat dy = offset.y * SPEED * LIFESPAN / norm;
-
-    [ship pushWithXForce:(-BULLETFORCE*offset.x/norm) YForce:(-BULLETFORCE*offset.y/norm)];
+    CGFloat normX = offset.x / norm;
+    CGFloat normY = offset.y / norm;
     
-    CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
-    CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
-        [node removeFromParentAndCleanup:YES];
-        [_projectiles removeObject:node];
-    }];
+    // Set the projectile coord to absolute reference frame
+    projectile.position = ccp(width/2 - pl.position.x, height/2 - pl.position.y);
     
-    [projectile runAction:[CCSequence actions:move, moveDone, nil]];
+    // Set projectile speed
+    [projectile pushWithXForce:normX*SPEED YForce:normY*SPEED];
     
-    // manage ufo list
-    projectile.tag = 1;
-    [_projectiles addObject:projectile];
+    // Recoil
+    [ship pushWithXForce:normX*RECOIL YForce:normY*RECOIL];
+    
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -274,13 +264,7 @@ FocusedLayer *pl;
 	// in case you have something to dealloc, do it in this method
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
-	
 
-    
-    // release agent arrays
-    [_projectiles release];
-    _projectiles = nil;
-    
 	// Always call superalloc
 	[super dealloc];
 }
