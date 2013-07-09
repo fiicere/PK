@@ -84,7 +84,6 @@ FocusedLayer *pl;
         // do the same for our cocos2d guy, reusing the app icon as its image
 
         ship = [[PhysicsSprite alloc] createWithFile: @"Player.tif"];
-        [ship setScale:.4];
         ship.position = ccp( screenWidth/2, screenHeight/2 );
         [self addChild:ship];
         [el setFocus:ship];
