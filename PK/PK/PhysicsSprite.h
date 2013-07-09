@@ -13,10 +13,8 @@
 }
 @property (nonatomic, assign) CGFloat xVel;
 @property (nonatomic, assign) CGFloat yVel;
-
--(void) fixPosition:(bool)fixed;
-
--(void) toggleFrict:(bool)friction;
+@property (nonatomic, assign) bool fixedPosition;
+@property (nonatomic, assign) bool hasFrict;
 
 -(void) pushWithXForce:(CGFloat)dX YForce:(CGFloat)dY;
 

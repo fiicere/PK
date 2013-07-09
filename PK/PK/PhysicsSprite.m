@@ -8,10 +8,17 @@
 
 #import "PhysicsSprite.h"
 
+// Constants
 const CGFloat FRICTION = .02;
+const CGFloat LIMITS_OF_REALITY = 100;
 
-bool fixedPos = false;
-bool hasFrict = false;
+// World info
+CGFloat width;
+CGFloat height;
+CGFloat realityMinX;
+CGFloat realityMinY;
+CGFloat realityMaxX;
+CGFloat realityMaxY;
 
 @implementation PhysicsSprite
 
@@ -39,16 +46,12 @@ bool hasFrict = false;
 -(void) setupVariables{
     _xVel = 0;
     _yVel = 0;
-}
-
-// Fix the position of this agent
--(void) fixPosition:(bool)fixed{
-    fixedPos = fixed;
-}
-
-// Toggle the friction of the agent
--(void) toggleFrict:(bool)friction{
-    hasFrict = friction;
+    height = CCDirector.sharedDirector.winSize.height;
+    width = CCDirector.sharedDirector.winSize.width;
+    realityMaxX = width + LIMITS_OF_REALITY;
+    realityMaxY = height + LIMITS_OF_REALITY;
+    realityMinX = - LIMITS_OF_REALITY;
+    realityMinY = - LIMITS_OF_REALITY;
 }
 
 // Scale down the velocity
@@ -73,16 +76,40 @@ bool hasFrict = false;
 // Runs every tick
 - (void) onTick:(ccTime)dt {
     // Apply friction
-    if (hasFrict){
+    if (_hasFrict){
         [self scaleVel:(1-FRICTION)];
     }
     
     // If the position is not fixed, update location
-    if(!fixedPos){
-        [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];        
+    if(!_fixedPosition){
+        [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];
+        [self checkDeath];
     }
 }
 
 
+// Die if you go too far off screen
+- (void) checkDeath{
+    CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
+    CGFloat myY = [self.parent convertToWorldSpace:self.position].x;
+
+    if(myX < realityMinX){
+        [self die];
+    }
+    if(myX > realityMaxX){
+        [self die];
+    }
+    if(myY < realityMinY){
+        [self die];
+    }
+    if(myY > realityMaxY){
+        [self die];
+    }
+}
+
+// Remove agent
+- (void) die{
+    [self.parent removeChild:self cleanup:YES];
+}
 
 @end
