@@ -25,21 +25,17 @@
 PhysicsSprite *ship;
 
 // Screen size
-CGFloat height;
-CGFloat width;
+CGFloat screenHeight;
+CGFloat screenWidth;
 int score;
 
 // Projectile stats
 const double SPEED = 750;
-const double LIFESPAN = 3;
+const int RECOIL = -100;
 
-
-const int BULLETFORCE = 100;
+// UFO speed variations
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
-
-// Agent Arrays
-NSMutableArray * _projectiles;
 
 // Layers
 HelloWorldLayer *sl;
@@ -71,6 +67,7 @@ FocusedLayer *pl;
 	// add layer as a child to scene
 	[scene addChild: sl];
     [scene addChild: el];
+    [scene addChild: pl];
     
 	// return the scene
 	return scene;
@@ -88,7 +85,7 @@ FocusedLayer *pl;
 
         ship = [[PhysicsSprite alloc] createWithFile: @"PlayerShip.tif"];
         [ship setScale:.4];
-        ship.position = ccp( width/2, height/2 );
+        ship.position = ccp( screenWidth/2, screenHeight/2 );
         [self addChild:ship];
         [el setFocus:ship];
         [pl setFocus:ship];
@@ -103,9 +100,6 @@ FocusedLayer *pl;
         
         // Spawn UFOs timer
         [self schedule:@selector(gameLogic:) interval:1.0];
-        
-        // Configure agent arrays
-        _projectiles = [[NSMutableArray alloc] init];
 	}
     
 	return self;
@@ -113,8 +107,8 @@ FocusedLayer *pl;
 
 -(void) setupVariables
 {
-    height = CCDirector.sharedDirector.winSize.height;
-    width = CCDirector.sharedDirector.winSize.width;
+    screenHeight = CCDirector.sharedDirector.winSize.height;
+    screenWidth = CCDirector.sharedDirector.winSize.width;
     score = 0;
 }
 
@@ -126,32 +120,30 @@ FocusedLayer *pl;
 
 - (void) checkCollisions{
     NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-    for (CCSprite *pro in _projectiles) {
-        
+    for (PhysicsSprite *pro in pl.children) {
+        CGRect proBox = [pro getBoundingBox];
         NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
-        for (CCSprite *ufo in el.children) {
-            CGRect ufoBox = CGRectOffset(ufo.boundingBox, el.position.x, el.position.y);
-            if (CGRectIntersectsRect(pro.boundingBox, ufoBox)) {
+        for (PhysicsSprite *ufo in el.children) {
+            CGRect ufoBox = [ufo getBoundingBox];
+            if (CGRectIntersectsRect(proBox, ufoBox)) {
                 score += 1;
                 [ufosToDelete addObject:ufo];
                 [projectilesToDelete addObject:pro];
             }
         }
         
-        for (CCSprite *ufo in ufosToDelete) {
+        for (PhysicsSprite *ufo in ufosToDelete) {
             [el removeChild:ufo cleanup:YES];
         }
         [ufosToDelete release];
     }
-    for (CCSprite *projectile in projectilesToDelete) {
-        [_projectiles removeObject:projectile];
-        [self removeChild:projectile cleanup:YES];
+    for (PhysicsSprite *projectile in projectilesToDelete) {
+        [pl removeChild:projectile cleanup:YES];
     }
     [projectilesToDelete release];
     
-    for (CCSprite *ufo in el.children) {
-        CGRect ufoBox = CGRectOffset(ufo.boundingBox, el.position.x, el.position.y);
-        if (CGRectIntersectsRect(ship.boundingBox, ufoBox)) {
+    for (PhysicsSprite *ufo in el.children) {
+        if (CGRectIntersectsRect([ship getBoundingBox], [ufo getBoundingBox])) {
             CCScene *gameOverScene = [GameOverLayer sceneWithScore:score];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -169,9 +161,9 @@ FocusedLayer *pl;
     CGFloat r = MAX(ufo.boundingBox.size.width, ufo.boundingBox.size.height)/2;
     
     // UFO's starting and ending coords
-    CGFloat y = fmod((CGFloat)arc4random(), height);
-    CGFloat x = width + r;
-    CGFloat yEnd = fmod((CGFloat)arc4random(), height);
+    CGFloat y = fmod((CGFloat)arc4random(), screenHeight);
+    CGFloat x = screenWidth + r;
+    CGFloat yEnd = fmod((CGFloat)arc4random(), screenHeight);
     CGFloat xEnd = -r;
     
     // Randomly choose where the UFO enters from
@@ -187,24 +179,24 @@ FocusedLayer *pl;
             break;
         case 1:
             // Left to right movement
-            y = fmod((CGFloat)arc4random(), height);
+            y = fmod((CGFloat)arc4random(), screenHeight);
             x = -r;
-            yEnd = fmod((CGFloat)arc4random(), height);
-            xEnd = width + r;
+            yEnd = fmod((CGFloat)arc4random(), screenHeight);
+            xEnd = screenWidth + r;
             break;
         case 2:
             // Top down movement
-            y = height + r;
-            x = fmod((CGFloat) arc4random(), width);
+            y = screenHeight + r;
+            x = fmod((CGFloat) arc4random(), screenWidth);
             yEnd = -r;
-            xEnd = fmod((CGFloat) arc4random(), width);
+            xEnd = fmod((CGFloat) arc4random(), screenWidth);
             break;
         case 3:
             // Down up movement
             y = -r;
-            x = fmod((CGFloat) arc4random(), width);
-            yEnd = height+r;
-            xEnd = fmod((CGFloat) arc4random(), width);
+            x = fmod((CGFloat) arc4random(), screenWidth);
+            yEnd = screenHeight+r;
+            xEnd = fmod((CGFloat) arc4random(), screenWidth);
             break;
         default:
             printf("WTF?");
@@ -243,29 +235,25 @@ FocusedLayer *pl;
 
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
-    CCSprite *projectile = [CCSprite spriteWithFile:@"PlasmaBall.tif"];
+    PhysicsSprite *projectile = [[PhysicsSprite alloc] createWithFile:@"PlasmaBall.tif"];
     projectile.position = ship.position;
-    [self addChild:projectile];
+    [pl addChild:projectile];
     
     // Find the offset between the touch event and the projectile
     CGPoint offset = ccpSub(loc, projectile.position);
     CGFloat norm = sqrt(offset.x*offset.x + offset.y*offset.y);
-    CGFloat dx = offset.x * SPEED * LIFESPAN / norm;
-    CGFloat dy = offset.y * SPEED * LIFESPAN / norm;
-
-    [ship pushWithXForce:(-BULLETFORCE*offset.x/norm) YForce:(-BULLETFORCE*offset.y/norm)];
+    CGFloat normX = offset.x / norm;
+    CGFloat normY = offset.y / norm;
     
-    CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
-    CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
-        [node removeFromParentAndCleanup:YES];
-        [_projectiles removeObject:node];
-    }];
+    // Set the projectile coord to absolute reference frame
+    projectile.position = ccp(screenWidth/2 - pl.position.x, screenHeight/2 - pl.position.y);
     
-    [projectile runAction:[CCSequence actions:move, moveDone, nil]];
+    // Set projectile speed
+    [projectile pushWithXForce:normX*SPEED YForce:normY*SPEED];
     
-    // manage ufo list
-    projectile.tag = 1;
-    [_projectiles addObject:projectile];
+    // Recoil
+    [ship pushWithXForce:normX*RECOIL YForce:normY*RECOIL];
+    
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -274,13 +262,7 @@ FocusedLayer *pl;
 	// in case you have something to dealloc, do it in this method
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
-	
 
-    
-    // release agent arrays
-    [_projectiles release];
-    _projectiles = nil;
-    
 	// Always call superalloc
 	[super dealloc];
 }
