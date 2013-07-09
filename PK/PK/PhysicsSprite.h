@@ -22,6 +22,8 @@
 
 -(PhysicsSprite*) createWithFile:(NSString*)filename;
 
+-(CGRect) getBoundingBox;
+
 
 
 @end

@@ -12,9 +12,13 @@
 const CGFloat FRICTION = .02;
 const CGFloat LIMITS_OF_REALITY = 100;
 
+// My info
+CGFloat myWidth;
+CGFloat myHeight;
+
 // World info
-CGFloat width;
-CGFloat height;
+CGFloat screenWidth;
+CGFloat screenHeight;
 CGFloat realityMinX;
 CGFloat realityMinY;
 CGFloat realityMaxX;
@@ -46,12 +50,14 @@ CGFloat realityMaxY;
 -(void) setupVariables{
     _xVel = 0;
     _yVel = 0;
-    height = CCDirector.sharedDirector.winSize.height;
-    width = CCDirector.sharedDirector.winSize.width;
-    realityMaxX = width + LIMITS_OF_REALITY;
-    realityMaxY = height + LIMITS_OF_REALITY;
+    screenHeight = CCDirector.sharedDirector.winSize.height;
+    screenWidth = CCDirector.sharedDirector.winSize.width;
+    realityMaxX = screenWidth + LIMITS_OF_REALITY;
+    realityMaxY = screenHeight + LIMITS_OF_REALITY;
     realityMinX = - LIMITS_OF_REALITY;
     realityMinY = - LIMITS_OF_REALITY;
+    myWidth = self.boundingBox.size.width;
+    myHeight = self.boundingBox.size.height;
 }
 
 // Scale down the velocity
@@ -91,7 +97,7 @@ CGFloat realityMaxY;
 // Die if you go too far off screen
 - (void) checkDeath{
     CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
-    CGFloat myY = [self.parent convertToWorldSpace:self.position].x;
+    CGFloat myY = [self.parent convertToWorldSpace:self.position].y;
 
     if(myX < realityMinX){
         [self die];
@@ -105,6 +111,14 @@ CGFloat realityMaxY;
     if(myY > realityMaxY){
         [self die];
     }
+}
+
+-(CGRect) getBoundingBox{
+    CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
+    CGFloat myY = [self.parent convertToWorldSpace:self.position].y;
+
+    CGRect myBox = CGRectMake(myX, myY, myWidth, myHeight);
+    return myBox;
 }
 
 // Remove agent
