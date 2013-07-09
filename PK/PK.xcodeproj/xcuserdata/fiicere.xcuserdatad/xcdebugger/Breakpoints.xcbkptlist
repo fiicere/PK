@@ -64,5 +64,17 @@
          landmarkName = "xVel"
          landmarkType = "19">
       </FileBreakpoint>
+
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "PK/PhysicsSprite.m"
+         timestampString = "395013927.638095"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "13"
+         endingLineNumber = "13">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
