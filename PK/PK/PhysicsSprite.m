@@ -11,6 +11,7 @@
 // Constants
 const CGFloat FRICTION = .02;
 const CGFloat LIMITS_OF_REALITY = 100;
+const CGFloat COLLISION_OVERLAP = .25;
 
 // My info
 CGFloat myWidth;
@@ -117,7 +118,7 @@ CGFloat realityMaxY;
     CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
     CGFloat myY = [self.parent convertToWorldSpace:self.position].y;
 
-    CGRect myBox = CGRectMake(myX, myY, myWidth, myHeight);
+    CGRect myBox = CGRectMake(myX, myY, myWidth*(1-COLLISION_OVERLAP), myHeight*(1-COLLISION_OVERLAP));
     return myBox;
 }
 
