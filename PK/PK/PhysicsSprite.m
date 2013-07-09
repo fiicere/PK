@@ -28,6 +28,13 @@ bool hasFrict = false;
 	return self;
 }
 
+-(PhysicsSprite*) createWithFile:(NSString*) filename{
+    self = [super initWithFile:filename];
+    [self setupVariables];
+    [self schedule:@selector(onTick:)];
+    return self;
+}
+
 // Variable Setup
 -(void) setupVariables{
     _xVel = 0;

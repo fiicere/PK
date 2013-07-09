@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4666247117873641004DD174 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666247017873641004DD174 /* GameOverLayer.m */; };
-		466624741787549B004DD174 /* EnemiesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 466624731787549B004DD174 /* EnemiesLayer.m */; };
 		467A56F8178211A000DD3319 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56F7178211A000DD3319 /* QuartzCore.framework */; };
 		467A56FA178211A000DD3319 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56F9178211A000DD3319 /* OpenGLES.framework */; };
 		467A56FC178211A000DD3319 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56FB178211A000DD3319 /* OpenAL.framework */; };
@@ -157,8 +156,6 @@
 /* Begin PBXFileReference section */
 		4666246F17873641004DD174 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
 		4666247017873641004DD174 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
-		466624721787549B004DD174 /* EnemiesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemiesLayer.h; sourceTree = "<group>"; };
-		466624731787549B004DD174 /* EnemiesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemiesLayer.m; sourceTree = "<group>"; };
 		467A56F4178211A000DD3319 /* PK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		467A56F7178211A000DD3319 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		467A56F9178211A000DD3319 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -519,8 +516,6 @@
 				46A56D35178B562D00441334 /* PhysicsSprite.m */,
 				46A56D37178B5C2C00441334 /* FocusedLayer.h */,
 				46A56D38178B5C2C00441334 /* FocusedLayer.m */,
-				466624721787549B004DD174 /* EnemiesLayer.h */,
-				466624731787549B004DD174 /* EnemiesLayer.m */,
 				467A58A2178211A100DD3319 /* IntroLayer.h */,
 				467A58A3178211A100DD3319 /* IntroLayer.m */,
 				4666246F17873641004DD174 /* GameOverLayer.h */,
@@ -1113,7 +1108,6 @@
 				467A58A1178211A100DD3319 /* HelloWorldLayer.m in Sources */,
 				467A58A4178211A100DD3319 /* IntroLayer.m in Sources */,
 				4666247117873641004DD174 /* GameOverLayer.m in Sources */,
-				466624741787549B004DD174 /* EnemiesLayer.m in Sources */,
 				46A56D36178B562D00441334 /* PhysicsSprite.m in Sources */,
 				46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */,
 			);

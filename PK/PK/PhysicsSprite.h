@@ -22,6 +22,8 @@
 
 -(void) setXVel:(CGFloat)xV YVel:(CGFloat)yV;
 
+-(PhysicsSprite*) createWithFile:(NSString*)filename;
+
 
 
 @end

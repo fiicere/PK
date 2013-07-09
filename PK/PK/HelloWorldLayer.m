@@ -32,7 +32,7 @@ int score;
 const double SPEED = 750;
 const double LIFESPAN = 3;
 
-const CGFloat BULLETFORCE = 1.5;
+const CGFloat BULLETFORCE = 100;
 
 // Agent Arrays
 NSMutableArray * _projectiles;
@@ -76,11 +76,13 @@ FocusedLayer *el;
         [self setupVariables];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        ship = [PhysicsSprite spriteWithFile: @"PlayerShip.tif"];
+        ship = [[PhysicsSprite alloc] createWithFile: @"PlayerShip.tif"];
         [ship setScale:.4];
         ship.position = ccp( width/2, height/2 );
         [self addChild:ship];
         [el setFocus:ship];
+        [ship toggleFrict:true];
+        [ship fixPosition:true];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
@@ -241,7 +243,7 @@ FocusedLayer *el;
     CGFloat dx = offset.x * SPEED * LIFESPAN / norm;
     CGFloat dy = offset.y * SPEED * LIFESPAN / norm;
     
-    [ship pushWithXForce:(BULLETFORCE*offset.x/norm) YForce:(BULLETFORCE*offset.y/norm)];
+    [ship pushWithXForce:(-BULLETFORCE*offset.x/norm) YForce:(-BULLETFORCE*offset.y/norm)];
     
     CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
     CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {

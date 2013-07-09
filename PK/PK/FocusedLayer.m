@@ -38,6 +38,9 @@ PhysicsSprite *focus;
     _xVel = -focus.xVel;
     _yVel = -focus.yVel;
     [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];
+    
+//    printf("\nxVel = %f", _xVel);
+//    printf(", yVel = %f", _yVel);
 }
 
 
