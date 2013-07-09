@@ -11,8 +11,9 @@
 CGFloat height;
 CGFloat width;
 
-const CGFloat FRICTION = .01;
-const CGFloat BULLETFORCE = 1.5;
+
+//const CGFloat FRICTION = .01;
+//const CGFloat BULLETFORCE = 1.5;
 
 @implementation EnemiesLayer
 
@@ -38,8 +39,8 @@ const CGFloat BULLETFORCE = 1.5;
 {
     height = CCDirector.sharedDirector.winSize.height;
     width = CCDirector.sharedDirector.winSize.width;
-    xVel = 0;
-    yVel = 0;
+    _xVel = 0;
+    _yVel = 0;
 }
 
 // Schedule all events
@@ -56,17 +57,18 @@ const CGFloat BULLETFORCE = 1.5;
 }
 
 
-// Runs every tick
-- (void) onTickEvents:(ccTime)dt {
-    xVel *= (1-FRICTION);
-    yVel *= (1-FRICTION);
-}
-
--(void) shotFired:(CGPoint) loc{
-    CGPoint offset = ccpSub(loc, ccp(width/2, height/2));
-    
-    xVel += BULLETFORCE * offset.x/sqrt(offset.x * offset.x + offset.y*offset.y);
-    yVel += BULLETFORCE * offset.y/sqrt(offset.x * offset.x + offset.y*offset.y);
-}
+//
+//// Runs every tick
+//- (void) onTickEvents:(ccTime)dt {
+//    _xVel *= (1-FRICTION);
+//    _yVel *= (1-FRICTION);
+//}
+//
+//-(void) shotFired:(CGPoint) loc{
+//    CGPoint offset = ccpSub(loc, ccp(width/2, height/2));
+//    
+//    _xVel += BULLETFORCE * offset.x/sqrt(offset.x * offset.x + offset.y*offset.y);
+//    _yVel += BULLETFORCE * offset.y/sqrt(offset.x * offset.x + offset.y*offset.y);
+//}
 
 @end
