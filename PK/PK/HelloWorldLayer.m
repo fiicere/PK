@@ -17,10 +17,11 @@
 #import "CCTouchDispatcher.h"
 
 #import "GameOverLayer.h"
-#import "EnemiesLayer.h"
+#import "FocusedLayer.h"
+#import "PhysicsSprite.h"
 
 // Adding 2 sprites:
-CCSprite *ship;
+PhysicsSprite *ship;
 
 // Screen size
 CGFloat height;
@@ -31,12 +32,14 @@ int score;
 const double SPEED = 750;
 const double LIFESPAN = 3;
 
+const CGFloat BULLETFORCE = 1.5;
+
 // Agent Arrays
 NSMutableArray * _projectiles;
 
 // Layers
 HelloWorldLayer *sl;
-EnemiesLayer *el;
+FocusedLayer *el;
 
 #pragma mark - HelloWorldLayer
 
@@ -44,17 +47,17 @@ EnemiesLayer *el;
 @implementation HelloWorldLayer
 
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+// Helper class method that creates a Scene
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
+    // Add enemies layer
+    el = [FocusedLayer node];
+    
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
-    
-    // Add enemies layer
-    el = [EnemiesLayer node];
     
 	// add layer as a child to scene
 	[scene addChild: sl];
@@ -73,10 +76,11 @@ EnemiesLayer *el;
         [self setupVariables];
         
         // do the same for our cocos2d guy, reusing the app icon as its image
-        ship = [CCSprite spriteWithFile: @"PlayerShip.tif"];
+        ship = [PhysicsSprite spriteWithFile: @"PlayerShip.tif"];
         [ship setScale:.4];
         ship.position = ccp( width/2, height/2 );
         [self addChild:ship];
+        [el setFocus:ship];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
@@ -105,13 +109,9 @@ EnemiesLayer *el;
 // Runs every tick
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
-
-    [el setPosition:ccp(el.position.x + el.xVel, el.position.y + el.yVel)];
 }
 
 - (void) checkCollisions{
-//    printf("\n # projectiles = %d", _projectiles.count);
-
     NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
     for (CCSprite *pro in _projectiles) {
         
@@ -227,7 +227,6 @@ EnemiesLayer *el;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint loc = [self convertTouchToNodeSpace: touch];
     [self addProjectile:loc];
-    [el shotFired:loc];
 }
 
 - (void) addProjectile:(CGPoint)loc{
@@ -238,9 +237,11 @@ EnemiesLayer *el;
     
     // Find the offset between the touch event and the projectile
     CGPoint offset = ccpSub(loc, projectile.position);
-    CGFloat dx = offset.x * SPEED * LIFESPAN / sqrt(offset.x*offset.x + offset.y*offset.y);
-    CGFloat dy = offset.y * SPEED * LIFESPAN / sqrt(offset.x*offset.x + offset.y*offset.y);
+    CGFloat norm = sqrt(offset.x*offset.x + offset.y*offset.y);
+    CGFloat dx = offset.x * SPEED * LIFESPAN / norm;
+    CGFloat dy = offset.y * SPEED * LIFESPAN / norm;
     
+    [ship pushWithXForce:(BULLETFORCE*offset.x/norm) YForce:(BULLETFORCE*offset.y/norm)];
     
     CCMoveBy *move = [CCMoveTo actionWithDuration:LIFESPAN position:ccp(projectile.position.x + dx, projectile.position.y + dy)];
     CCCallBlock *moveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {

@@ -8,6 +8,10 @@
 
 #import "PhysicsSprite.h"
 
+const CGFloat FRICTION = .02;
+
+bool fixedPos = false;
+bool hasFrict = false;
 
 @implementation PhysicsSprite
 
@@ -30,10 +34,46 @@
     _yVel = 0;
 }
 
+// Fix the position of this agent
+-(void) fixPosition:(bool)fixed{
+    fixedPos = fixed;
+}
+
+// Toggle the friction of the agent
+-(void) toggleFrict:(bool)friction{
+    hasFrict = friction;
+}
+
+// Scale down the velocity
+-(void) scaleVel:(CGFloat)scale{
+    _xVel *= scale;
+    _yVel *= scale;
+}
+
+// Add to current velocity
+- (void) pushWithXForce:(CGFloat)dX YForce:(CGFloat)dY{
+    _xVel += dX;
+    _yVel += dY;
+}
+
+// Set the velocity
+- (void) setXVel:(CGFloat)xV YVel:(CGFloat)yV{
+    _xVel = xV;
+    _yVel = yV;
+}
+
 // On-Tick Event
 // Runs every tick
 - (void) onTick:(ccTime)dt {
-    [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];
+    // Apply friction
+    if (hasFrict){
+        [self scaleVel:(1-FRICTION)];
+    }
+    
+    // If the position is not fixed, update location
+    if(!fixedPos){
+        [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];        
+    }
 }
 
 
