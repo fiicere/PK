@@ -23,6 +23,8 @@
 
 #import "PhysicsSprite.h"
 
+#import "ScoreKeeper.h"
+
 // Adding 2 sprites:
 PhysicsSprite *ship;
 
@@ -129,7 +131,6 @@ FocusedLayer *bl;
 {
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
-    _score = 0;
 }
 
 
@@ -139,32 +140,22 @@ FocusedLayer *bl;
 }
 
 - (void) checkCollisions{
-    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
     for (PhysicsSprite *pro in pl.children) {
         CGRect proBox = [pro getBoundingBox];
-        NSMutableArray *ufosToDelete = [[NSMutableArray alloc] init];
         for (PhysicsSprite *ufo in el.children) {
             CGRect ufoBox = [ufo getBoundingBox];
             if (CGRectIntersectsRect(proBox, ufoBox)) {
-                _score += 1;
-                [ufosToDelete addObject:ufo];
-                [projectilesToDelete addObject:pro];
+                ufo.health -= pro.damage;
+                pro.health -= ufo.damage;
             }
         }
-        
-        for (PhysicsSprite *ufo in ufosToDelete) {
-            [el removeChild:ufo cleanup:YES];
-        }
-        [ufosToDelete release];
     }
-    for (PhysicsSprite *projectile in projectilesToDelete) {
-        [pl removeChild:projectile cleanup:YES];
-    }
-    [projectilesToDelete release];
     
     for (PhysicsSprite *ufo in el.children) {
         if (CGRectIntersectsRect([ship getBoundingBox], [ufo getBoundingBox])) {
-            CCScene *gameOverScene = [GameOverLayer sceneWithScore:_score];
+            printf("\nShip collided!");
+            CCScene *gameOverScene = [GameOverLayer sceneWithScore];
+            printf("\nReplacing scene");
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
     }
@@ -179,6 +170,8 @@ FocusedLayer *bl;
 
 -(void) addUFO{
     PhysicsSprite *ufo = [[PhysicsSprite alloc] createWithFile: @"EnemyA.tif"];
+    
+    ufo.score = 1;
     
     // Radius of ufo sprite
     CGFloat r = MAX(ufo.boundingBox.size.width, ufo.boundingBox.size.height)/2;

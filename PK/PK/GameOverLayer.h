@@ -13,7 +13,7 @@
 
 }
 
-+(CCScene *) sceneWithScore:(int)score;
-- (id)initWithWon:(int)score;
++(CCScene *) sceneWithScore;
+- (id)initWithWon;
 
 @end

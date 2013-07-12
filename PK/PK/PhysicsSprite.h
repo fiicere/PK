@@ -15,6 +15,9 @@
 @property (nonatomic, assign) CGFloat yVel;
 @property (nonatomic, assign) bool fixedPosition;
 @property (nonatomic, assign) bool hasFrict;
+@property (nonatomic, assign) CGFloat damage;
+@property (nonatomic, assign) CGFloat health;
+@property (nonatomic, assign) int score;
 
 -(void) pushWithXForce:(CGFloat)dX YForce:(CGFloat)dY;
 
@@ -23,6 +26,8 @@
 -(PhysicsSprite*) createWithFile:(NSString*)filename;
 
 -(CGRect) getBoundingBox;
+
+-(void) setupVariables;
 
 
 

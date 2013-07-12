@@ -7,6 +7,7 @@
 //
 
 #import "PhysicsSprite.h"
+#import "ScoreKeeper.h"
 
 // Constants
 const CGFloat FRICTION = .02;
@@ -17,7 +18,8 @@ const bool debug = true;
 // My info
 CGFloat myWidth;
 CGFloat myHeight;
-CGFloat health = 100;
+const CGFloat maxHP = 100;
+const CGFloat baseDMG = 100;
 
 // World info
 CGFloat screenWidth;
@@ -61,7 +63,8 @@ CGFloat realityMaxY;
     realityMinY = - LIMITS_OF_REALITY;
     myWidth = self.boundingBox.size.width;
     myHeight = self.boundingBox.size.height;
-    health = 100;
+    _health = maxHP;
+    _damage = baseDMG;
 }
 
 // Scale down the velocity
@@ -97,7 +100,6 @@ CGFloat realityMaxY;
     }
 }
 
-
 // Die if you go too far off screen
 - (void) checkDeath{
     CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
@@ -115,7 +117,7 @@ CGFloat realityMaxY;
     if(myY > realityMaxY){
         [self die];
     }
-    if(health <= 0){
+    if(_health <= 0){
         [self die];
     }
     
@@ -132,6 +134,7 @@ CGFloat realityMaxY;
 
 // Remove agent
 - (void) die{
+    [[ScoreKeeper getInstance] incScore:_score];
     [self.parent removeChild:self cleanup:YES];
 }
 
