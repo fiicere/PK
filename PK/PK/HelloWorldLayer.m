@@ -10,15 +10,17 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 
+// Import layers
+#import "GameOverLayer.h"
+#import "FocusedLayer.h"
+#import "BackgroundLayer.h"
+
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
 // Touch Handler
 #import "CCTouchDispatcher.h"
 
-#import "GameOverLayer.h"
-
-#import "FocusedLayer.h"
 #import "PhysicsSprite.h"
 
 // Adding 2 sprites:
@@ -43,6 +45,7 @@ HelloWorldLayer *sl;
 
 FocusedLayer *el;
 FocusedLayer *pl;
+FocusedLayer *bl;
 
 #pragma mark - HelloWorldLayer
 
@@ -62,6 +65,9 @@ FocusedLayer *pl;
     // Add Projectiles layer
     pl = [FocusedLayer node];
     
+    // Add background layer
+    bl = [BackgroundLayer node];
+    
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
     
@@ -69,6 +75,8 @@ FocusedLayer *pl;
 	[scene addChild: sl];
     [scene addChild: el];
     [scene addChild: pl];
+    [scene addChild: bl];
+    [scene reorderChild:bl z:-1];
     
 	// return the scene
 	return scene;
@@ -84,25 +92,38 @@ FocusedLayer *pl;
         
         // do the same for our cocos2d guy, reusing the app icon as its image
 
-        ship = [[PhysicsSprite alloc] createWithFile: @"Player.tif"];
-        ship.position = ccp( screenWidth/2, screenHeight/2 );
-        [self addChild:ship];
-        [el setFocus:ship];
-        [pl setFocus:ship];
-        ship.hasFrict = true;
-        ship.fixedPosition = true;
-        
+        [self addShip];
+        [self setFocus];
+
+
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
+        
+        // schedule a timer to run every second
+        [self schedule:@selector(gameLogic:) interval:1.0];
         
         // to enable touch detection
         self.isTouchEnabled = YES;
         
-        // Spawn UFOs timer
-        [self schedule:@selector(gameLogic:) interval:1.0];
 	}
     
 	return self;
+}
+
+// Creates the main ship
+-(void)addShip{
+    ship = [[PhysicsSprite alloc] createWithFile: @"Player.tif"];
+    ship.position = ccp( screenWidth/2, screenHeight/2 );
+    ship.hasFrict = true;
+    ship.fixedPosition = true;
+    [self addChild:ship];
+}
+
+// Sets the focus of all layers to the ship
+-(void)setFocus{
+    [el setFocus:ship];
+    [pl setFocus:ship];
+    [bl setFocus:ship];
 }
 
 -(void) setupVariables

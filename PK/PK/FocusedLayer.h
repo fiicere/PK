@@ -11,6 +11,7 @@
 #import "PhysicsSprite.h"
 
 @interface FocusedLayer : CCLayer {
+    PhysicsSprite *focus;
 
 }
 @property (nonatomic, assign) CGFloat xVel;

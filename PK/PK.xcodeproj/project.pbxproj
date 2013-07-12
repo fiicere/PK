@@ -145,6 +145,8 @@
 		467A58AB17833D2D00DD3319 /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A58AA17833D2D00DD3319 /* seeker.png */; };
 		46A56D36178B562D00441334 /* PhysicsSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D35178B562D00441334 /* PhysicsSprite.m */; };
 		46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D38178B5C2C00441334 /* FocusedLayer.m */; };
+		46D00B55178CCB4A0007617F /* HunterSprites.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D00B54178CCB4A0007617F /* HunterSprites.m */; };
+		46D00B58178F0B4D0007617F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D00B57178F0B4D0007617F /* BackgroundLayer.m */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
@@ -447,6 +449,10 @@
 		46A56D35178B562D00441334 /* PhysicsSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsSprite.m; sourceTree = "<group>"; };
 		46A56D37178B5C2C00441334 /* FocusedLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusedLayer.h; sourceTree = "<group>"; };
 		46A56D38178B5C2C00441334 /* FocusedLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusedLayer.m; sourceTree = "<group>"; };
+		46D00B53178CCB4A0007617F /* HunterSprites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HunterSprites.h; sourceTree = "<group>"; };
+		46D00B54178CCB4A0007617F /* HunterSprites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HunterSprites.m; sourceTree = "<group>"; };
+		46D00B56178F0B4D0007617F /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
+		46D00B57178F0B4D0007617F /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
@@ -520,17 +526,20 @@
 			children = (
 				467A589C178211A100DD3319 /* AppDelegate.h */,
 				467A589D178211A100DD3319 /* AppDelegate.m */,
-				467A589F178211A100DD3319 /* HelloWorldLayer.h */,
-				467A58A0178211A100DD3319 /* HelloWorldLayer.m */,
-				46A56D34178B562D00441334 /* PhysicsSprite.h */,
-				46A56D35178B562D00441334 /* PhysicsSprite.m */,
+				46D00B56178F0B4D0007617F /* BackgroundLayer.h */,
+				46D00B57178F0B4D0007617F /* BackgroundLayer.m */,
 				46A56D37178B5C2C00441334 /* FocusedLayer.h */,
 				46A56D38178B5C2C00441334 /* FocusedLayer.m */,
-
-				467A58A2178211A100DD3319 /* IntroLayer.h */,
-				467A58A3178211A100DD3319 /* IntroLayer.m */,
 				4666246F17873641004DD174 /* GameOverLayer.h */,
 				4666247017873641004DD174 /* GameOverLayer.m */,
+				467A589F178211A100DD3319 /* HelloWorldLayer.h */,
+				467A58A0178211A100DD3319 /* HelloWorldLayer.m */,
+				46D00B53178CCB4A0007617F /* HunterSprites.h */,
+				46D00B54178CCB4A0007617F /* HunterSprites.m */,
+				467A58A2178211A100DD3319 /* IntroLayer.h */,
+				467A58A3178211A100DD3319 /* IntroLayer.m */,
+				46A56D34178B562D00441334 /* PhysicsSprite.h */,
+				46A56D35178B562D00441334 /* PhysicsSprite.m */,
 				467A570C178211A000DD3319 /* Resources */,
 				467A5724178211A000DD3319 /* libs */,
 				467A5898178211A100DD3319 /* Supporting Files */,
@@ -1129,9 +1138,10 @@
 				467A58A1178211A100DD3319 /* HelloWorldLayer.m in Sources */,
 				467A58A4178211A100DD3319 /* IntroLayer.m in Sources */,
 				4666247117873641004DD174 /* GameOverLayer.m in Sources */,
-
 				46A56D36178B562D00441334 /* PhysicsSprite.m in Sources */,
 				46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */,
+				46D00B55178CCB4A0007617F /* HunterSprites.m in Sources */,
+				46D00B58178F0B4D0007617F /* BackgroundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
