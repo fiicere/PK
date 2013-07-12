@@ -524,22 +524,12 @@
 		467A570B178211A000DD3319 /* PK */ = {
 			isa = PBXGroup;
 			children = (
+				46F063E417905BF00047725D /* Layers */,
+				46F063E517905C290047725D /* Sprites */,
 				467A589C178211A100DD3319 /* AppDelegate.h */,
 				467A589D178211A100DD3319 /* AppDelegate.m */,
-				46D00B56178F0B4D0007617F /* BackgroundLayer.h */,
-				46D00B57178F0B4D0007617F /* BackgroundLayer.m */,
-				46A56D37178B5C2C00441334 /* FocusedLayer.h */,
-				46A56D38178B5C2C00441334 /* FocusedLayer.m */,
-				4666246F17873641004DD174 /* GameOverLayer.h */,
-				4666247017873641004DD174 /* GameOverLayer.m */,
 				467A589F178211A100DD3319 /* HelloWorldLayer.h */,
 				467A58A0178211A100DD3319 /* HelloWorldLayer.m */,
-				46D00B53178CCB4A0007617F /* HunterSprites.h */,
-				46D00B54178CCB4A0007617F /* HunterSprites.m */,
-				467A58A2178211A100DD3319 /* IntroLayer.h */,
-				467A58A3178211A100DD3319 /* IntroLayer.m */,
-				46A56D34178B562D00441334 /* PhysicsSprite.h */,
-				46A56D35178B562D00441334 /* PhysicsSprite.m */,
 				467A570C178211A000DD3319 /* Resources */,
 				467A5724178211A000DD3319 /* libs */,
 				467A5898178211A100DD3319 /* Supporting Files */,
@@ -938,6 +928,32 @@
 				467A589A178211A100DD3319 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46F063E417905BF00047725D /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				46D00B56178F0B4D0007617F /* BackgroundLayer.h */,
+				46D00B57178F0B4D0007617F /* BackgroundLayer.m */,
+				46A56D37178B5C2C00441334 /* FocusedLayer.h */,
+				46A56D38178B5C2C00441334 /* FocusedLayer.m */,
+				4666246F17873641004DD174 /* GameOverLayer.h */,
+				4666247017873641004DD174 /* GameOverLayer.m */,
+				467A58A2178211A100DD3319 /* IntroLayer.h */,
+				467A58A3178211A100DD3319 /* IntroLayer.m */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
+		46F063E517905C290047725D /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				46D00B53178CCB4A0007617F /* HunterSprites.h */,
+				46D00B54178CCB4A0007617F /* HunterSprites.m */,
+				46A56D35178B562D00441334 /* PhysicsSprite.m */,
+				46A56D34178B562D00441334 /* PhysicsSprite.h */,
+			);
+			name = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

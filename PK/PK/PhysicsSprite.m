@@ -17,7 +17,7 @@ const bool debug = true;
 // My info
 CGFloat myWidth;
 CGFloat myHeight;
-
+CGFloat health = 100;
 
 // World info
 CGFloat screenWidth;
@@ -61,6 +61,7 @@ CGFloat realityMaxY;
     realityMinY = - LIMITS_OF_REALITY;
     myWidth = self.boundingBox.size.width;
     myHeight = self.boundingBox.size.height;
+    health = 100;
 }
 
 // Scale down the velocity
@@ -114,6 +115,10 @@ CGFloat realityMaxY;
     if(myY > realityMaxY){
         [self die];
     }
+    if(health <= 0){
+        [self die];
+    }
+    
 }
 
 // Returns world-frame bounding box

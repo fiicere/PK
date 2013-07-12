@@ -29,7 +29,6 @@ PhysicsSprite *ship;
 // Screen size
 CGFloat screenHeight;
 CGFloat screenWidth;
-int score;
 
 // Projectile stats
 const double SPEED = 750;
@@ -130,7 +129,7 @@ FocusedLayer *bl;
 {
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
-    score = 0;
+    _score = 0;
 }
 
 
@@ -147,7 +146,7 @@ FocusedLayer *bl;
         for (PhysicsSprite *ufo in el.children) {
             CGRect ufoBox = [ufo getBoundingBox];
             if (CGRectIntersectsRect(proBox, ufoBox)) {
-                score += 1;
+                _score += 1;
                 [ufosToDelete addObject:ufo];
                 [projectilesToDelete addObject:pro];
             }
@@ -165,7 +164,7 @@ FocusedLayer *bl;
     
     for (PhysicsSprite *ufo in el.children) {
         if (CGRectIntersectsRect([ship getBoundingBox], [ufo getBoundingBox])) {
-            CCScene *gameOverScene = [GameOverLayer sceneWithScore:score];
+            CCScene *gameOverScene = [GameOverLayer sceneWithScore:_score];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
     }
