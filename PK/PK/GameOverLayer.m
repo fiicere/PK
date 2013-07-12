@@ -13,21 +13,16 @@
 
 @implementation GameOverLayer
 +(CCScene *) sceneWithScore {
-    printf("\nNew scene");
     CCScene *scene = [CCScene node];
     GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon] autorelease];
     [scene addChild: layer];
-    printf("\nfinished creating new scene");
     return scene;
 }
 
 - (id)initWithWon{
-    printf("\nGame over layer");
     if ((self = [super initWithColor:ccc4(0, 0, 0, 255)])) {
         
-        printf("\nbefore get score");
         int score = [[ScoreKeeper getInstance] getScore];
-        printf("\nafter get score");
 
         NSString * message = [NSString stringWithFormat:@"Game Over: \nFinal Score = %d", score];
 
@@ -46,7 +41,6 @@
          }],
           nil]];
     }
-    printf("\nfinished creating game over layer");
     return self;
 }
 @end

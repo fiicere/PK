@@ -27,7 +27,7 @@
 
 -(CGRect) getBoundingBox;
 
--(void) setupVariables;
+-(void) onTick:(ccTime)dt;
 
 
 

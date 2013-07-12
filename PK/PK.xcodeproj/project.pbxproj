@@ -147,6 +147,7 @@
 		46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D38178B5C2C00441334 /* FocusedLayer.m */; };
 		46D00B58178F0B4D0007617F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D00B57178F0B4D0007617F /* BackgroundLayer.m */; };
 		46F063EF17907FCD0047725D /* ScoreKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063EE17907FCD0047725D /* ScoreKeeper.m */; };
+		46F063F8179089890047725D /* HomingEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063F7179089890047725D /* HomingEnemy.m */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
@@ -453,6 +454,8 @@
 		46D00B57178F0B4D0007617F /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		46F063ED17907FCD0047725D /* ScoreKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreKeeper.h; sourceTree = "<group>"; };
 		46F063EE17907FCD0047725D /* ScoreKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreKeeper.m; sourceTree = "<group>"; };
+		46F063F6179089890047725D /* HomingEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomingEnemy.h; sourceTree = "<group>"; };
+		46F063F7179089890047725D /* HomingEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomingEnemy.m; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
@@ -951,6 +954,8 @@
 			children = (
 				46A56D34178B562D00441334 /* PhysicsSprite.h */,
 				46A56D35178B562D00441334 /* PhysicsSprite.m */,
+				46F063F6179089890047725D /* HomingEnemy.h */,
+				46F063F7179089890047725D /* HomingEnemy.m */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1166,6 +1171,7 @@
 				46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */,
 				46D00B58178F0B4D0007617F /* BackgroundLayer.m in Sources */,
 				46F063EF17907FCD0047725D /* ScoreKeeper.m in Sources */,
+				46F063F8179089890047725D /* HomingEnemy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

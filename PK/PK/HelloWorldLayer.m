@@ -153,9 +153,7 @@ FocusedLayer *bl;
     
     for (PhysicsSprite *ufo in el.children) {
         if (CGRectIntersectsRect([ship getBoundingBox], [ufo getBoundingBox])) {
-            printf("\nShip collided!");
             CCScene *gameOverScene = [GameOverLayer sceneWithScore];
-            printf("\nReplacing scene");
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
     }
