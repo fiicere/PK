@@ -22,8 +22,11 @@
 #import "CCTouchDispatcher.h"
 
 #import "PhysicsSprite.h"
+#import "HomingEnemy.h"
 
+// Data Structures
 #import "ScoreKeeper.h"
+#import "RandomTrajectory.h"
 
 // Adding 2 sprites:
 PhysicsSprite *ship;
@@ -33,7 +36,7 @@ CGFloat screenHeight;
 CGFloat screenWidth;
 
 // Projectile stats
-const double SPEED = 750;
+const double PROJ_SPEED = 750;
 const int RECOIL = -100;
 
 // UFO stats
@@ -162,71 +165,36 @@ FocusedLayer *bl;
 // Runs every second
 -(void)gameLogic:(ccTime)dt {
     for (int i=0; i<UFOSPERSEC; i++) {
-        [self addUFO];
+        [self addBasicEnemy];
     }
+//[self addHomingEnemy];
 }
 
--(void) addUFO{
+-(void) addBasicEnemy{
     PhysicsSprite *ufo = [[PhysicsSprite alloc] createWithFile: @"EnemyA.tif"];
     
     ufo.score = 1;
     
-    // Radius of ufo sprite
-    CGFloat r = MAX(ufo.boundingBox.size.width, ufo.boundingBox.size.height)/2;
-    
-    // UFO's starting and ending coords
-    CGFloat y = fmod((CGFloat)arc4random(), screenHeight);
-    CGFloat x = screenWidth + r;
-    CGFloat yEnd = fmod((CGFloat)arc4random(), screenHeight);
-    CGFloat xEnd = -r;
-    
-    // Randomly choose where the UFO enters from
-    int rand = arc4random() % 4;
+    RandomTrajectory *t = [[RandomTrajectory alloc] init];
     
     // Randomly choose the UFO's speed
     CGFloat vel = (arc4random() % (UFOVELMAX-UFOVELMIN)) + UFOVELMIN;
-    
-    switch (rand) {
-        case 0:
-            // Right to left movement
-            // Use value above
-            break;
-        case 1:
-            // Left to right movement
-            y = fmod((CGFloat)arc4random(), screenHeight);
-            x = -r;
-            yEnd = fmod((CGFloat)arc4random(), screenHeight);
-            xEnd = screenWidth + r;
-            break;
-        case 2:
-            // Top down movement
-            y = screenHeight + r;
-            x = fmod((CGFloat) arc4random(), screenWidth);
-            yEnd = -r;
-            xEnd = fmod((CGFloat) arc4random(), screenWidth);
-            break;
-        case 3:
-            // Down up movement
-            y = -r;
-            x = fmod((CGFloat) arc4random(), screenWidth);
-            yEnd = screenHeight+r;
-            xEnd = fmod((CGFloat) arc4random(), screenWidth);
-            break;
-        default:
-            printf("WTF?");
-            break;
-    }
-    
-    ufo.position = ccp(x - el.position.x, y - el.position.y);
-    
-    CGFloat dx = xEnd - x;
-    CGFloat dy = yEnd - y;
-    CGFloat norm = sqrt(dx*dx + dy*dy);
-    [ufo pushWithXForce:dx*vel/norm YForce:dy*vel/norm];
+    ufo.position = ccp(t.startX - el.position.x, t.startY - el.position.y);
+//    printf("\nstartX = %f", t.startX);
+//    printf("\nstartY = %f", t.startY);
+
+    [ufo pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
     [el addChild:ufo];
+    
+    [t dealloc];
     
 //    printf("\nxVel = %f", ufo.xVel);
 //    printf(", yVel = %f", ufo.yVel);
+}
+
+-(void) addHomingEnemy{
+    HomingEnemy *he = [[HomingEnemy alloc] init];
+
 }
 
 // Changes type of touch detection
@@ -263,7 +231,7 @@ FocusedLayer *bl;
     projectile.position = ccp(screenWidth/2 - pl.position.x, screenHeight/2 - pl.position.y);
     
     // Set projectile speed
-    [projectile pushWithXForce:normX*SPEED YForce:normY*SPEED];
+    [projectile pushWithXForce:normX*PROJ_SPEED YForce:normY*PROJ_SPEED];
     
     // Recoil
     [ship pushWithXForce:normX*RECOIL YForce:normY*RECOIL];

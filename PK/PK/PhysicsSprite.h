@@ -10,6 +10,8 @@
 #import "cocos2d.h"
 
 @interface PhysicsSprite : CCSprite {
+    CGFloat screenWidth;
+    CGFloat screenHeight;
 }
 @property (nonatomic, assign) CGFloat xVel;
 @property (nonatomic, assign) CGFloat yVel;

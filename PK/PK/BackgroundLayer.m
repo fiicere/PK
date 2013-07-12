@@ -13,7 +13,7 @@ CCSprite *defaultSprite;
 CGFloat tileWidth;
 CGFloat tileHeight;
 
-NSString* const file = @"TempSpace.jpg";
+NSString* const background_file = @"TempSpace.jpg";
 
 CGPoint nearestIntersection;
 
@@ -69,10 +69,10 @@ CGPoint nearestIntersection;
     CGFloat myX = intersec.x;
     CGFloat myY = intersec.y;
     
-    CCSprite *spriteA = [CCSprite spriteWithFile:file];
-    CCSprite *spriteB = [CCSprite spriteWithFile:file];
-    CCSprite *spriteC = [CCSprite spriteWithFile:file];
-    CCSprite *spriteD = [CCSprite spriteWithFile:file];
+    CCSprite *spriteA = [CCSprite spriteWithFile:background_file];
+    CCSprite *spriteB = [CCSprite spriteWithFile:background_file];
+    CCSprite *spriteC = [CCSprite spriteWithFile:background_file];
+    CCSprite *spriteD = [CCSprite spriteWithFile:background_file];
     
     [spriteA setPosition:ccp(myX + tileWidth/2, myY + tileHeight/2)];
     [spriteB setPosition:ccp(myX + tileWidth*3/2, myY + tileHeight/2)];
