@@ -33,14 +33,14 @@ CGFloat realityMaxY;
 
 // Init Method
 -(id) init {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
-	if( (self=[super init]) ) {
-        [self setupVariables];
-        
-        // schedule a repeating callback on every frame
-        [self schedule:@selector(onTick:)];
-	}
+//	// always call "super" init
+//	// Apple recommends to re-assign "self" with the "super's" return value
+//	if( (self=[super init]) ) {
+//        [self setupVariables];
+//        
+//        // schedule a repeating callback on every frame
+//        [self schedule:@selector(onTick:)];
+//	}
 	return self;
 }
 
@@ -88,6 +88,7 @@ CGFloat realityMaxY;
 // On-Tick Event
 // Runs every tick
 - (void) onTick:(ccTime)dt {
+    printf("\nonTick with fixedPosition:");
     // Apply friction
     if (_hasFrict){
         [self scaleVel:(1-FRICTION)];

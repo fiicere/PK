@@ -42,7 +42,7 @@ const int RECOIL = -100;
 // UFO stats
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
-const int UFOSPERSEC = 3;
+const int UFOSPERTICK = 3;
 
 // Layers
 HelloWorldLayer *sl;
@@ -98,13 +98,12 @@ FocusedLayer *bl;
 
         [self addShip];
         [self setFocus];
-
-
+        
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
         
         // schedule a timer to run every second
-        [self schedule:@selector(gameLogic:) interval:1.0];
+        [self schedule:@selector(gameLogic:) interval:1];
         
         // to enable touch detection
         self.isTouchEnabled = YES;
@@ -164,10 +163,10 @@ FocusedLayer *bl;
 
 // Runs every second
 -(void)gameLogic:(ccTime)dt {
-    for (int i=0; i<UFOSPERSEC; i++) {
+    for (int i=0; i<UFOSPERTICK; i++) {
         [self addBasicEnemy];
     }
-//[self addHomingEnemy];
+    [self addHomingEnemy];
 }
 
 -(void) addBasicEnemy{
@@ -194,6 +193,14 @@ FocusedLayer *bl;
 
 -(void) addHomingEnemy{
     HomingEnemy *he = [[HomingEnemy alloc] init];
+    
+    RandomTrajectory *t = [[RandomTrajectory alloc] init];
+    
+    he.position = ccp(t.startX - el.position.x, t.startY - el.position.y);
+    
+    [he pushWithXForce:t.trajdX*he.getSpeed/t.norm YForce:t.trajdY*he.getSpeed/t.norm];
+    [el addChild:he];
+    [t dealloc];
 
 }
 

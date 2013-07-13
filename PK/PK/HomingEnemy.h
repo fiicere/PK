@@ -11,7 +11,9 @@
 #import "PhysicsSprite.h"
 
 @interface HomingEnemy : PhysicsSprite {
-    
+
 }
+
+-(CGFloat) getSpeed;
 
 @end
