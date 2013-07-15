@@ -86,9 +86,8 @@ CGFloat realityMaxY;
 }
 
 // On-Tick Event
-// Runs every tick
+// TODO: Find why this runs twice per tick
 - (void) onTick:(ccTime)dt {
-    printf("\nonTick with fixedPosition:");
     // Apply friction
     if (_hasFrict){
         [self scaleVel:(1-FRICTION)];
