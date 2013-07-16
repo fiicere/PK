@@ -100,6 +100,7 @@ FocusedLayer *bl;
 
         [self addShip];
         [self setFocus];
+        [[ScoreKeeper getInstance] reset];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
@@ -117,7 +118,7 @@ FocusedLayer *bl;
 
 // Creates the main ship
 -(void)addShip{
-    ship = [[PhysicsSprite alloc] createWithFile: @"Player.tif"];
+    ship = [[PhysicsSprite alloc] initWithFile: @"Player.tif"];
     ship.position = ccp( screenWidth/2, screenHeight/2 );
     ship.hasFrict = true;
     ship.fixedPosition = true;
@@ -165,14 +166,14 @@ FocusedLayer *bl;
 
 // Runs every second
 -(void)gameLogic:(ccTime)dt {
-//    for (int i=0; i<UFOSPERTICK; i++) {
-//        [self addBasicEnemy];
-//    }
-//    [self addHomingEnemy];
+    for (int i=0; i<UFOSPERTICK; i++) {
+        [self addBasicEnemy];
+    }
+    [self addHomingEnemy];
 }
 
 -(void) addBasicEnemy{
-    BasicEnemy *ufo = [[BasicEnemy alloc] createWithFile: @"EnemyA.tif"];
+    BasicEnemy *ufo = [[BasicEnemy alloc] init];
     
     RandomTrajectory *t = [[RandomTrajectory alloc] init];
     
@@ -224,7 +225,7 @@ FocusedLayer *bl;
 
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
-    Projectile *projectile = [[Projectile alloc] createWithFile:@"Shot.tif"];
+    Projectile *projectile = [[Projectile alloc] init];
     projectile.position = ship.position;
     [pl addChild:projectile];
     

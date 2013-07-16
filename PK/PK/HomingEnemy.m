@@ -21,7 +21,7 @@ NSString* const he_file = @"EnemyB.tif";
 @implementation HomingEnemy
 
 -(id) init {
-    self = [super createWithFile:he_file];
+    self = [super initWithFile:he_file];
     if(self){
         // schedule a repeating callback on every frame
         [self schedule:@selector(retarget:) interval:RETARGET_PERIOD];

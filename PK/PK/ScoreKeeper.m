@@ -20,7 +20,7 @@ int score;
     return instance;
 }
 
--(void)setup{
+-(void)reset{
     score = 0;
 }
 

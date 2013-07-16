@@ -44,7 +44,7 @@ CGFloat realityMaxY;
 	return self;
 }
 
--(id) createWithFile:(NSString*) filename{
+-(id) initWithFile:(NSString*) filename{
     self = [super initWithFile:filename];
     [self setupVariables];
     [self schedule:@selector(onTick:)];

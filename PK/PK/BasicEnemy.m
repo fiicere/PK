@@ -18,7 +18,7 @@ NSString* const BE_FILE = @"EnemyA.tif";
 @implementation BasicEnemy
 
 -(id) init {
-    self = [super createWithFile:BE_FILE];
+    self = [super initWithFile:BE_FILE];
     if(self){
         [self setStatsHP:BE_HP DMG:BE_DMG POINTS:BE_VAL];
     }
