@@ -8,6 +8,7 @@
 
 #import "PhysicsSprite.h"
 #import "ScoreKeeper.h"
+#import "RandomTrajectory.h"
 
 // Constants
 const CGFloat FRICTION = .02;
@@ -123,6 +124,7 @@ CGFloat realityMaxY;
         [self die];
     }
     if(_health <= 0){
+        [[ScoreKeeper getInstance] incScore:_points];
         [self die];
     }
     
@@ -139,7 +141,6 @@ CGFloat realityMaxY;
 
 // Remove agent
 - (void) die{
-    [[ScoreKeeper getInstance] incScore:_points];
     [self.parent removeChild:self cleanup:YES];
 }
 

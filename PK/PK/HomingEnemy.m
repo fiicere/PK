@@ -16,7 +16,7 @@ const CGFloat HE_HEALTH = 100;
 const CGFloat HE_VALUE = 1;
 const CGFloat HE_SPEED = 400;
 
-NSString* const he_file = @"EnemyB.tif";
+NSString* const he_file = @"EnemyC.tif";
 
 @implementation HomingEnemy
 

@@ -1,5 +1,5 @@
 //
-//  Projectile.h
+//  Turret.h
 //  PK
 //
 //  Created by Kevin Yue on 7/16/13.
@@ -10,8 +10,11 @@
 #import "cocos2d.h"
 #import "PhysicsSprite.h"
 
-@interface Projectile : PhysicsSprite {
+@interface Turret : PhysicsSprite {
     
 }
+
+-(CGFloat) getSpeed;
+
 
 @end
