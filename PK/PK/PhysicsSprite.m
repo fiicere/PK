@@ -9,10 +9,10 @@
 #import "PhysicsSprite.h"
 #import "ScoreKeeper.h"
 #import "RandomTrajectory.h"
+#import "WorldBoundaries.h"
 
 // Constants
 const CGFloat FRICTION = .02;
-const CGFloat LIMITS_OF_REALITY = 500;
 const CGFloat COLLISION_OVERLAP = 1.3;
 const bool debug = true;
 
@@ -59,10 +59,6 @@ CGFloat realityMaxY;
     _yVel = 0;
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
-    realityMaxX = screenWidth + LIMITS_OF_REALITY;
-    realityMaxY = screenHeight + LIMITS_OF_REALITY;
-    realityMinX = - LIMITS_OF_REALITY;
-    realityMinY = - LIMITS_OF_REALITY;
     myWidth = self.boundingBox.size.width;
     myHeight = self.boundingBox.size.height;
 }
@@ -102,27 +98,13 @@ CGFloat realityMaxY;
     // If the position is not fixed, update location
     if(!_fixedPosition){
         [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];
-        [self checkDeath];
+        [[WorldBoundaries getInstance] updateAgent:self];
     }
+    [self checkDeath];
 }
 
 // Die if you go too far off screen
 - (void) checkDeath{
-    CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
-    CGFloat myY = [self.parent convertToWorldSpace:self.position].y;
-
-    if(myX < realityMinX){
-        [self die];
-    }
-    if(myX > realityMaxX){
-        [self die];
-    }
-    if(myY < realityMinY){
-        [self die];
-    }
-    if(myY > realityMaxY){
-        [self die];
-    }
     if(_health <= 0){
         [[ScoreKeeper getInstance] incScore:_points];
         [self die];

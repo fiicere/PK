@@ -33,6 +33,8 @@
 
 -(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value;
 
+-(void) die;
+
 
 
 @end
