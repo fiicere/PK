@@ -13,7 +13,7 @@ CCSprite *defaultSprite;
 CGFloat tileWidth;
 CGFloat tileHeight;
 
-NSString* const background_file = @"TempSpace.jpg";
+NSString* const background_file = @"Stars 2048x1536.tif";
 
 CGPoint nearestIntersection;
 
@@ -31,7 +31,7 @@ CGPoint nearestIntersection;
 }
 
 -(void) setupVariables{
-    defaultSprite = [CCSprite spriteWithFile:@"TempSpace.jpg"];
+    defaultSprite = [CCSprite spriteWithFile:@"Stars 2048x1536.tif"];
     tileWidth = defaultSprite.boundingBox.size.width;
     tileHeight = defaultSprite.boundingBox.size.height;
     [self newBackground];
