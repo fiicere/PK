@@ -46,7 +46,6 @@ const int RECOIL = -100;
 // UFO stats
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
-const int UFOSPERTICK = 1;
 
 // Layers
 static HelloWorldLayer *sl;
