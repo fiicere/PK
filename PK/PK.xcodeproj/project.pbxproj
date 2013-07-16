@@ -143,6 +143,8 @@
 		467A58A1178211A100DD3319 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 467A58A0178211A100DD3319 /* HelloWorldLayer.m */; };
 		467A58A4178211A100DD3319 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 467A58A3178211A100DD3319 /* IntroLayer.m */; };
 		467A58AB17833D2D00DD3319 /* seeker.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A58AA17833D2D00DD3319 /* seeker.png */; };
+		46923EC01795ABC8004C67E7 /* BasicEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46923EBF1795ABC8004C67E7 /* BasicEnemy.m */; };
+		46923EC31795ACB0004C67E7 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 46923EC21795ACB0004C67E7 /* Projectile.m */; };
 		46A56D36178B562D00441334 /* PhysicsSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D35178B562D00441334 /* PhysicsSprite.m */; };
 		46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D38178B5C2C00441334 /* FocusedLayer.m */; };
 		46D00B58178F0B4D0007617F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D00B57178F0B4D0007617F /* BackgroundLayer.m */; };
@@ -447,6 +449,10 @@
 		467A58A2178211A100DD3319 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		467A58A3178211A100DD3319 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		467A58AA17833D2D00DD3319 /* seeker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seeker.png; path = Resources/seeker.png; sourceTree = "<group>"; };
+		46923EBE1795ABC8004C67E7 /* BasicEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicEnemy.h; sourceTree = "<group>"; };
+		46923EBF1795ABC8004C67E7 /* BasicEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicEnemy.m; sourceTree = "<group>"; };
+		46923EC11795ACB0004C67E7 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
+		46923EC21795ACB0004C67E7 /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projectile.m; sourceTree = "<group>"; };
 		46A56D34178B562D00441334 /* PhysicsSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		46A56D35178B562D00441334 /* PhysicsSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsSprite.m; sourceTree = "<group>"; };
 		46A56D37178B5C2C00441334 /* FocusedLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusedLayer.h; sourceTree = "<group>"; };
@@ -957,8 +963,12 @@
 			children = (
 				46A56D34178B562D00441334 /* PhysicsSprite.h */,
 				46A56D35178B562D00441334 /* PhysicsSprite.m */,
+				46923EC11795ACB0004C67E7 /* Projectile.h */,
+				46923EC21795ACB0004C67E7 /* Projectile.m */,
 				46F063F6179089890047725D /* HomingEnemy.h */,
 				46F063F7179089890047725D /* HomingEnemy.m */,
+				46923EBE1795ABC8004C67E7 /* BasicEnemy.h */,
+				46923EBF1795ABC8004C67E7 /* BasicEnemy.m */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1178,6 +1188,8 @@
 				46F063EF17907FCD0047725D /* ScoreKeeper.m in Sources */,
 				46F063F8179089890047725D /* HomingEnemy.m in Sources */,
 				46F063FB1790A2D20047725D /* RandomTrajectory.m in Sources */,
+				46923EC01795ABC8004C67E7 /* BasicEnemy.m in Sources */,
+				46923EC31795ACB0004C67E7 /* Projectile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

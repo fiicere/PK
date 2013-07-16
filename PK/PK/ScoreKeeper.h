@@ -13,6 +13,8 @@
 
 +(ScoreKeeper *) getInstance;
 
+-(void)reset;
+
 -(void)incScore:(int)inc;
 
 -(void)setScore:(int)newScore;

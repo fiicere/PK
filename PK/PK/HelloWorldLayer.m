@@ -23,6 +23,8 @@
 
 #import "PhysicsSprite.h"
 #import "HomingEnemy.h"
+#import "BasicEnemy.h"
+#import "Projectile.h"
 
 // Data Structures
 #import "ScoreKeeper.h"
@@ -98,6 +100,7 @@ FocusedLayer *bl;
 
         [self addShip];
         [self setFocus];
+        [[ScoreKeeper getInstance] reset];
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
@@ -115,7 +118,7 @@ FocusedLayer *bl;
 
 // Creates the main ship
 -(void)addShip{
-    ship = [[PhysicsSprite alloc] createWithFile: @"Player.tif"];
+    ship = [[PhysicsSprite alloc] initWithFile: @"Player.tif"];
     ship.position = ccp( screenWidth/2, screenHeight/2 );
     ship.hasFrict = true;
     ship.fixedPosition = true;
@@ -170,9 +173,7 @@ FocusedLayer *bl;
 }
 
 -(void) addBasicEnemy{
-    PhysicsSprite *ufo = [[PhysicsSprite alloc] createWithFile: @"EnemyA.tif"];
-    
-    ufo.score = 1;
+    BasicEnemy *ufo = [[BasicEnemy alloc] init];
     
     RandomTrajectory *t = [[RandomTrajectory alloc] init];
     
@@ -224,7 +225,7 @@ FocusedLayer *bl;
 
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
-    PhysicsSprite *projectile = [[PhysicsSprite alloc] createWithFile:@"Shot.tif"];
+    Projectile *projectile = [[Projectile alloc] init];
     projectile.position = ship.position;
     [pl addChild:projectile];
     
