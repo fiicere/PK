@@ -68,7 +68,6 @@ CGFloat realityMaxY;
 
 -(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value{
     [self setHealth:hp];
-    printf("\nMy Health = %f", [self health]);
     [self setDamage:dmg];
     [self setPoints:value];
 }
