@@ -23,6 +23,8 @@
 
 #import "PhysicsSprite.h"
 #import "HomingEnemy.h"
+#import "BasicEnemy.h"
+#import "Projectile.h"
 
 // Data Structures
 #import "ScoreKeeper.h"
@@ -163,16 +165,14 @@ FocusedLayer *bl;
 
 // Runs every second
 -(void)gameLogic:(ccTime)dt {
-    for (int i=0; i<UFOSPERTICK; i++) {
-        [self addBasicEnemy];
-    }
-    [self addHomingEnemy];
+//    for (int i=0; i<UFOSPERTICK; i++) {
+//        [self addBasicEnemy];
+//    }
+//    [self addHomingEnemy];
 }
 
 -(void) addBasicEnemy{
-    PhysicsSprite *ufo = [[PhysicsSprite alloc] createWithFile: @"EnemyA.tif"];
-    
-    ufo.score = 1;
+    BasicEnemy *ufo = [[BasicEnemy alloc] createWithFile: @"EnemyA.tif"];
     
     RandomTrajectory *t = [[RandomTrajectory alloc] init];
     
@@ -224,7 +224,7 @@ FocusedLayer *bl;
 
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
-    PhysicsSprite *projectile = [[PhysicsSprite alloc] createWithFile:@"Shot.tif"];
+    Projectile *projectile = [[Projectile alloc] createWithFile:@"Shot.tif"];
     projectile.position = ship.position;
     [pl addChild:projectile];
     

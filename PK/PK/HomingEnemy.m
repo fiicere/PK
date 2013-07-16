@@ -11,6 +11,9 @@
 
 const ccTime RETARGET_PERIOD = 2;
 const ccTime RETARGET_PAUSE = .5;
+const CGFloat HE_DAMAGE = 75;
+const CGFloat HE_HEALTH = 100;
+const CGFloat HE_VALUE = 1;
 const CGFloat HE_SPEED = 400;
 
 NSString* const he_file = @"EnemyB.tif";
@@ -20,9 +23,9 @@ NSString* const he_file = @"EnemyB.tif";
 -(id) init {
     self = [super createWithFile:he_file];
     if(self){
-        self.score = 1;
         // schedule a repeating callback on every frame
         [self schedule:@selector(retarget:) interval:RETARGET_PERIOD];
+        [self setStatsHP:HE_HEALTH DMG:HE_DAMAGE POINTS:HE_VALUE];
     }
 	return self;
 }
@@ -48,13 +51,10 @@ NSString* const he_file = @"EnemyB.tif";
 -(void)pause{
     [self setFixedPosition:true];
     [self performSelector:@selector(resume) withObject:nil afterDelay:RETARGET_PAUSE];
-    printf("\nstop");
 }
 
 -(void)resume{
     [self setFixedPosition:false];
-    printf(self.fixedPosition ? "True" : "False");
-    printf("\nresume");
 }
 
 

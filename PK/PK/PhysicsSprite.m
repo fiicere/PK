@@ -44,12 +44,13 @@ CGFloat realityMaxY;
 	return self;
 }
 
--(PhysicsSprite*) createWithFile:(NSString*) filename{
+-(id) createWithFile:(NSString*) filename{
     self = [super initWithFile:filename];
     [self setupVariables];
     [self schedule:@selector(onTick:)];
     return self;
 }
+
 
 // Variable Setup
 -(void) setupVariables{
@@ -63,8 +64,13 @@ CGFloat realityMaxY;
     realityMinY = - LIMITS_OF_REALITY;
     myWidth = self.boundingBox.size.width;
     myHeight = self.boundingBox.size.height;
-    _health = maxHP;
-    _damage = baseDMG;
+}
+
+-(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value{
+    [self setHealth:hp];
+    printf("\nMy Health = %f", [self health]);
+    [self setDamage:dmg];
+    [self setPoints:value];
 }
 
 // Scale down the velocity
@@ -134,7 +140,7 @@ CGFloat realityMaxY;
 
 // Remove agent
 - (void) die{
-    [[ScoreKeeper getInstance] incScore:_score];
+    [[ScoreKeeper getInstance] incScore:_points];
     [self.parent removeChild:self cleanup:YES];
 }
 

@@ -19,7 +19,7 @@
 @property (nonatomic, assign) bool hasFrict;
 @property (nonatomic, assign) CGFloat damage;
 @property (nonatomic, assign) CGFloat health;
-@property (nonatomic, assign) int score;
+@property (nonatomic, assign) int points;
 
 -(void) pushWithXForce:(CGFloat)dX YForce:(CGFloat)dY;
 
@@ -30,6 +30,8 @@
 -(CGRect) getBoundingBox;
 
 -(void) onTick:(ccTime)dt;
+
+-(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value;
 
 
 
