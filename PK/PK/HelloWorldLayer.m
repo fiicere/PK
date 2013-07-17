@@ -34,6 +34,7 @@
 
 
 #import "GameScene.h"
+#import "ScoreScene.h"
 
 // Adding 2 sprites:
 PlayerShip *ship;
@@ -256,13 +257,9 @@ const int UFOVELMAX = 300;
 
 -(void) checkGameOver{
     if(ship.health <= 0){
-        CCScene *gameOverScene = [GameOverLayer sceneWithScore];
+        CCScene *gameOverScene = [[ScoreScene alloc] init];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }
-}
-
-+(FocusedLayer*) getEPL{
-    return [GameScene getEPL];
 }
 
 @end

@@ -12,12 +12,6 @@
 #import "GameScene.h"
 
 @implementation GameOverLayer
-+(CCScene *) sceneWithScore {
-    CCScene *scene = [CCScene node];
-    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon] autorelease];
-    [scene addChild: layer];
-    return scene;
-}
 
 - (id)initWithWon{
     if ((self = [super initWithColor:ccc4(0, 0, 0, 255)])) {
