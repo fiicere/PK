@@ -319,21 +319,56 @@
 	return copy;
 }
 
+//-(void) step:(ccTime) dt
+//{
+//	if(_boundarySet)
+//	{
+//		// whole map fits inside a single screen, no need to modify the position - unless map boundaries are increased
+//		if(_boundaryFullyCovered)
+//			return;
+//
+//		CGPoint tempPos = ccpSub( _halfScreenSize, _followedNode.position);
+//		[_target setPosition:ccp(clampf(tempPos.x, _leftBoundary, _rightBoundary), clampf(tempPos.y, _bottomBoundary, _topBoundary))];
+//	}
+//	else
+//		[_target setPosition:ccpSub( _halfScreenSize, _followedNode.position )];
+//}
+
 -(void) step:(ccTime) dt
 {
-	if(_boundarySet)
-	{
-		// whole map fits inside a single screen, no need to modify the position - unless map boundaries are increased
-		if(_boundaryFullyCovered)
-			return;
-
-		CGPoint tempPos = ccpSub( _halfScreenSize, _followedNode.position);
-		[_target setPosition:ccp(clampf(tempPos.x, _leftBoundary, _rightBoundary), clampf(tempPos.y, _bottomBoundary, _topBoundary))];
-	}
-	else
-		[_target setPosition:ccpSub( _halfScreenSize, _followedNode.position )];
+#define CLAMP(x,y,z) MIN(MAX(x,y),z)
+    
+    CGPoint pos;
+    if(_boundarySet)
+    {
+        // whole map fits inside a single screen, no need to modify the position - unless map boundaries are increased
+        if(_boundaryFullyCovered) return;
+        
+        CGPoint tempPos = ccpSub( _halfScreenSize, _followedNode.position);
+        pos = ccp(CLAMP(tempPos.x,_leftBoundary,_rightBoundary), CLAMP(tempPos.y,_bottomBoundary,_topBoundary));
+    }
+    else {
+        CCNode *n = (CCNode*)_target;
+        float s = n.scale;
+        pos = ccpSub( _halfScreenSize, _followedNode.position );
+        pos.x *= s;
+        pos.y *= s;
+        
+        //pos = ccpSub( halfScreenSize, followedNode_.position );
+    }
+    
+    CGPoint moveVect;
+    
+    CGPoint oldPos = [_target position];
+    double dist = ccpDistance(pos, oldPos);
+    if (dist > 1){
+        moveVect = ccpMult(ccpSub(pos,oldPos),0.25); //0.05 is the smooth constant.
+        oldPos = ccpAdd(oldPos, moveVect);
+        [_target setPosition:oldPos];
+    }
+    
+#undef CLAMP
 }
-
 
 -(BOOL) isDone
 {

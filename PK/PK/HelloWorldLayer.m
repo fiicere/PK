@@ -79,6 +79,8 @@ const int UFOVELMAX = 300;
         // to enable touch detection
         self.isTouchEnabled = YES;
         
+        [self runAction:[CCFollow actionWithTarget:ship]];
+        
 	}
     
 	return self;
@@ -89,7 +91,7 @@ const int UFOVELMAX = 300;
     ship = [[PlayerShip alloc] init];
     ship.position = ccp( screenWidth/2, screenHeight/2 );
     ship.hasFrict = true;
-    ship.fixedPosition = true;
+    //ship.fixedPosition = true;
     [self addChild:ship];
 }
 
