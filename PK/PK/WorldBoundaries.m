@@ -55,8 +55,10 @@ CGFloat realityMaxY;
             [self openWorld:agent];
             break;
         case BOX:
+            [self boxWorld:agent];
             break;
         case DIRECTIONAL:
+            [self directionalWorld:agent];
             break;
         default:
             break;
@@ -80,6 +82,35 @@ CGFloat realityMaxY;
     if(aY > realityMaxY){
         [agent die];
     }
+}
+
+// World rules for box world
+// TODO!!! Make relevant to world position only!!!
+-(void) boxWorld:(PhysicsSprite *)agent{
+    CGFloat aX = [agent.parent convertToWorldSpace:agent.position].x;
+    CGFloat aY = [agent.parent convertToWorldSpace:agent.position].y;
+    
+    if(aX < realityMinX){
+        [agent setPosition:ccp(realityMinX, agent.position.y)];
+        [agent setXVel:(-agent.xVel)];
+    }
+    if(aX > realityMaxX){
+        [agent setPosition:ccp(realityMaxX, agent.position.y)];
+        [agent setXVel:(-agent.xVel)];
+    }
+    if(aY < realityMinY){
+        [agent setPosition:ccp(agent.position.x, realityMinY)];
+        [agent setXVel:(-agent.yVel)];
+    }
+    if(aY > realityMaxY){
+        [agent setPosition:ccp(agent.position.x, realityMaxY)];
+        [agent setXVel:(-agent.yVel)];
+
+    }
+}
+
+-(void) directionalWorld:(PhysicsSprite *)agent{
+    //TODO
 }
 
 @end

@@ -25,7 +25,7 @@
 
 -(void) setXVel:(CGFloat)xV YVel:(CGFloat)yV;
 
--(PhysicsSprite*) createWithFile:(NSString*)filename;
+-(PhysicsSprite*) initWithFile:(NSString*)filename;
 
 -(CGRect) getBoundingBox;
 

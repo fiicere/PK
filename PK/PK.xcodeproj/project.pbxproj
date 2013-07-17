@@ -552,7 +552,7 @@
 			children = (
 				46F063E417905BF00047725D /* Layers */,
 				46F063E517905C290047725D /* Sprites */,
-				46F063EC17907F8F0047725D /* Data Structures */,
+				46F063EC17907F8F0047725D /* Common Data */,
 				467A589C178211A100DD3319 /* AppDelegate.h */,
 				467A589D178211A100DD3319 /* AppDelegate.m */,
 				467A589F178211A100DD3319 /* HelloWorldLayer.h */,
@@ -994,7 +994,7 @@
 			name = Sprites;
 			sourceTree = "<group>";
 		};
-		46F063EC17907F8F0047725D /* Data Structures */ = {
+		46F063EC17907F8F0047725D /* Common Data */ = {
 			isa = PBXGroup;
 			children = (
 				46F063ED17907FCD0047725D /* ScoreKeeper.h */,
@@ -1004,7 +1004,7 @@
 				46923ECD1795CFA3004C67E7 /* WorldBoundaries.h */,
 				46923ECE1795CFA3004C67E7 /* WorldBoundaries.m */,
 			);
-			name = "Data Structures";
+			name = "Common Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
