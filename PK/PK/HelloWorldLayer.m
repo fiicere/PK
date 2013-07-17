@@ -159,8 +159,14 @@ const int UFOVELMAX = 300;
     CGFloat vel = (arc4random() % (UFOVELMAX-UFOVELMIN)) + UFOVELMIN;
     ufo.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
 
+//    printf("\nufo x = %f", [ufo.parent convertToWorldSpace:ufo.position].x);
+//    printf(", y = %f", [ufo.parent convertToWorldSpace:ufo.position].y);
+//    printf("\nufo x = %f", [ship.parent convertToWorldSpace:ship.position].x);
+//    printf(", y = %f", [ship.parent convertToWorldSpace:ship.position].y);
+    
     [ufo pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
     [[GameScene getEL] addChild:ufo];
+    
     
     [t dealloc];
 }
@@ -257,6 +263,10 @@ const int UFOVELMAX = 300;
 
 -(void) checkGameOver{
     if(ship.health <= 0){
+        CCScene *gameOverScene = [[ScoreScene alloc] init];
+        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+    }
+    else if([GameScene getSL].children.count <= 0){
         CCScene *gameOverScene = [[ScoreScene alloc] init];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }
