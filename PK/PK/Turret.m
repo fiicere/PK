@@ -9,7 +9,7 @@
 #import "Turret.h"
 #import "PhysicsSprite.h"
 #import "TurretShot.h"
-#import "HelloWorldLayer.h"
+#import "GameScene.h"
 
 const CGFloat T_HP = 100;
 const CGFloat T_DMG = 100;
@@ -48,7 +48,7 @@ NSString* const T_FILE = @"EnemyB.tif";
     TurretShot *ts = [[TurretShot alloc] init];
     ts.position = self.position;
     [ts setXVel:(BULLET_SPEED * dx / norm) YVel:(BULLET_SPEED * dy / norm)];
-    [HelloWorldLayer.getEPL addChild:ts];
+    [[GameScene getEPL] addChild:ts];
 
 }
 

@@ -9,15 +9,9 @@
 #import "GameOverLayer.h"
 #import "HelloWorldLayer.h"
 #import "ScoreKeeper.h"
-
+#import "GameScene.h"
 
 @implementation GameOverLayer
-+(CCScene *) sceneWithScore {
-    CCScene *scene = [CCScene node];
-    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon] autorelease];
-    [scene addChild: layer];
-    return scene;
-}
 
 - (id)initWithWon{
     if ((self = [super initWithColor:ccc4(0, 0, 0, 255)])) {
@@ -37,7 +31,7 @@
          [CCSequence actions:
           [CCDelayTime actionWithDuration:2],
           [CCCallBlockN actionWithBlock:^(CCNode *node) {
-             [[CCDirector sharedDirector] replaceScene:[HelloWorldLayer scene]];
+             [[CCDirector sharedDirector] replaceScene:[[GameScene alloc] init]];
          }],
           nil]];
     }

@@ -32,6 +32,10 @@
 #import "ScoreKeeper.h"
 #import "RandomTrajectory.h"
 
+
+#import "GameScene.h"
+#import "ScoreScene.h"
+
 // Adding 2 sprites:
 PlayerShip *ship;
 
@@ -47,49 +51,10 @@ const int RECOIL = -100;
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
 
-// Layers
-static HelloWorldLayer *sl;
-static FocusedLayer *el;
-static FocusedLayer *pl;
-static FocusedLayer *bl;
-static FocusedLayer *epl;
-
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
-
-
-// Helper class method that creates a Scene
-+(CCScene *) scene
-{
-	// 'scene' is an autorelease object.
-	CCScene *scene = [CCScene node];
-	
-    // Add enemies layer
-    el = [FocusedLayer node];
-    
-    epl = [FocusedLayer node];
-    
-    // Add Projectiles layer
-    pl = [FocusedLayer node];
-    
-    // Add background layer
-    bl = [BackgroundLayer node];
-    
-	// 'layer' is an autorelease object.
-    sl = [HelloWorldLayer node];
-    
-	// add layer as a child to scene
-	[scene addChild: sl];
-    [scene addChild: el];
-    [scene addChild: epl];
-    [scene addChild: pl];
-    [scene addChild: bl z:-1];
-    
-	// return the scene
-	return scene;
-}
 
 // on "init" you need to initialize your instance
 -(id) init
@@ -130,10 +95,11 @@ static FocusedLayer *epl;
 
 // Sets the focus of all layers to the ship
 -(void)setFocus{
-    [el setFocus:ship];
-    [epl setFocus:ship];
-    [pl setFocus:ship];
-    [bl setFocus:ship];
+    
+    [[GameScene getEL] setFocus:ship];
+    [[GameScene getEPL] setFocus:ship];
+    [[GameScene getPL] setFocus:ship];
+    [[GameScene getBL] setFocus:ship];
 }
 
 -(void) setupVariables
@@ -151,9 +117,9 @@ static FocusedLayer *epl;
 }
 
 - (void) checkCollisions{
-    for (PhysicsSprite *pro in pl.children) {
+    for (PhysicsSprite *pro in [GameScene getPL].children) {
         CGRect proBox = [pro getBoundingBox];
-        for (PhysicsSprite *ufo in el.children) {
+        for (PhysicsSprite *ufo in [GameScene getEL].children) {
             CGRect ufoBox = [ufo getBoundingBox];
             if (CGRectIntersectsRect(proBox, ufoBox)) {
                 ufo.health -= pro.damage;
@@ -162,14 +128,14 @@ static FocusedLayer *epl;
         }
     }
     
-    for (PhysicsSprite *enemy in el.children) {
+    for (PhysicsSprite *enemy in [GameScene getEL].children) {
         if (CGRectIntersectsRect([ship getBoundingBox], [enemy getBoundingBox])) {
             ship.health -= enemy.damage;
             enemy.health -= ship.damage;
         }
     }
     
-    for (PhysicsSprite *enemy in epl.children) {
+    for (PhysicsSprite *enemy in [GameScene getEPL].children) {
         if (CGRectIntersectsRect([ship getBoundingBox], [enemy getBoundingBox])) {
             ship.health -= enemy.damage;
             enemy.health -= ship.damage;
@@ -191,10 +157,10 @@ static FocusedLayer *epl;
     
     // Randomly choose the UFO's speed
     CGFloat vel = (arc4random() % (UFOVELMAX-UFOVELMIN)) + UFOVELMIN;
-    ufo.position = ccp(t.startX - el.position.x, t.startY - el.position.y);
+    ufo.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
 
     [ufo pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
-    [el addChild:ufo];
+    [[GameScene getEL] addChild:ufo];
     
     [t dealloc];
 }
@@ -204,10 +170,10 @@ static FocusedLayer *epl;
     
     RandomTrajectory *t = [[RandomTrajectory alloc] init];
     
-    he.position = ccp(t.startX - el.position.x, t.startY - el.position.y);
+    he.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
     
     [he pushWithXForce:t.trajdX*he.getSpeed/t.norm YForce:t.trajdY*he.getSpeed/t.norm];
-    [el addChild:he];
+    [[GameScene getEL] addChild:he];
     [t dealloc];
 }
 
@@ -216,10 +182,10 @@ static FocusedLayer *epl;
     
     RandomTrajectory *t = [[RandomTrajectory alloc] init];
     
-    tur.position = ccp(t.startX - el.position.x, t.startY - el.position.y);
+    tur.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
     
     [tur pushWithXForce:t.trajdX*tur.getSpeed/t.norm YForce:t.trajdY*tur.getSpeed/t.norm];
-    [el addChild:tur];
+    [[GameScene getEL] addChild:tur];
     [t dealloc];
 }
 
@@ -245,7 +211,7 @@ static FocusedLayer *epl;
     // Add bullet
     ShipShot *projectile = [[ShipShot alloc] init];
     projectile.position = ship.position;
-    [pl addChild:projectile];
+    [[GameScene getPL] addChild:projectile];
     
     // Find the offset between the touch event and the projectile
     CGPoint offset = ccpSub(loc, projectile.position);
@@ -254,7 +220,7 @@ static FocusedLayer *epl;
     CGFloat normY = offset.y / norm;
     
     // Set the projectile coord to absolute reference frame
-    projectile.position = ccp(screenWidth/2 - pl.position.x, screenHeight/2 - pl.position.y);
+    projectile.position = ccp(screenWidth/2 - [GameScene getPL].position.x, screenHeight/2 - [GameScene getPL].position.y);
     
     // Set projectile speed
     [projectile pushWithXForce:normX*PROJ_SPEED YForce:normY*PROJ_SPEED];
@@ -291,13 +257,9 @@ static FocusedLayer *epl;
 
 -(void) checkGameOver{
     if(ship.health <= 0){
-        CCScene *gameOverScene = [GameOverLayer sceneWithScore];
+        CCScene *gameOverScene = [[ScoreScene alloc] init];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }
-}
-
-+(FocusedLayer*) getEPL{
-    return epl;
 }
 
 @end
