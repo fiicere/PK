@@ -160,14 +160,14 @@ const int UFOVELMAX = 300;
     // Randomly choose the UFO's speed
     CGFloat vel = (arc4random() % (UFOVELMAX-UFOVELMIN)) + UFOVELMIN;
     ufo.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
-
+    
+    [ufo pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
+    [[GameScene getEL] addChild:ufo];
+    
 //    printf("\nufo x = %f", [ufo.parent convertToWorldSpace:ufo.position].x);
 //    printf(", y = %f", [ufo.parent convertToWorldSpace:ufo.position].y);
 //    printf("\nufo x = %f", [ship.parent convertToWorldSpace:ship.position].x);
 //    printf(", y = %f", [ship.parent convertToWorldSpace:ship.position].y);
-    
-    [ufo pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
-    [[GameScene getEL] addChild:ufo];
     
     
     [t dealloc];
