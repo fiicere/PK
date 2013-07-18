@@ -51,6 +51,11 @@ const int RECOIL = -100;
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
 
+const CGFloat BE_SR = 1;
+const CGFloat HE_SR = 2;
+const CGFloat T_SR = 3;
+const int PRECISION = 1000;
+
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
@@ -72,9 +77,6 @@ const int UFOVELMAX = 300;
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
-        
-        // schedule a timer to run every second
-        [self schedule:@selector(gameLogic:) interval:1];
         
         // to enable touch detection
         self.isTouchEnabled = YES;
@@ -115,7 +117,7 @@ const int UFOVELMAX = 300;
 - (void) nextFrame:(ccTime)dt {
     [self checkCollisions];
     [self checkGameOver];
-    
+    [self addEnemies:dt];
 }
 
 - (void) checkCollisions{
@@ -145,11 +147,26 @@ const int UFOVELMAX = 300;
     }
 }
 
-// Runs every second
--(void)gameLogic:(ccTime)dt {
-    [self addBasicEnemy];
-    [self addHomingEnemy];
-    [self addTurret];
+-(void)addEnemies:(ccTime)dt{
+    // Basic Enemy
+    int rBE = fmod(arc4random(), (BE_SR * PRECISION));
+    if (rBE < dt * PRECISION){
+        [self addBasicEnemy];
+    }
+    
+    // Homing Enemy 
+    rBE = fmod(arc4random(), (HE_SR * PRECISION));
+    if (rBE < dt * PRECISION){
+        [self addHomingEnemy];
+    }
+    
+    // Turret
+    // Homing Enemy
+    rBE = fmod(arc4random(), (T_SR * PRECISION));
+    if (rBE < dt * PRECISION){
+        [self addTurret];
+    }
+    
 }
 
 -(void) addBasicEnemy{
