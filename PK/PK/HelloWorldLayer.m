@@ -51,9 +51,9 @@ const int RECOIL = -100;
 const int UFOVELMIN = 100;
 const int UFOVELMAX = 300;
 
-const CGFloat BE_SR = 1;
-const CGFloat HE_SR = 2;
-const CGFloat T_SR = 3;
+const CGFloat BE_SR = .5;
+const CGFloat HE_SR = 2.5;
+const CGFloat T_SR = 2.5;
 const int PRECISION = 1000;
 
 #pragma mark - HelloWorldLayer
