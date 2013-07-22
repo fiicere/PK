@@ -81,7 +81,7 @@ const int PRECISION = 1000;
         // to enable touch detection
         self.isTouchEnabled = YES;
         
-        [self runAction:[CCFollow actionWithTarget:ship]];
+        //[self runAction:[CCFollow actionWithTarget:ship]];
         
 	}
     
@@ -93,7 +93,7 @@ const int PRECISION = 1000;
     ship = [[PlayerShip alloc] init];
     ship.position = ccp( screenWidth/2, screenHeight/2 );
     ship.hasFrict = true;
-    //ship.fixedPosition = true;
+    ship.fixedPosition = true;
     [self addChild:ship];
 }
 
