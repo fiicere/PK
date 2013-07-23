@@ -25,10 +25,10 @@ const CGFloat baseDMG = 100;
 // World info
 CGFloat screenWidth;
 CGFloat screenHeight;
-CGFloat realityMinX;
-CGFloat realityMinY;
-CGFloat realityMaxX;
-CGFloat realityMaxY;
+CGFloat agentMinX;
+CGFloat agentMinY;
+CGFloat agentMaxX;
+CGFloat agentMaxY;
 
 @implementation PhysicsSprite
 

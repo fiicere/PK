@@ -19,12 +19,15 @@ enum worldType wt = BOX;
 // World info
 CGFloat screenWidth;
 CGFloat screenHeight;
-CGFloat realityMinX;
-CGFloat realityMinY;
-CGFloat realityMaxX;
-CGFloat realityMaxY;
-CGFloat realityWidth;
-CGFloat realityHeight;
+CGFloat agentMinX;
+CGFloat agentMinY;
+CGFloat agentMaxX;
+CGFloat agentMaxY;
+
+CGFloat layerMinX;
+CGFloat layerMinY;
+CGFloat layerMaxX;
+CGFloat layerMaxY;
 
 @implementation WorldBoundaries
 
@@ -45,13 +48,15 @@ CGFloat realityHeight;
 -(void)setupVariables{
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
-    realityMaxX = screenWidth + LIMITS_OF_REALITY;
-    realityMaxY = screenHeight + LIMITS_OF_REALITY;
-    realityMinX = - LIMITS_OF_REALITY;
-    realityMinY = - LIMITS_OF_REALITY;
+    agentMaxX = screenWidth + LIMITS_OF_REALITY;
+    agentMaxY = screenHeight + LIMITS_OF_REALITY;
+    agentMinX = - LIMITS_OF_REALITY;
+    agentMinY = - LIMITS_OF_REALITY;
     
-    realityWidth = realityMaxX - realityMinX;
-    realityHeight = realityMaxY - realityMinY;
+    layerMaxX = screenWidth/2 + LIMITS_OF_REALITY;
+    layerMaxY = screenHeight/2 + LIMITS_OF_REALITY;
+    layerMinX = - LIMITS_OF_REALITY - screenWidth/2;
+    layerMinY = - LIMITS_OF_REALITY - screenHeight/2;
 }
 
 -(void)updateAgent:(PhysicsSprite *)agent{
@@ -76,16 +81,16 @@ CGFloat realityHeight;
     CGFloat aX = [agent.parent convertToWorldSpace:agent.position].x;
     CGFloat aY = [agent.parent convertToWorldSpace:agent.position].y;
     
-    if(aX < realityMinX){
+    if(aX < agentMinX){
         [agent die];
     }
-    if(aX > realityMaxX){
+    if(aX > agentMaxX){
         [agent die];
     }
-    if(aY < realityMinY){
+    if(aY < agentMinY){
         [agent die];
     }
-    if(aY > realityMaxY){
+    if(aY > agentMaxY){
         [agent die];
     }
 }
@@ -94,20 +99,20 @@ CGFloat realityHeight;
 // TODO!!! Make relevant to world position only!!!
 -(void) boxWorldAgent:(PhysicsSprite *)agent{
     
-    if(agent.position.x < realityMinX){
-        [agent setPosition:ccp(realityMinX, agent.position.y)];
+    if(agent.position.x < agentMinX){
+        [agent setPosition:ccp(agentMinX, agent.position.y)];
         [agent setXVel:(fabsf(agent.xVel))];
     }
-    if(agent.position.x > realityMaxX){
-        [agent setPosition:ccp(realityMaxX, agent.position.y)];
+    if(agent.position.x > agentMaxX){
+        [agent setPosition:ccp(agentMaxX, agent.position.y)];
         [agent setXVel:(-fabsf(agent.xVel))];
     }
-    if(agent.position.y < realityMinY){
-        [agent setPosition:ccp(agent.position.x, realityMinY)];
+    if(agent.position.y < agentMinY){
+        [agent setPosition:ccp(agent.position.x, agentMinY)];
         [agent setYVel:(fabsf(agent.yVel))];
     }
-    if(agent.position.y > realityMaxY){
-        [agent setPosition:ccp(agent.position.x, realityMaxY)];
+    if(agent.position.y > agentMaxY){
+        [agent setPosition:ccp(agent.position.x, agentMaxY)];
         [agent setYVel:(-fabsf(agent.yVel))];
     }
 }
@@ -121,7 +126,6 @@ CGFloat realityHeight;
 -(void)updateLayer:(FocusedLayer *)layer{
     switch (wt) {
         case OPEN:
-            [self openWorldLayer:layer];
             break;
         case BOX:
             [self boxWorldLayer:layer];
@@ -134,20 +138,6 @@ CGFloat realityHeight;
     }
 }
 
-// World rules for open world
--(void) openWorldLayer:(FocusedLayer *)layer{
-    CGFloat aX = [layer.parent convertToWorldSpace:layer.position].x;
-    CGFloat aY = [layer.parent convertToWorldSpace:layer.position].y;
-    
-    if(aX < realityMinX){
-    }
-    if(aX > realityMaxX){
-    }
-    if(aY < realityMinY){
-    }
-    if(aY > realityMaxY){
-    }
-}
 
 // World rules for box world
 // TODO!!! Make relevant to world position only!!!
@@ -155,20 +145,20 @@ CGFloat realityHeight;
     CGFloat lX = - layer.position.x;
     CGFloat lY = - layer.position.y;
     
-    if(lX < realityMinX){
-        [layer setPosition:ccp(- realityMinX, layer.position.y)];
+    if(lX < layerMinX){
+        [layer setPosition:ccp(- layerMinX, layer.position.y)];
         [layer setXVel:(fabsf(layer.xVel))];
     }
-    if(lX > realityMaxX){
-        [layer setPosition:ccp(- realityMaxX, layer.position.y)];
+    if(lX > layerMaxX){
+        [layer setPosition:ccp(- layerMaxX, layer.position.y)];
         [layer setXVel:(-fabsf(layer.xVel))];
     }
-    if(lY < realityMinY){
-        [layer setPosition:ccp(layer.position.x, - realityMinY)];
+    if(lY < layerMinY){
+        [layer setPosition:ccp(layer.position.x, - layerMinY)];
         [layer setYVel:(fabsf(layer.yVel))];
     }
-    if(lY > realityMaxY){
-        [layer setPosition:ccp(layer.position.x, - realityMaxY)];
+    if(lY > layerMaxY){
+        [layer setPosition:ccp(layer.position.x, - layerMaxY)];
         [layer setYVel:(-fabsf(layer.yVel))];
         
     }
