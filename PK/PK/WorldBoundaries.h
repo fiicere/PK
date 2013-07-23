@@ -23,4 +23,5 @@ enum worldType
 +(WorldBoundaries*) getInstance;
 -(void)updateAgent:(PhysicsSprite *)agent;
 -(void)updateLayer:(FocusedLayer *) layer;
+-(void)setWorldType:(enum worldType) type;
 @end
