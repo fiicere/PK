@@ -30,17 +30,21 @@ static CCLayer *ml;
 -(void) SetUpMenu:(CCLayer*) menuLayer {
     CCMenu *menu = [CCMenu menuWithItems:nil];
     
-    CCMenuItem *startOpenGameButton = [CCMenuItemImage itemWithNormalImage:@"Shot.tif" selectedImage:@"Shot.tif"
+    CCLabelTTF * open = [CCLabelTTF labelWithString:@"Play Game With Open World" fontName:@"Arial" fontSize:32];
+    CCLabelTTF * box = [CCLabelTTF labelWithString:@"Play Game With Box World" fontName:@"Arial" fontSize:32];
+    CCLabelTTF * cylinder = [CCLabelTTF labelWithString:@"Play Game With Cylindrical World" fontName:@"Arial" fontSize:32];
+    
+    CCMenuItem *startOpenGameButton = [CCMenuItemLabel itemWithLabel:open
                                                                 target:self selector:@selector(startOpenGame)];
-    CCMenuItem *startBoxGameButton = [CCMenuItemImage itemWithNormalImage:@"EnemyA.tif" selectedImage:@"EnemyA.tif"
+    CCMenuItem *startBoxGameButton = [CCMenuItemLabel itemWithLabel:box
                                                                     target:self selector:@selector(startBoxGame)];
-    CCMenuItem *startDirectionalGameButton = [CCMenuItemImage itemWithNormalImage:@"EnemyB.tif" selectedImage:@"EnemyB.tif"
+    CCMenuItem *startDirectionalGameButton = [CCMenuItemLabel itemWithLabel:cylinder
                                                                     target:self selector:@selector(startDirectionalGame)];
     
     [menu addChild:startOpenGameButton];
     [menu addChild:startBoxGameButton];
     [menu addChild:startDirectionalGameButton];
-    [menu alignItemsHorizontally];
+    [menu alignItemsVerticallyWithPadding:32.0f];
     [menuLayer addChild:menu];
 }
 
