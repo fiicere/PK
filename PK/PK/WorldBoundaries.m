@@ -14,11 +14,15 @@ const CGFloat LIMITS_OF_REALITY = 1000;
 
 static WorldBoundaries *instance;
 
-enum worldType wt = BOX;
+enum worldType wt = DIRECTIONAL;
 
 // World info
 CGFloat screenWidth;
 CGFloat screenHeight;
+
+CGFloat realityWidth;
+CGFloat realityHeight;
+
 CGFloat agentMinX;
 CGFloat agentMinY;
 CGFloat agentMaxX;
@@ -48,6 +52,7 @@ CGFloat layerMaxY;
 -(void)setupVariables{
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
+    
     agentMaxX = screenWidth + LIMITS_OF_REALITY;
     agentMaxY = screenHeight + LIMITS_OF_REALITY;
     agentMinX = - LIMITS_OF_REALITY;
@@ -57,6 +62,9 @@ CGFloat layerMaxY;
     layerMaxY = screenHeight/2 + LIMITS_OF_REALITY;
     layerMinX = - LIMITS_OF_REALITY - screenWidth/2;
     layerMinY = - LIMITS_OF_REALITY - screenHeight/2;
+    
+    screenWidth = agentMaxX - agentMinX;
+    screenHeight = agentMaxY - agentMinY;
 }
 
 -(void)updateAgent:(PhysicsSprite *)agent{
@@ -118,7 +126,14 @@ CGFloat layerMaxY;
 }
 
 -(void) directionalWorldAgent:(PhysicsSprite *)agent{
-    //TODO
+    if(agent.position.y < agentMinY){
+        [agent setPosition:ccp(agent.position.x, agentMaxY)];
+        [agent setYVel:(-fabsf(agent.yVel))];
+    }
+    if(agent.position.y > agentMaxY){
+        [agent setPosition:ccp(agent.position.x, agentMinY)];
+        [agent setYVel:(fabsf(agent.yVel))];
+    }
 }
 
 
@@ -160,12 +175,19 @@ CGFloat layerMaxY;
     if(lY > layerMaxY){
         [layer setPosition:ccp(layer.position.x, - layerMaxY)];
         [layer setYVel:(-fabsf(layer.yVel))];
-        
     }
 }
 
 -(void) directionalWorldLayer:(FocusedLayer *)layer{
-    //TODO
+    CGFloat lY = - layer.position.y;
+    if(lY < layerMinY){
+        [layer setPosition:ccp(layer.position.x, - layerMaxY)];
+        [layer setYVel:(-fabsf(layer.yVel))];
+    }
+    if(lY > layerMaxY){
+        [layer setPosition:ccp(layer.position.x, - layerMinY)];
+        [layer setYVel:(fabsf(layer.yVel))];
+    }
 }
 
 @end
