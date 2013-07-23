@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "PhysicsSprite.h"
+#import "FocusedLayer.h"
 
 @interface WorldBoundaries : NSObject
 
@@ -21,4 +22,5 @@ enum worldType
 
 +(WorldBoundaries*) getInstance;
 -(void)updateAgent:(PhysicsSprite *)agent;
+-(void)updateLayer:(FocusedLayer *) layer;
 @end

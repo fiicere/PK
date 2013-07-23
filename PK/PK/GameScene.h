@@ -14,6 +14,7 @@
 
 @interface GameScene : CCScene {
 }
+
 +(FocusedLayer*)getEL;
 
 +(FocusedLayer*)getEPL;

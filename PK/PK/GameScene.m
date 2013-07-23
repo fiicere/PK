@@ -10,6 +10,7 @@
 #import "FocusedLayer.h"
 #import "BackgroundLayer.h"
 #import "HelloWorldLayer.h"
+#import "WorldBoundaries.h"
 
 static FocusedLayer * el;
 static FocusedLayer * epl;
@@ -22,7 +23,7 @@ static HelloWorldLayer * sl;
 
 -(id) init{
     // 'scene' is an autorelease object.
-	self = [CCScene node];
+	self = [super init];
 	
     // Add enemies layer
     el = [FocusedLayer node];
@@ -45,8 +46,15 @@ static HelloWorldLayer * sl;
     [self addChild: pl];
     [self addChild: bl z:-1];
     
+    [self schedule:@selector(layerBoundaries:)];
 	// return the scene
 	return self;
+}
+
+- (void) layerBoundaries:(ccTime)dt {
+    for( FocusedLayer * layer in self.children){
+        [[WorldBoundaries getInstance] updateLayer:layer];
+    }
 }
 
 +(FocusedLayer*)getEL{
