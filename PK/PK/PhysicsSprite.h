@@ -20,6 +20,7 @@
 @property (nonatomic, assign) CGFloat damage;
 @property (nonatomic, assign) CGFloat health;
 @property (nonatomic, assign) int points;
+@property (nonatomic, assign) bool bounces;
 
 -(void) pushWithXForce:(CGFloat)dX YForce:(CGFloat)dY;
 
@@ -31,7 +32,7 @@
 
 -(void) onTick:(ccTime)dt;
 
--(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value;
+-(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value BOUNCES:(bool)doesBounce;
 
 -(void) die;
 

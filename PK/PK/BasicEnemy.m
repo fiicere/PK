@@ -12,6 +12,7 @@
 const CGFloat BE_HP = 100;
 const CGFloat BE_DMG = 100;
 const CGFloat BE_VAL = 1;
+const bool BE_BOUNCES = true;
 
 NSString* const BE_FILE = @"EnemyA.tif";
 
@@ -20,7 +21,7 @@ NSString* const BE_FILE = @"EnemyA.tif";
 -(id) init {
     self = [super initWithFile:BE_FILE];
     if(self){
-        [self setStatsHP:BE_HP DMG:BE_DMG POINTS:BE_VAL];
+        [self setStatsHP:BE_HP DMG:BE_DMG POINTS:BE_VAL BOUNCES:BE_BOUNCES];
     }
 	return self;
 }

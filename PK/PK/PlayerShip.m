@@ -14,6 +14,7 @@
 const CGFloat PS_HP = 100;
 const CGFloat PS_DMG = 1000;
 const CGFloat PS_VAL = 0;
+const bool PS_BOUNCES = TRUE;
 
 NSString* const PS_FILE = @"Player.tif";
 
@@ -22,7 +23,7 @@ NSString* const PS_FILE = @"Player.tif";
 -(id) init {
     self = [super initWithFile:PS_FILE];
     if(self){
-        [self setStatsHP:PS_HP DMG:PS_DMG POINTS:PS_VAL];
+        [self setStatsHP:PS_HP DMG:PS_DMG POINTS:PS_VAL BOUNCES:PS_FILE];
     }
 	return self;
 }

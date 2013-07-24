@@ -63,11 +63,12 @@ CGFloat agentMaxY;
     myHeight = self.boundingBox.size.height;
 }
 
--(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value{
+-(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value BOUNCES:(bool)doesBounce{
     [self setHealth:hp];
     [self setDamage:dmg];
     [self setPoints:value];
-}
+    [self setBounces:doesBounce];
+    }
 
 // Scale down the velocity
 -(void) scaleVel:(CGFloat)scale{

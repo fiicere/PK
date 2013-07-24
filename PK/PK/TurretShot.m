@@ -13,6 +13,7 @@
 const CGFloat TS_HP = 1;
 const CGFloat TS_DMG = 1;
 const CGFloat TS_VAL = 0;
+const bool TS_BOUNCE = FALSE;
 
 NSString* const TS_FILE = @"PlasmaBall.tif";
 
@@ -21,7 +22,7 @@ NSString* const TS_FILE = @"PlasmaBall.tif";
 -(id) init {
     self = [super initWithFile:TS_FILE];
     if(self){
-        [self setStatsHP:TS_HP DMG:TS_DMG POINTS:TS_VAL];
+        [self setStatsHP:TS_HP DMG:TS_DMG POINTS:TS_VAL BOUNCES:TS_BOUNCE];
     }
 	return self;
 }

@@ -20,6 +20,8 @@ const CGFloat BULLET_SPEED = 500;
 
 const CGFloat TUR_SPEED = 200;
 
+const bool T_BOUNCES = true;
+
 
 NSString* const T_FILE = @"EnemyB.tif";
 
@@ -27,7 +29,7 @@ NSString* const T_FILE = @"EnemyB.tif";
 -(id) init {
     self = [super initWithFile:T_FILE];
     if(self){
-        [self setStatsHP:T_HP DMG:T_DMG POINTS:T_VAL];
+        [self setStatsHP:T_HP DMG:T_DMG POINTS:T_VAL BOUNCES:T_BOUNCES];
         [self schedule:@selector(fire:) interval:FIRE_RATE];
     }
 	return self;
