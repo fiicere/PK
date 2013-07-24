@@ -110,22 +110,31 @@ CGFloat layerMaxY;
 // World rules for box world
 // TODO!!! Make relevant to world position only!!!
 -(void) boxWorldAgent:(PhysicsSprite *)agent{
-    
+    bool bounced = false;
     if(agent.position.x < agentMinX){
         [agent setPosition:ccp(agentMinX, agent.position.y)];
         [agent setXVel:(fabsf(agent.xVel))];
+        bounced = true;
     }
     if(agent.position.x > agentMaxX){
         [agent setPosition:ccp(agentMaxX, agent.position.y)];
         [agent setXVel:(-fabsf(agent.xVel))];
+        bounced = true;
     }
     if(agent.position.y < agentMinY){
         [agent setPosition:ccp(agent.position.x, agentMinY)];
         [agent setYVel:(fabsf(agent.yVel))];
+        bounced = true;
     }
     if(agent.position.y > agentMaxY){
         [agent setPosition:ccp(agent.position.x, agentMaxY)];
         [agent setYVel:(-fabsf(agent.yVel))];
+        bounced = true;
+    }
+    
+    //Remove agents which die at box boundaries
+    if(!agent.bounces && bounced){
+        [agent die];
     }
 }
 
