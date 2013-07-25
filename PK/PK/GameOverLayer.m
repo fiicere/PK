@@ -10,6 +10,7 @@
 #import "HelloWorldLayer.h"
 #import "ScoreKeeper.h"
 #import "GameScene.h"
+#import "MenuScene.h"
 
 @implementation GameOverLayer
 
@@ -31,7 +32,7 @@
          [CCSequence actions:
           [CCDelayTime actionWithDuration:2],
           [CCCallBlockN actionWithBlock:^(CCNode *node) {
-             [[CCDirector sharedDirector] replaceScene:[[GameScene alloc] init]];
+             [[CCDirector sharedDirector] replaceScene:[[MenuScene alloc] init]];
          }],
           nil]];
     }
