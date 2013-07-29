@@ -53,6 +53,10 @@ CGFloat layerMaxY;
     wt = type;
 }
 
+-(enum worldType) getWorldType {
+    return wt;
+}
+
 -(void)setupVariables{
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;

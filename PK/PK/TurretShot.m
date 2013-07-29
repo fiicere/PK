@@ -15,7 +15,7 @@ const CGFloat TS_DMG = 1;
 const CGFloat TS_VAL = 0;
 const bool TS_BOUNCES = FALSE;
 
-NSString* const TS_FILE = @"PlasmaBall.tif";
+NSString* const TS_FILE = @"EnemyShot.tif";
 
 @implementation TurretShot
 
