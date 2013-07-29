@@ -27,12 +27,11 @@
 #import "ShipShot.h"
 #import "Turret.h"
 #import "PlayerShip.h"
-#import "DeathWall.h"
 
 // Data Structures
 #import "ScoreKeeper.h"
 #import "RandomTrajectory.h"
-#import "WorldBoundaries.h"
+
 
 #import "GameScene.h"
 #import "ScoreScene.h"
@@ -75,10 +74,6 @@ const int PRECISION = 1000;
         [self addShip];
         [self setFocus];
         [[ScoreKeeper getInstance] reset];
-        
-        if ([[WorldBoundaries getInstance]getWorldType] == DIRECTIONAL) {
-            [self addDeathWall];
-        }
         
         // schedule a repeating callback on every frame
         [self schedule:@selector(nextFrame:)];
@@ -172,13 +167,6 @@ const int PRECISION = 1000;
         [self addTurret];
     }
     
-}
-
--(void) addDeathWall{
-    DeathWall *dw = [[DeathWall alloc] init];
-    dw.position = ccp(-400, ship.position.y );
-    [dw pushWithXForce:100 YForce:0];
-    [[GameScene getEL] addChild:dw];    
 }
 
 -(void) addBasicEnemy{
