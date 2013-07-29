@@ -160,6 +160,8 @@
 		5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */; };
 		5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FF4BD179F21BA00666D69 /* MenuScene.m */; };
 		5A1FF4C417A6228200666D69 /* EnemyShot.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A1FF4C317A6228200666D69 /* EnemyShot.tif */; };
+		5A1FF4C717A6CBF700666D69 /* DeathWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FF4C617A6CBF700666D69 /* DeathWall.m */; };
+		5A1FF4CF17A6DAA700666D69 /* DeathWall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A1FF4CE17A6DAA700666D69 /* DeathWall.tif */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18817848D730035BDB3 /* PlasmaBall.tif */; };
@@ -487,6 +489,9 @@
 		5A1FF4BC179F21BA00666D69 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		5A1FF4BD179F21BA00666D69 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		5A1FF4C317A6228200666D69 /* EnemyShot.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyShot.tif; path = Resources/EnemyShot.tif; sourceTree = "<group>"; };
+		5A1FF4C517A6CBF700666D69 /* DeathWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeathWall.h; sourceTree = "<group>"; };
+		5A1FF4C617A6CBF700666D69 /* DeathWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathWall.m; sourceTree = "<group>"; };
+		5A1FF4CE17A6DAA700666D69 /* DeathWall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = DeathWall.tif; path = Resources/DeathWall.tif; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D18817848D730035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlasmaBall.tif; path = Resources/PlasmaBall.tif; sourceTree = "<group>"; };
@@ -573,6 +578,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A1FF4CE17A6DAA700666D69 /* DeathWall.tif */,
 				5A1FF4C317A6228200666D69 /* EnemyShot.tif */,
 				5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */,
 				5AC17118178B647200747FFC /* EnemyA.tif */,
@@ -1001,6 +1007,8 @@
 				46923EC21795ACB0004C67E7 /* ShipShot.m */,
 				46923EC71795B6AE004C67E7 /* TurretShot.h */,
 				46923EC81795B6AE004C67E7 /* TurretShot.m */,
+				5A1FF4C517A6CBF700666D69 /* DeathWall.h */,
+				5A1FF4C617A6CBF700666D69 /* DeathWall.m */,
 				46F063F6179089890047725D /* HomingEnemy.h */,
 				46F063F7179089890047725D /* HomingEnemy.m */,
 				46923EBE1795ABC8004C67E7 /* BasicEnemy.h */,
@@ -1098,6 +1106,7 @@
 				5AC17121178B647200747FFC /* Shot.tif in Resources */,
 				5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */,
 				5A1FF4C417A6228200666D69 /* EnemyShot.tif in Resources */,
+				5A1FF4CF17A6DAA700666D69 /* DeathWall.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1236,6 +1245,7 @@
 				46923ED6179721CB004C67E7 /* GameScene.m in Sources */,
 				46923EE217972B79004C67E7 /* ScoreScene.m in Sources */,
 				5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */,
+				5A1FF4C717A6CBF700666D69 /* DeathWall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
