@@ -23,7 +23,7 @@ NSString* const PS_FILE = @"Player.tif";
 -(id) init {
     self = [super initWithFile:PS_FILE];
     if(self){
-        [self setStatsHP:PS_HP DMG:PS_DMG POINTS:PS_VAL BOUNCES:PS_FILE];
+        [self setStatsHP:PS_HP DMG:PS_DMG POINTS:PS_VAL BOUNCES:PS_BOUNCES];
     }
 	return self;
 }

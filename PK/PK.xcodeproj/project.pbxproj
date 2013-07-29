@@ -151,6 +151,7 @@
 		46923ECF1795CFA3004C67E7 /* WorldBoundaries.m in Sources */ = {isa = PBXBuildFile; fileRef = 46923ECE1795CFA3004C67E7 /* WorldBoundaries.m */; };
 		46923ED6179721CB004C67E7 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 46923ED5179721CB004C67E7 /* GameScene.m */; };
 		46923EE217972B79004C67E7 /* ScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 46923EE117972B79004C67E7 /* ScoreScene.m */; };
+		4694BE2D17A07A92006D09D0 /* WallOfDeath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4694BE2C17A07A92006D09D0 /* WallOfDeath.m */; };
 		46A56D36178B562D00441334 /* PhysicsSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D35178B562D00441334 /* PhysicsSprite.m */; };
 		46A56D39178B5C2C00441334 /* FocusedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D38178B5C2C00441334 /* FocusedLayer.m */; };
 		46D00B58178F0B4D0007617F /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D00B57178F0B4D0007617F /* BackgroundLayer.m */; };
@@ -473,6 +474,8 @@
 		46923ED5179721CB004C67E7 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		46923EE017972B79004C67E7 /* ScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScene.h; sourceTree = "<group>"; };
 		46923EE117972B79004C67E7 /* ScoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreScene.m; sourceTree = "<group>"; };
+		4694BE2B17A07A91006D09D0 /* WallOfDeath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOfDeath.h; sourceTree = "<group>"; };
+		4694BE2C17A07A92006D09D0 /* WallOfDeath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOfDeath.m; sourceTree = "<group>"; };
 		46A56D34178B562D00441334 /* PhysicsSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		46A56D35178B562D00441334 /* PhysicsSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsSprite.m; sourceTree = "<group>"; };
 		46A56D37178B5C2C00441334 /* FocusedLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusedLayer.h; sourceTree = "<group>"; };
@@ -1013,6 +1016,8 @@
 				46923EBF1795ABC8004C67E7 /* BasicEnemy.m */,
 				46923EC41795B54B004C67E7 /* Turret.h */,
 				46923EC51795B54B004C67E7 /* Turret.m */,
+				4694BE2B17A07A91006D09D0 /* WallOfDeath.h */,
+				4694BE2C17A07A92006D09D0 /* WallOfDeath.m */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1244,6 +1249,7 @@
 				46923ED6179721CB004C67E7 /* GameScene.m in Sources */,
 				46923EE217972B79004C67E7 /* ScoreScene.m in Sources */,
 				5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */,
+				4694BE2D17A07A92006D09D0 /* WallOfDeath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

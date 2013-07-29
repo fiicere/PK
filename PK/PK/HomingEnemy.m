@@ -15,7 +15,7 @@ const CGFloat HE_DAMAGE = 75;
 const CGFloat HE_HEALTH = 100;
 const CGFloat HE_VALUE = 1;
 const CGFloat HE_SPEED = 400;
-const bool HE_BOUNCE = true;
+const bool HE_BOUNCES = true;
 
 NSString* const he_file = @"EnemyC.tif";
 
@@ -26,7 +26,7 @@ NSString* const he_file = @"EnemyC.tif";
     if(self){
         // schedule a repeating callback on every frame
         [self schedule:@selector(retarget:) interval:RETARGET_PERIOD];
-        [self setStatsHP:HE_HEALTH DMG:HE_DAMAGE POINTS:HE_VALUE BOUNCES:HE_BOUNCE];
+        [self setStatsHP:HE_HEALTH DMG:HE_DAMAGE POINTS:HE_VALUE BOUNCES:HE_BOUNCES];
     }
 	return self;
 }
