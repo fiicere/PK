@@ -159,6 +159,7 @@
 		46F063FB1790A2D20047725D /* RandomTrajectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063FA1790A2D20047725D /* RandomTrajectory.m */; };
 		5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */; };
 		5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FF4BD179F21BA00666D69 /* MenuScene.m */; };
+		5A1FF4C417A6228200666D69 /* EnemyShot.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A1FF4C317A6228200666D69 /* EnemyShot.tif */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18817848D730035BDB3 /* PlasmaBall.tif */; };
@@ -485,6 +486,7 @@
 		5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Stars 2048x1536.tif"; path = "Resources/Stars 2048x1536.tif"; sourceTree = "<group>"; };
 		5A1FF4BC179F21BA00666D69 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		5A1FF4BD179F21BA00666D69 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		5A1FF4C317A6228200666D69 /* EnemyShot.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyShot.tif; path = Resources/EnemyShot.tif; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D18817848D730035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlasmaBall.tif; path = Resources/PlasmaBall.tif; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A1FF4C317A6228200666D69 /* EnemyShot.tif */,
 				5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */,
 				5AC17118178B647200747FFC /* EnemyA.tif */,
 				5AC17119178B647200747FFC /* EnemyB.tif */,
@@ -1094,6 +1097,7 @@
 				5AC17120178B647200747FFC /* Player.tif in Resources */,
 				5AC17121178B647200747FFC /* Shot.tif in Resources */,
 				5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */,
+				5A1FF4C417A6228200666D69 /* EnemyShot.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
