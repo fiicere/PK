@@ -161,6 +161,7 @@
 		5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */; };
 		5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FF4BD179F21BA00666D69 /* MenuScene.m */; };
 		5A3CA05F17A6ED2C006CF265 /* EnemyShot.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */; };
+		5A3CA06117A6EE3C006CF265 /* DeathWall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA06017A6EE3C006CF265 /* DeathWall.tif */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
 		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
@@ -493,6 +494,7 @@
 		5A1FF4BC179F21BA00666D69 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		5A1FF4BD179F21BA00666D69 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyShot.tif; path = Resources/EnemyShot.tif; sourceTree = "<group>"; };
+		5A3CA06017A6EE3C006CF265 /* DeathWall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = DeathWall.tif; path = Resources/DeathWall.tif; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
 		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A3CA06017A6EE3C006CF265 /* DeathWall.tif */,
 				5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */,
 				5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */,
 				5AC17118178B647200747FFC /* EnemyA.tif */,
@@ -1115,6 +1118,7 @@
 				5AC17121178B647200747FFC /* Shot.tif in Resources */,
 				5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */,
 				5A3CA05F17A6ED2C006CF265 /* EnemyShot.tif in Resources */,
+				5A3CA06117A6EE3C006CF265 /* DeathWall.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

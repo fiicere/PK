@@ -15,7 +15,7 @@ const CGFloat WOD_DMG = 1000000;
 const CGFloat WOD_VAL = 0;
 const bool WOD_BOUNCES = TRUE;
 
-NSString* const WOD_FILE = @" ";
+NSString* const WOD_FILE = @"DeathWall.tif";
 
 @implementation WallOfDeath
 
