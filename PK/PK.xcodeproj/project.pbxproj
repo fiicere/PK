@@ -160,10 +160,12 @@
 		46F063FB1790A2D20047725D /* RandomTrajectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063FA1790A2D20047725D /* RandomTrajectory.m */; };
 		5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */; };
 		5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FF4BD179F21BA00666D69 /* MenuScene.m */; };
-		5A1FF4C417A6228200666D69 /* EnemyShot.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A1FF4C317A6228200666D69 /* EnemyShot.tif */; };
 		5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17817834A810035BDB3 /* EnemySaucer.tif */; };
 		5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D17A17834AE10035BDB3 /* PlayerShip.tif */; };
+		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
+		5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18617848B9F0035BDB3 /* Explosion256.tif */; };
 		5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18817848D730035BDB3 /* PlasmaBall.tif */; };
+		5AC17117178B15FF00747FFC /* TempSpace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17116178B15FF00747FFC /* TempSpace.jpg */; };
 		5AC1711D178B647200747FFC /* EnemyA.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17118178B647200747FFC /* EnemyA.tif */; };
 		5AC1711E178B647200747FFC /* EnemyB.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17119178B647200747FFC /* EnemyB.tif */; };
 		5AC1711F178B647200747FFC /* EnemyC.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC1711A178B647200747FFC /* EnemyC.tif */; };
@@ -489,10 +491,12 @@
 		5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Stars 2048x1536.tif"; path = "Resources/Stars 2048x1536.tif"; sourceTree = "<group>"; };
 		5A1FF4BC179F21BA00666D69 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		5A1FF4BD179F21BA00666D69 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
-		5A1FF4C317A6228200666D69 /* EnemyShot.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyShot.tif; path = Resources/EnemyShot.tif; sourceTree = "<group>"; };
 		5A64D17817834A810035BDB3 /* EnemySaucer.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemySaucer.tif; path = Resources/EnemySaucer.tif; sourceTree = "<group>"; };
 		5A64D17A17834AE10035BDB3 /* PlayerShip.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlayerShip.tif; path = Resources/PlayerShip.tif; sourceTree = "<group>"; };
+		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
+		5A64D18617848B9F0035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
 		5A64D18817848D730035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlasmaBall.tif; path = Resources/PlasmaBall.tif; sourceTree = "<group>"; };
+		5AC17116178B15FF00747FFC /* TempSpace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TempSpace.jpg; path = Resources/TempSpace.jpg; sourceTree = "<group>"; };
 		5AC17118178B647200747FFC /* EnemyA.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyA.tif; path = Resources/EnemyA.tif; sourceTree = "<group>"; };
 		5AC17119178B647200747FFC /* EnemyB.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyB.tif; path = Resources/EnemyB.tif; sourceTree = "<group>"; };
 		5AC1711A178B647200747FFC /* EnemyC.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyC.tif; path = Resources/EnemyC.tif; sourceTree = "<group>"; };
@@ -576,14 +580,16 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5A1FF4C317A6228200666D69 /* EnemyShot.tif */,
 				5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */,
 				5AC17118178B647200747FFC /* EnemyA.tif */,
 				5AC17119178B647200747FFC /* EnemyB.tif */,
 				5AC1711A178B647200747FFC /* EnemyC.tif */,
 				5AC1711B178B647200747FFC /* Player.tif */,
 				5AC1711C178B647200747FFC /* Shot.tif */,
+				5AC17116178B15FF00747FFC /* TempSpace.jpg */,
 				5A64D18817848D730035BDB3 /* PlasmaBall.tif */,
+				5A64D18617848B9F0035BDB3 /* Explosion256.tif */,
+				5A64D18417848B830035BDB3 /* Explosion64.tif */,
 				5A64D17817834A810035BDB3 /* EnemySaucer.tif */,
 				5A64D17A17834AE10035BDB3 /* PlayerShip.tif */,
 				467A58AA17833D2D00DD3319 /* seeker.png */,
@@ -1095,14 +1101,16 @@
 				467A58AB17833D2D00DD3319 /* seeker.png in Resources */,
 				5A64D17917834A810035BDB3 /* EnemySaucer.tif in Resources */,
 				5A64D17B17834AE10035BDB3 /* PlayerShip.tif in Resources */,
+				5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */,
+				5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */,
 				5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */,
+				5AC17117178B15FF00747FFC /* TempSpace.jpg in Resources */,
 				5AC1711D178B647200747FFC /* EnemyA.tif in Resources */,
 				5AC1711E178B647200747FFC /* EnemyB.tif in Resources */,
 				5AC1711F178B647200747FFC /* EnemyC.tif in Resources */,
 				5AC17120178B647200747FFC /* Player.tif in Resources */,
 				5AC17121178B647200747FFC /* Shot.tif in Resources */,
 				5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */,
-				5A1FF4C417A6228200666D69 /* EnemyShot.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,6 +1249,7 @@
 				46923ED6179721CB004C67E7 /* GameScene.m in Sources */,
 				46923EE217972B79004C67E7 /* ScoreScene.m in Sources */,
 				5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */,
+				4694BE2D17A07A92006D09D0 /* WallOfDeath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
