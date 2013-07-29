@@ -13,12 +13,10 @@
 
 // Constants
 const CGFloat FRICTION = .02;
-const CGFloat COLLISION_OVERLAP = 1.3;
+const CGFloat COLLISION_OVERLAP = .8;
 const bool debug = true;
 
 // My info
-CGFloat myWidth;
-CGFloat myHeight;
 const CGFloat maxHP = 100;
 const CGFloat baseDMG = 100;
 
@@ -59,8 +57,6 @@ CGFloat agentMaxY;
     _yVel = 0;
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
-    myWidth = self.boundingBox.size.width;
-    myHeight = self.boundingBox.size.height;
 }
 
 -(void) setStatsHP:(CGFloat)hp DMG:(CGFloat)dmg POINTS:(CGFloat)value BOUNCES:(bool)doesBounce{
@@ -117,8 +113,11 @@ CGFloat agentMaxY;
 -(CGRect) getBoundingBox{
     CGFloat myX = [self.parent convertToWorldSpace:self.position].x;
     CGFloat myY = [self.parent convertToWorldSpace:self.position].y;
+    
+    CGFloat width = self.boundingBox.size.width * COLLISION_OVERLAP;
+    CGFloat height = self.boundingBox.size.height * COLLISION_OVERLAP;
 
-    CGRect myBox = CGRectMake(myX, myY, myWidth*COLLISION_OVERLAP, myHeight*COLLISION_OVERLAP);
+    CGRect myBox = CGRectMake(myX - width/2, myY-height/2, width, height);
     return myBox;
 }
 
