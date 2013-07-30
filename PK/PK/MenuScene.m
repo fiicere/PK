@@ -11,6 +11,8 @@
 #import "WorldBoundaries.h"
 
 static CCLayer *ml;
+bool hasType = false;
+bool hasNumPlayers = false;
 
 
 @implementation MenuScene
@@ -23,16 +25,16 @@ static CCLayer *ml;
     [self SetUpMenu:ml];
     
     [self addChild:ml];
-    
     return self;
 }
 
 -(void) SetUpMenu:(CCLayer*) menuLayer {
     CCMenu *menu = [CCMenu menuWithItems:nil];
     
-    CCLabelTTF * open = [CCLabelTTF labelWithString:@"Play Game With Open World" fontName:@"Arial" fontSize:32];
-    CCLabelTTF * box = [CCLabelTTF labelWithString:@"Play Game With Box World" fontName:@"Arial" fontSize:32];
-    CCLabelTTF * cylinder = [CCLabelTTF labelWithString:@"Play Game With Cylindrical World" fontName:@"Arial" fontSize:32];
+    // Game Mode Labels
+    CCLabelTTF * open = [CCLabelTTF labelWithString:@"Open World Game" fontName:@"Arial" fontSize:32];
+    CCLabelTTF * box = [CCLabelTTF labelWithString:@"Box World Game" fontName:@"Arial" fontSize:32];
+    CCLabelTTF * cylinder = [CCLabelTTF labelWithString:@"Cylindrical World Game" fontName:@"Arial" fontSize:32];
     
     CCMenuItem *startOpenGameButton = [CCMenuItemLabel itemWithLabel:open
                                                                 target:self selector:@selector(startOpenGame)];
@@ -41,26 +43,78 @@ static CCLayer *ml;
     CCMenuItem *startDirectionalGameButton = [CCMenuItemLabel itemWithLabel:cylinder
                                                                     target:self selector:@selector(startDirectionalGame)];
     
+    // Number of Player Labels
+    CCLabelTTF * onep = [CCLabelTTF labelWithString:@"with 1 player" fontName:@"Arial" fontSize:32];
+    CCLabelTTF * twop = [CCLabelTTF labelWithString:@"with 2 players" fontName:@"Arial" fontSize:32];
+    CCLabelTTF * threep = [CCLabelTTF labelWithString:@"with 3 players" fontName:@"Arial" fontSize:32];
+    
+    CCMenuItem *start1p = [CCMenuItemLabel itemWithLabel:onep
+                                                              target:self selector:@selector(onePlayer)];
+    CCMenuItem *start2p = [CCMenuItemLabel itemWithLabel:twop
+                                                             target:self selector:@selector(twoPlayer)];
+    CCMenuItem *start3p = [CCMenuItemLabel itemWithLabel:threep
+                                                                     target:self selector:@selector(threePlayer)];
+
+    
     [menu addChild:startOpenGameButton];
     [menu addChild:startBoxGameButton];
     [menu addChild:startDirectionalGameButton];
+    [menu addChild:start1p];
+    [menu addChild:start2p];
+    [menu addChild:start3p];
     [menu alignItemsVerticallyWithPadding:32.0f];
     [menuLayer addChild:menu];
+    
+    
+    // Timer
+    [self schedule:@selector(checkStart:)];
 }
+
 
 -(void) startOpenGame {
     [[WorldBoundaries getInstance] setWorldType:OPEN];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[GameScene alloc] init] ]];
+    hasType = true;
 }
 
 -(void) startBoxGame {
     [[WorldBoundaries getInstance] setWorldType:BOX];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[GameScene alloc] init] ]];
+    hasType = true;
 }
 
 -(void) startDirectionalGame {
     [[WorldBoundaries getInstance] setWorldType:DIRECTIONAL];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[GameScene alloc] init] ]];
+    hasType = true;
+
 }
+
+
+-(void) onePlayer {
+    hasNumPlayers = true;
+}
+
+-(void) twoPlayer {
+    hasNumPlayers = true;
+    
+}
+
+-(void) threePlayer {
+    hasNumPlayers = true;
+}
+
+
+-(void)checkStart:(ccTime)dt{
+    if(hasType && hasNumPlayers){
+        hasType = false;
+        hasNumPlayers = false;
+        [self startGame];
+    }
+}
+
+
+-(void)startGame{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[GameScene alloc] init] ]];
+    
+}
+
 
 @end
