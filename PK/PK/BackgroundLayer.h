@@ -14,6 +14,6 @@
     
 }
 
--(BackgroundLayer*) initWithFile:(NSString*)filename;
+-(BackgroundLayer*) initWithFile:(NSString*)filename withDepth:(int)depth;
 
 @end

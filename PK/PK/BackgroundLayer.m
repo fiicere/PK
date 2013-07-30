@@ -10,6 +10,7 @@
 #import "FocusedLayer.h"
 
 CCSprite *defaultSprite;
+int zVal;
 CGFloat tileWidth;
 CGFloat tileHeight;
 
@@ -30,10 +31,11 @@ CGPoint nearestIntersection;
 	return self;
 }
 
--(id) initWithFile:(NSString*)filename{
+-(id) initWithFile:(NSString*)filename withDepth:(int)depth{
     [super init];
     defaultSprite = [CCSprite spriteWithFile:filename];
     background_file = filename;
+    zVal = depth;
     [self setupVariables];
     //[self schedule:@selector(nextFrame:)];
     return self;
@@ -81,10 +83,10 @@ CGPoint nearestIntersection;
     [spriteC setPosition:ccp(myX+ tileWidth/2, myY + tileHeight *3/2)];
     [spriteD setPosition:ccp(myX + tileWidth*3/2, myY + tileHeight*3/2)];
     
-    [self addChild:spriteA];
-    [self addChild:spriteB];
-    [self addChild:spriteC];
-    [self addChild:spriteD];
+    [self addChild:spriteA z:zVal];
+    [self addChild:spriteB z:zVal];
+    [self addChild:spriteC z:zVal];
+    [self addChild:spriteD z:zVal];
 }
 
 - (CGPoint) getIntersect{

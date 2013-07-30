@@ -36,9 +36,9 @@ static HelloWorldLayer * sl;
     pl = [FocusedLayer node];
     
     // Add background layer
-    bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif"] autorelease];
-    //bl2 = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif"] autorelease];
-    //blw = [[[BackgroundLayer alloc] initWithFile:@"WhiteBackground.tif"] autorelease];
+    bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-1] autorelease];
+    //bl2 = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-2] autorelease];
+    //blw = [[[BackgroundLayer alloc] initWithFile:@"WhiteBackground.tif" withDepth:-3] autorelease];
     
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
@@ -48,10 +48,10 @@ static HelloWorldLayer * sl;
     [self addChild: el z:2];
     [self addChild: epl z:1];
     [self addChild: pl z:1];
-    [self addChild: bl];
+    [self addChild: bl z:-1];
     //[bl2 setParallaxFactor:0.7];
     //[self addChild:bl2 z:-2];
-    //[self addChild:blw z:-2];
+    //[self addChild:blw z:-3];
     
     
     [self schedule:@selector(layerBoundaries:)];
