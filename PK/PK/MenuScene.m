@@ -8,7 +8,7 @@
 
 #import "MenuScene.h"
 #import "GameScene.h"
-#import "WorldBoundaries.h"
+#import "Settings.h"
 
 static CCLayer *ml;
 bool hasType = false;
@@ -72,17 +72,17 @@ bool hasNumPlayers = false;
 
 
 -(void) startOpenGame {
-    [[WorldBoundaries getInstance] setWorldType:OPEN];
+    [Settings getInstance].wt = OPEN;
     hasType = true;
 }
 
 -(void) startBoxGame {
-    [[WorldBoundaries getInstance] setWorldType:BOX];
+    [Settings getInstance].wt = BOX;
     hasType = true;
 }
 
 -(void) startDirectionalGame {
-    [[WorldBoundaries getInstance] setWorldType:DIRECTIONAL];
+    [Settings getInstance].wt = DIRECTIONAL;
     hasType = true;
 
 }

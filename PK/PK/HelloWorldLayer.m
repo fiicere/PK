@@ -33,6 +33,7 @@
 #import "ScoreKeeper.h"
 #import "RandomTrajectory.h"
 #import "WorldBoundaries.h"
+#import "Settings.h"
 
 
 #import "GameScene.h"
@@ -48,10 +49,6 @@ CGFloat screenWidth;
 // Projectile stats
 const double PROJ_SPEED = 750;
 const int RECOIL = -100;
-
-// UFO stats
-const int UFOVELMIN = 100;
-const int UFOVELMAX = 300;
 
 const CGFloat BE_SR = .5;
 const CGFloat HE_SR = 2.5;
@@ -77,7 +74,7 @@ const int PRECISION = 1000;
         [self setFocus];
         [[ScoreKeeper getInstance] reset];
         
-        if ([[WorldBoundaries getInstance] getWorldType] == DIRECTIONAL) {
+        if (Settings.getInstance.wt == DIRECTIONAL) {
             [self addDeathWall];
         }
         
@@ -189,47 +186,18 @@ const int PRECISION = 1000;
 
 -(void) addBasicEnemy{
     BasicEnemy *ufo = [[BasicEnemy alloc] init];
-    
-    RandomTrajectory *t = [[RandomTrajectory alloc] init];
-    
-    // Randomly choose the UFO's speed
-    CGFloat vel = (arc4random() % (UFOVELMAX-UFOVELMIN)) + UFOVELMIN;
-    ufo.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
-    
-    [ufo pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
-    [[GameScene getEL] addChild:ufo];
-    
-//    printf("\nufo x = %f", [ufo.parent convertToWorldSpace:ufo.position].x);
-//    printf(", y = %f", [ufo.parent convertToWorldSpace:ufo.position].y);
-//    printf("\nufo x = %f", [ship.parent convertToWorldSpace:ship.position].x);
-//    printf(", y = %f", [ship.parent convertToWorldSpace:ship.position].y);
-    
-    
-    [t dealloc];
+    [[GameScene getEL] addChild:ufo]; 
 }
 
 -(void) addHomingEnemy{
     HomingEnemy *he = [[HomingEnemy alloc] init];
-    
-    RandomTrajectory *t = [[RandomTrajectory alloc] init];
-    
-    he.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
-    
-    [he pushWithXForce:t.trajdX*he.getSpeed/t.norm YForce:t.trajdY*he.getSpeed/t.norm];
+
     [[GameScene getEL] addChild:he];
-    [t dealloc];
 }
 
 -(void)addTurret{
     Turret *tur = [[Turret alloc] init];
-    
-    RandomTrajectory *t = [[RandomTrajectory alloc] init];
-    
-    tur.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
-    
-    [tur pushWithXForce:t.trajdX*tur.getSpeed/t.norm YForce:t.trajdY*tur.getSpeed/t.norm];
     [[GameScene getEL] addChild:tur];
-    [t dealloc];
 }
 
 // Changes type of touch detection

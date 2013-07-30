@@ -13,16 +13,9 @@
 
 @interface WorldBoundaries : NSObject
 
-enum worldType
-{
-    OPEN,
-    BOX,
-    DIRECTIONAL
-};
 
 +(WorldBoundaries*) getInstance;
 -(void)updateAgent:(PhysicsSprite *)agent;
 -(void)updateLayer:(FocusedLayer *) layer;
--(void)setWorldType:(enum worldType) type;
--(enum worldType)getWorldType;
+
 @end

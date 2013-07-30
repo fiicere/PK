@@ -10,6 +10,8 @@
 #import "PhysicsSprite.h"
 #import "TurretShot.h"
 #import "GameScene.h"
+#import "RandomTrajectory.h"
+
 
 const CGFloat T_HP = 100;
 const CGFloat T_DMG = 100;
@@ -31,6 +33,7 @@ NSString* const T_FILE = @"EnemyB.tif";
     if(self){
         [self setStatsHP:T_HP DMG:T_DMG POINTS:T_VAL BOUNCES:T_BOUNCES];
         [self schedule:@selector(fire:) interval:FIRE_RATE];
+        [self setStartingStats];
     }
 	return self;
 }
@@ -57,4 +60,17 @@ NSString* const T_FILE = @"EnemyB.tif";
 -(CGFloat) getSpeed{
     return TUR_SPEED;
 }
+
+-(void) setStartingStats{
+    
+    RandomTrajectory *t = [[RandomTrajectory alloc] init];
+    
+    self.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
+    
+    [self pushWithXForce:t.trajdX*self.getSpeed/t.norm YForce:t.trajdY*self.getSpeed/t.norm];
+    [t dealloc];
+
+}
+
+
 @end

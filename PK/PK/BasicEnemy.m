@@ -8,10 +8,17 @@
 
 #import "BasicEnemy.h"
 #import "PhysicsSprite.h"
+#import "RandomTrajectory.h"
+#import "GameScene.h"
 
 const CGFloat BE_HP = 100;
 const CGFloat BE_DMG = 100;
 const CGFloat BE_VAL = 1;
+
+// UFO stats
+const int BE_VEL_MIN = 100;
+const int BE_VEL_MAX = 300;
+
 const bool BE_BOUNCES = true;
 
 NSString* const BE_FILE = @"EnemyA.tif";
@@ -22,7 +29,20 @@ NSString* const BE_FILE = @"EnemyA.tif";
     self = [super initWithFile:BE_FILE];
     if(self){
         [self setStatsHP:BE_HP DMG:BE_DMG POINTS:BE_VAL BOUNCES:BE_BOUNCES];
+        [self setStartingStats];
     }
 	return self;
+}
+
+-(void) setStartingStats{
+    RandomTrajectory *t = [[RandomTrajectory alloc] init];
+    
+    // Randomly choose the UFO's speed
+    CGFloat vel = (arc4random() % (BE_VEL_MAX-BE_VEL_MIN)) + BE_VEL_MIN;
+    self.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
+    
+    [self pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
+    
+    [t dealloc];
 }
 @end

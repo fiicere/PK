@@ -8,6 +8,8 @@
 
 #import "HomingEnemy.h"
 #import "PhysicsSprite.h"
+#import "RandomTrajectory.h"
+#import "GameScene.h"
 
 const ccTime RETARGET_PERIOD = 2;
 const ccTime RETARGET_PAUSE = .5;
@@ -27,6 +29,7 @@ NSString* const he_file = @"EnemyC.tif";
         // schedule a repeating callback on every frame
         [self schedule:@selector(retarget:) interval:RETARGET_PERIOD];
         [self setStatsHP:HE_HEALTH DMG:HE_DAMAGE POINTS:HE_VALUE BOUNCES:HE_BOUNCES];
+        [self setStartingStats];
     }
 	return self;
 }
@@ -61,6 +64,15 @@ NSString* const he_file = @"EnemyC.tif";
 
 -(CGFloat) getSpeed{
     return HE_SPEED;
+}
+
+-(void) setStartingStats{
+    RandomTrajectory *t = [[RandomTrajectory alloc] init];
+    
+    self.position = ccp(t.startX - [GameScene getEL].position.x, t.startY - [GameScene getEL].position.y);
+    
+    [self pushWithXForce:t.trajdX*self.getSpeed/t.norm YForce:t.trajdY*self.getSpeed/t.norm];
+    [t dealloc];
 }
 
 @end

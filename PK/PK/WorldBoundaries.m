@@ -9,12 +9,11 @@
 #import "WorldBoundaries.h"
 #import "PhysicsSprite.h"
 #import "FocusedLayer.h"
+#import "Settings.h"
 
 const CGFloat LIMITS_OF_REALITY = 1000;
 
 static WorldBoundaries *instance;
-
-enum worldType wt = DIRECTIONAL;
 
 // World info
 CGFloat screenWidth;
@@ -49,13 +48,6 @@ CGFloat layerMaxY;
     return self;
 }
 
--(void) setWorldType:(enum worldType) type {
-    wt = type;
-}
-
--(enum worldType) getWorldType {
-    return wt;
-}
 
 -(void)setupVariables{
     screenHeight = CCDirector.sharedDirector.winSize.height;
@@ -77,7 +69,7 @@ CGFloat layerMaxY;
 
 -(void)updateAgent:(PhysicsSprite *)agent{
     
-    switch (wt) {
+    switch ([Settings getInstance].wt) {
         case OPEN:
             [self openWorldAgent:agent];
             break;
@@ -156,7 +148,7 @@ CGFloat layerMaxY;
 
 
 -(void)updateLayer:(FocusedLayer *)layer{
-    switch (wt) {
+    switch ([Settings getInstance].wt) {
         case OPEN:
             break;
         case BOX:
