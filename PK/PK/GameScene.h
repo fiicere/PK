@@ -23,6 +23,8 @@
 
 +(BackgroundLayer*)getBL;
 
++(BackgroundLayer*)getBL2;
+
 +(HelloWorldLayer*)getSL;
 
 @end

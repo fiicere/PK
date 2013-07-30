@@ -14,4 +14,6 @@
     
 }
 
+-(BackgroundLayer*) initWithFile:(NSString*)filename;
+
 @end

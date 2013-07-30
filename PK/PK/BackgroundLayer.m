@@ -13,7 +13,7 @@ CCSprite *defaultSprite;
 CGFloat tileWidth;
 CGFloat tileHeight;
 
-NSString* const background_file = @"Stars 2048x1536.tif";
+NSString* background_file;
 
 CGPoint nearestIntersection;
 
@@ -22,16 +22,24 @@ CGPoint nearestIntersection;
 -(id)init{
     // always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
-	if( (self=[super init]) ) {
+//	if( (self=[super init]) ) {
         // schedule a repeating callback on every frame
-        [self setupVariables];
-	}
+//        [self setupVariables];
+//	}
     
 	return self;
 }
 
+-(void) initWithFile:(NSString*)filename{
+    [super init];
+    defaultSprite = [CCSprite spriteWithFile:filename];
+    background_file = filename;
+    [self setupVariables];
+    //[self schedule:@selector(nextFrame:)];
+}
+
 -(void) setupVariables{
-    defaultSprite = [CCSprite spriteWithFile:@"Stars 2048x1536.tif"];
+    //defaultSprite = [CCSprite spriteWithFile:@"Stars 2048x1536.tif"];
     tileWidth = defaultSprite.boundingBox.size.width;
     tileHeight = defaultSprite.boundingBox.size.height;
     [self newBackground];
@@ -42,16 +50,9 @@ CGPoint nearestIntersection;
     if(focus == nil){
         return;
     }
-    [self updatePosition:dt];
+    [super nextFrame:dt];
     [self updateTile];
 }
-
-- (void) updatePosition:(ccTime)dt{
-    self.xVel = -focus.xVel;
-    self.yVel = -focus.yVel;
-    [self setPosition:ccp(self.position.x + (self.xVel*dt), self.position.y + (self.yVel*dt))];
-}
-
 
 -(void) updateTile{
     CGPoint newInt = [self getIntersect];

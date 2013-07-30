@@ -16,6 +16,7 @@ static FocusedLayer * el;
 static FocusedLayer * epl;
 static FocusedLayer * pl;
 static BackgroundLayer * bl;
+static BackgroundLayer * bl2;
 static HelloWorldLayer * sl;
 
 
@@ -34,7 +35,8 @@ static HelloWorldLayer * sl;
     pl = [FocusedLayer node];
     
     // Add background layer
-    bl = [BackgroundLayer node];
+    bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif"] autorelease];
+    bl2 = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif"] autorelease];
     
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
@@ -45,6 +47,9 @@ static HelloWorldLayer * sl;
     [self addChild: epl];
     [self addChild: pl];
     [self addChild: bl z:-1];
+    [bl2 setParallaxFactor:0.7];
+    [self addChild:bl2 z:-1];
+    
     
     [self schedule:@selector(layerBoundaries:)];
 	// return the scene
@@ -72,6 +77,11 @@ static HelloWorldLayer * sl;
 +(BackgroundLayer*)getBL{
     return bl;
 }
+
++(BackgroundLayer*)getBL2{
+    return bl2;
+}
+
 +(HelloWorldLayer*)getSL{
     return sl;
 }

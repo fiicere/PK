@@ -16,7 +16,9 @@
 }
 @property (nonatomic, assign) CGFloat xVel;
 @property (nonatomic, assign) CGFloat yVel;
+@property (nonatomic, assign) CGFloat parallaxFactor;
 
 -(void) setFocus:(PhysicsSprite*)f;
+-(void) nextFrame:(ccTime)dt;
 
 @end
