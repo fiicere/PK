@@ -167,6 +167,7 @@
 		5A64D18517848B830035BDB3 /* Explosion64.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18417848B830035BDB3 /* Explosion64.tif */; };
 		5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18617848B9F0035BDB3 /* Explosion256.tif */; };
 		5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18817848D730035BDB3 /* PlasmaBall.tif */; };
+		5AB49DCA17A82D3E0041FC71 /* WhiteBackground.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AB49DC917A82D3E0041FC71 /* WhiteBackground.tif */; };
 		5AC17117178B15FF00747FFC /* TempSpace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17116178B15FF00747FFC /* TempSpace.jpg */; };
 		5AC1711D178B647200747FFC /* EnemyA.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17118178B647200747FFC /* EnemyA.tif */; };
 		5AC1711E178B647200747FFC /* EnemyB.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17119178B647200747FFC /* EnemyB.tif */; };
@@ -500,6 +501,7 @@
 		5A64D18417848B830035BDB3 /* Explosion64.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion64.tif; path = Resources/Explosion64.tif; sourceTree = "<group>"; };
 		5A64D18617848B9F0035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
 		5A64D18817848D730035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlasmaBall.tif; path = Resources/PlasmaBall.tif; sourceTree = "<group>"; };
+		5AB49DC917A82D3E0041FC71 /* WhiteBackground.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = WhiteBackground.tif; path = Resources/WhiteBackground.tif; sourceTree = "<group>"; };
 		5AC17116178B15FF00747FFC /* TempSpace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TempSpace.jpg; path = Resources/TempSpace.jpg; sourceTree = "<group>"; };
 		5AC17118178B647200747FFC /* EnemyA.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyA.tif; path = Resources/EnemyA.tif; sourceTree = "<group>"; };
 		5AC17119178B647200747FFC /* EnemyB.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyB.tif; path = Resources/EnemyB.tif; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AB49DC917A82D3E0041FC71 /* WhiteBackground.tif */,
 				5A3CA06017A6EE3C006CF265 /* DeathWall.tif */,
 				5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */,
 				5A0B63731795C99C00B55748 /* Stars 2048x1536.tif */,
@@ -1119,6 +1122,7 @@
 				5A0B63741795C99C00B55748 /* Stars 2048x1536.tif in Resources */,
 				5A3CA05F17A6ED2C006CF265 /* EnemyShot.tif in Resources */,
 				5A3CA06117A6EE3C006CF265 /* DeathWall.tif in Resources */,
+				5AB49DCA17A82D3E0041FC71 /* WhiteBackground.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

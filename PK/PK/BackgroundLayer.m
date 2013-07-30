@@ -30,12 +30,13 @@ CGPoint nearestIntersection;
 	return self;
 }
 
--(void) initWithFile:(NSString*)filename{
+-(id) initWithFile:(NSString*)filename{
     [super init];
     defaultSprite = [CCSprite spriteWithFile:filename];
     background_file = filename;
     [self setupVariables];
     //[self schedule:@selector(nextFrame:)];
+    return self;
 }
 
 -(void) setupVariables{

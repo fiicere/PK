@@ -25,6 +25,8 @@
 
 +(BackgroundLayer*)getBL2;
 
++(BackgroundLayer*)getBLW;
+
 +(HelloWorldLayer*)getSL;
 
 @end
