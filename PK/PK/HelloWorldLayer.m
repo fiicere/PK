@@ -155,14 +155,21 @@ const int PRECISION = 1000;
 }
 
 -(void)addEnemies:(ccTime)dt{
+    for(int i = 0; i<[Settings getInstance].numPlayers; i++){
+        [self moarEnemies:dt];
+    }
+}
+
+
+-(void)moarEnemies:(ccTime)dt{
     // Basic Enemy
     int rBE = fmod(arc4random(), (BE_SR * PRECISION));
     if (rBE < dt * PRECISION){
         [[GameScene getEL] addChild:[[[BasicEnemy alloc] init] autorelease]];
-
+        
     }
     
-    // Homing Enemy 
+    // Homing Enemy
     rBE = fmod(arc4random(), (HE_SR * PRECISION));
     if (rBE < dt * PRECISION){
         [[GameScene getEL] addChild:[[[HomingEnemy alloc] init] autorelease]];
@@ -174,7 +181,6 @@ const int PRECISION = 1000;
     if (rBE < dt * PRECISION){
         [[GameScene getEL] addChild:[[[Turret alloc] init] autorelease]];
     }
-    
 }
 
 -(void) addDeathWall{
