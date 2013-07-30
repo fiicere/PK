@@ -89,15 +89,18 @@ bool hasNumPlayers = false;
 
 
 -(void) onePlayer {
+    [Settings getInstance].numPlayers = 1;
     hasNumPlayers = true;
 }
 
 -(void) twoPlayer {
+    [Settings getInstance].numPlayers = 2;
     hasNumPlayers = true;
     
 }
 
 -(void) threePlayer {
+    [Settings getInstance].numPlayers = 3;
     hasNumPlayers = true;
 }
 

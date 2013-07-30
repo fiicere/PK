@@ -158,20 +158,21 @@ const int PRECISION = 1000;
     // Basic Enemy
     int rBE = fmod(arc4random(), (BE_SR * PRECISION));
     if (rBE < dt * PRECISION){
-        [self addBasicEnemy];
+        [[GameScene getEL] addChild:[[[BasicEnemy alloc] init] autorelease]];
+
     }
     
     // Homing Enemy 
     rBE = fmod(arc4random(), (HE_SR * PRECISION));
     if (rBE < dt * PRECISION){
-        [self addHomingEnemy];
+        [[GameScene getEL] addChild:[[[HomingEnemy alloc] init] autorelease]];
     }
     
     // Turret
     // Homing Enemy
     rBE = fmod(arc4random(), (T_SR * PRECISION));
     if (rBE < dt * PRECISION){
-        [self addTurret];
+        [[GameScene getEL] addChild:[[[Turret alloc] init] autorelease]];
     }
     
 }
@@ -182,22 +183,6 @@ const int PRECISION = 1000;
     [dw pushWithXForce:100 YForce:0];
     
     [[GameScene getEL] addChild:dw];
-}
-
--(void) addBasicEnemy{
-    BasicEnemy *ufo = [[BasicEnemy alloc] init];
-    [[GameScene getEL] addChild:ufo]; 
-}
-
--(void) addHomingEnemy{
-    HomingEnemy *he = [[HomingEnemy alloc] init];
-
-    [[GameScene getEL] addChild:he];
-}
-
--(void)addTurret{
-    Turret *tur = [[Turret alloc] init];
-    [[GameScene getEL] addChild:tur];
 }
 
 // Changes type of touch detection
