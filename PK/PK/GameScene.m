@@ -45,9 +45,9 @@ static HelloWorldLayer * sl;
     
 	// add layer as a child to scene
 	[self addChild: sl z:3];
-    [self addChild: el z:2];
+    [self addChild: el z:1];
     [self addChild: epl z:1];
-    [self addChild: pl z:1];
+    [self addChild: pl z:2];
     [self addChild: bl z:-1];
     //[bl2 setParallaxFactor:0.7];
     //[self addChild:bl2 z:-2];

@@ -63,8 +63,8 @@ CGFloat layerMaxY;
     layerMinX = - LIMITS_OF_REALITY - screenWidth/2;
     layerMinY = - LIMITS_OF_REALITY - screenHeight/2;
     
-    screenWidth = agentMaxX - agentMinX;
-    screenHeight = agentMaxY - agentMinY;
+    realityWidth = agentMaxX - agentMinX;
+    realityHeight = agentMaxY - agentMinY;
 }
 
 -(void)updateAgent:(PhysicsSprite *)agent{
@@ -135,13 +135,24 @@ CGFloat layerMaxY;
 }
 
 -(void) directionalWorldAgent:(PhysicsSprite *)agent{
-    if(agent.position.y < agentMinY){
-        [agent setPosition:ccp(agent.position.x, agentMaxY)];
-        [agent setYVel:(-fabsf(agent.yVel))];
+//    if(agent.position.y < agentMinY){
+//        [agent setPosition:ccp(agent.position.x, agentMaxY)];
+//        [agent setYVel:(-fabsf(agent.yVel))];
+//    }
+//    if(agent.position.y > agentMaxY){
+//        [agent setPosition:ccp(agent.position.x, agentMinY)];
+//        [agent setYVel:(fabsf(agent.yVel))];
+//    }
+    
+    CGFloat y = [agent.parent convertToWorldSpace:agent.position].y;
+    
+    if(y > agentMaxY){
+        [agent setPosition:ccp(agent.position.x, agent.position.y - realityHeight)];
+        [self directionalWorldAgent:agent];
     }
-    if(agent.position.y > agentMaxY){
-        [agent setPosition:ccp(agent.position.x, agentMinY)];
-        [agent setYVel:(fabsf(agent.yVel))];
+    if(y < agentMinY){
+        [agent setPosition:ccp(agent.position.x, agent.position.y + realityHeight)];
+        [self directionalWorldAgent:agent];
     }
 }
 

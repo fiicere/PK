@@ -50,7 +50,9 @@ CGFloat screenWidth;
 const double PROJ_SPEED = 750;
 const int RECOIL = -100;
 
-const CGFloat BE_SR = .5;
+//.8, 2.5, 2.5
+
+const CGFloat BE_SR = .8;
 const CGFloat HE_SR = 2.5;
 const CGFloat T_SR = 2.5;
 const int PRECISION = 1000;
