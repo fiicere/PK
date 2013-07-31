@@ -11,7 +11,7 @@
 #import "FocusedLayer.h"
 #import "Settings.h"
 
-const CGFloat LIMITS_OF_REALITY = 1000;
+const CGFloat LIMITS_OF_REALITY = 384;
 
 static WorldBoundaries *instance;
 
