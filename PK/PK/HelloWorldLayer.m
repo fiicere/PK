@@ -78,7 +78,7 @@ const int PRECISION = 1000;
         [[ScoreKeeper getInstance] reset];
         
         if (Settings.getInstance.wt == DIRECTIONAL) {
-            //[self addDeathWall];
+            [self addDeathWall];
         }
         
         // schedule a repeating callback on every frame
@@ -192,7 +192,9 @@ const int PRECISION = 1000;
     
     [[GameScene getEL] addChild:[WallOfDeath getInstance]];
     
-    [[GameScene getGL] addChild:[[[WoDGradient alloc]init]autorelease]];
+    WoDGradient* grad = [[[WoDGradient alloc]init]autorelease];
+    
+    [[GameScene getGL] addChild:grad];
     
 }
 
