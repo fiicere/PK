@@ -169,6 +169,8 @@
 		5A64D18717848B9F0035BDB3 /* Explosion256.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18617848B9F0035BDB3 /* Explosion256.tif */; };
 		5A64D18917848D730035BDB3 /* PlasmaBall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A64D18817848D730035BDB3 /* PlasmaBall.tif */; };
 		5AB49DCA17A82D3E0041FC71 /* WhiteBackground.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AB49DC917A82D3E0041FC71 /* WhiteBackground.tif */; };
+		5AB49DCD17AC42A90041FC71 /* WoDGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB49DCC17AC42A90041FC71 /* WoDGradient.m */; };
+		5AB49DD117AC47BD0041FC71 /* WoDGradient.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AB49DD017AC47BD0041FC71 /* WoDGradient.tif */; };
 		5AC17117178B15FF00747FFC /* TempSpace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17116178B15FF00747FFC /* TempSpace.jpg */; };
 		5AC1711D178B647200747FFC /* EnemyA.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17118178B647200747FFC /* EnemyA.tif */; };
 		5AC1711E178B647200747FFC /* EnemyB.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5AC17119178B647200747FFC /* EnemyB.tif */; };
@@ -505,6 +507,9 @@
 		5A64D18617848B9F0035BDB3 /* Explosion256.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Explosion256.tif; path = Resources/Explosion256.tif; sourceTree = "<group>"; };
 		5A64D18817848D730035BDB3 /* PlasmaBall.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PlasmaBall.tif; path = Resources/PlasmaBall.tif; sourceTree = "<group>"; };
 		5AB49DC917A82D3E0041FC71 /* WhiteBackground.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = WhiteBackground.tif; path = Resources/WhiteBackground.tif; sourceTree = "<group>"; };
+		5AB49DCB17AC42A90041FC71 /* WoDGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoDGradient.h; sourceTree = "<group>"; };
+		5AB49DCC17AC42A90041FC71 /* WoDGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WoDGradient.m; sourceTree = "<group>"; };
+		5AB49DD017AC47BD0041FC71 /* WoDGradient.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = WoDGradient.tif; path = Resources/WoDGradient.tif; sourceTree = "<group>"; };
 		5AC17116178B15FF00747FFC /* TempSpace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TempSpace.jpg; path = Resources/TempSpace.jpg; sourceTree = "<group>"; };
 		5AC17118178B647200747FFC /* EnemyA.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyA.tif; path = Resources/EnemyA.tif; sourceTree = "<group>"; };
 		5AC17119178B647200747FFC /* EnemyB.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyB.tif; path = Resources/EnemyB.tif; sourceTree = "<group>"; };
@@ -589,6 +594,7 @@
 		467A570C178211A000DD3319 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AB49DD017AC47BD0041FC71 /* WoDGradient.tif */,
 				5AB49DC917A82D3E0041FC71 /* WhiteBackground.tif */,
 				5A3CA06017A6EE3C006CF265 /* DeathWall.tif */,
 				5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */,
@@ -1030,6 +1036,8 @@
 				46923EC51795B54B004C67E7 /* Turret.m */,
 				4694BE2B17A07A91006D09D0 /* WallOfDeath.h */,
 				4694BE2C17A07A92006D09D0 /* WallOfDeath.m */,
+				5AB49DCB17AC42A90041FC71 /* WoDGradient.h */,
+				5AB49DCC17AC42A90041FC71 /* WoDGradient.m */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1128,6 +1136,7 @@
 				5A3CA05F17A6ED2C006CF265 /* EnemyShot.tif in Resources */,
 				5A3CA06117A6EE3C006CF265 /* DeathWall.tif in Resources */,
 				5AB49DCA17A82D3E0041FC71 /* WhiteBackground.tif in Resources */,
+				5AB49DD117AC47BD0041FC71 /* WoDGradient.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,6 +1277,7 @@
 				5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */,
 				4694BE2D17A07A92006D09D0 /* WallOfDeath.m in Sources */,
 				4698A89917A830DC0073AB63 /* Settings.m in Sources */,
+				5AB49DCD17AC42A90041FC71 /* WoDGradient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

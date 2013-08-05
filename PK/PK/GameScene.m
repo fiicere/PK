@@ -16,9 +16,8 @@ static FocusedLayer * el;
 static FocusedLayer * epl;
 static FocusedLayer * pl;
 static BackgroundLayer * bl;
-static BackgroundLayer * bl2;
-static BackgroundLayer * blw;
 static HelloWorldLayer * sl;
+static FocusedLayer * gl;
 
 
 @implementation GameScene
@@ -35,10 +34,10 @@ static HelloWorldLayer * sl;
     // Add Projectiles layer
     pl = [FocusedLayer node];
     
+    gl = [FocusedLayer node];
+    
     // Add background layer
     bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-1] autorelease];
-    //bl2 = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-2] autorelease];
-    //blw = [[[BackgroundLayer alloc] initWithFile:@"WhiteBackground.tif" withDepth:-3] autorelease];
     
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
@@ -49,9 +48,7 @@ static HelloWorldLayer * sl;
     [self addChild: epl z:1];
     [self addChild: pl z:2];
     [self addChild: bl z:-1];
-    //[bl2 setParallaxFactor:0.7];
-    //[self addChild:bl2 z:-2];
-    //[self addChild:blw z:-3];
+    [self addChild: gl z:-2];
     
     
     [self schedule:@selector(layerBoundaries:)];
@@ -81,12 +78,8 @@ static HelloWorldLayer * sl;
     return bl;
 }
 
-+(BackgroundLayer*)getBL2{
-    return bl2;
-}
-
-+(BackgroundLayer*)getBLW{
-    return blw;
++(FocusedLayer*)getGL{
+    return gl;
 }
 
 +(HelloWorldLayer*)getSL{

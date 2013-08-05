@@ -14,4 +14,6 @@
     
 }
 
++(WallOfDeath *) getInstance;
+
 @end

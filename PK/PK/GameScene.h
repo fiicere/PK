@@ -23,9 +23,7 @@
 
 +(BackgroundLayer*)getBL;
 
-+(BackgroundLayer*)getBL2;
-
-+(BackgroundLayer*)getBLW;
++(FocusedLayer*)getGL;
 
 +(HelloWorldLayer*)getSL;
 

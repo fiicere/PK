@@ -28,6 +28,7 @@
 #import "Turret.h"
 #import "PlayerShip.h"
 #import "WallOfDeath.h"
+#import "WoDGradient.h"
 
 // Data Structures
 #import "ScoreKeeper.h"
@@ -77,7 +78,7 @@ const int PRECISION = 1000;
         [[ScoreKeeper getInstance] reset];
         
         if (Settings.getInstance.wt == DIRECTIONAL) {
-            [self addDeathWall];
+            //[self addDeathWall];
         }
         
         // schedule a repeating callback on every frame
@@ -108,8 +109,7 @@ const int PRECISION = 1000;
     [[GameScene getEL] setFocus:ship];
     [[GameScene getEPL] setFocus:ship];
     [[GameScene getPL] setFocus:ship];
-    //[[GameScene getBLW] setFocus:ship];
-    //[[GameScene getBL2] setFocus:ship];
+    [[GameScene getGL] setFocus:ship];
     [[GameScene getBL] setFocus:ship];
     
     
@@ -186,11 +186,14 @@ const int PRECISION = 1000;
 }
 
 -(void) addDeathWall{
-    WallOfDeath *dw = [[WallOfDeath alloc]init];
-    dw.position = ccp(-1800, ship.position.y);
-    [dw pushWithXForce:100 YForce:0];
+    //WallOfDeath *dw = [[WallOfDeath alloc]init];
+    [WallOfDeath getInstance].position = ccp(-1800, ship.position.y);
+    [[WallOfDeath getInstance] pushWithXForce:100 YForce:0];
     
-    [[GameScene getEL] addChild:dw];
+    [[GameScene getEL] addChild:[WallOfDeath getInstance]];
+    
+    [[GameScene getGL] addChild:[[[WoDGradient alloc]init]autorelease]];
+    
 }
 
 // Changes type of touch detection

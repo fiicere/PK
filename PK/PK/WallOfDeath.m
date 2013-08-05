@@ -15,9 +15,18 @@ const CGFloat WOD_DMG = 1000000;
 const CGFloat WOD_VAL = 0;
 const bool WOD_BOUNCES = TRUE;
 
+static WallOfDeath* instance;
+
 NSString* const WOD_FILE = @"DeathWall.tif";
 
 @implementation WallOfDeath
+
++(WallOfDeath *) getInstance{
+    if (instance == nil) {
+        instance = [[[self alloc]init]autorelease];
+    }
+    return instance;
+}
 
 -(id) init {
     self = [super initWithFile:WOD_FILE];
