@@ -111,6 +111,7 @@ const int PRECISION = 1000;
     [[GameScene getPL] setFocus:ship];
     [[GameScene getGL] setFocus:ship];
     [[GameScene getBL] setFocus:ship];
+    [[GameScene getWoDL] setFocus:ship];
     
     
 }
@@ -129,9 +130,12 @@ const int PRECISION = 1000;
     [self addEnemies:dt];
 }
 
+
+// !!!!!!!!!!!!!!!! COLLISION CHECKING CODE HERE !!!!!!!!!!!!!!!!!!!!
 - (void) checkCollisions{
     for (PhysicsSprite *pro in [GameScene getPL].children) {
         CGRect proBox = [pro getBoundingBox];
+        // Projectile and Enemy collisions
         for (PhysicsSprite *ufo in [GameScene getEL].children) {
             CGRect ufoBox = [ufo getBoundingBox];
             if (CGRectIntersectsRect(proBox, ufoBox)) {
@@ -139,20 +143,37 @@ const int PRECISION = 1000;
                 pro.health -= ufo.damage;
             }
         }
+        // Projectile and WoD collisions
+        if (CGRectIntersectsRect([[WallOfDeath getInstance] getBoundingBox], proBox)){
+            [pro die];
+        }
     }
-    
     for (PhysicsSprite *enemy in [GameScene getEL].children) {
+        // Enemy and ship collisions
         if (CGRectIntersectsRect([ship getBoundingBox], [enemy getBoundingBox])) {
             ship.health -= enemy.damage;
             enemy.health -= ship.damage;
+        }
+        
+        // Enemy and WoD collisions
+        if (CGRectIntersectsRect([[WallOfDeath getInstance] getBoundingBox], [enemy getBoundingBox])){
+            [enemy die];
         }
     }
-    
-    for (PhysicsSprite *enemy in [GameScene getEPL].children) {
-        if (CGRectIntersectsRect([ship getBoundingBox], [enemy getBoundingBox])) {
-            ship.health -= enemy.damage;
-            enemy.health -= ship.damage;
+    // Enemy Projectile and ship collisions
+    for (PhysicsSprite *enemyProj in [GameScene getEPL].children) {
+        if (CGRectIntersectsRect([ship getBoundingBox], [enemyProj getBoundingBox])) {
+            ship.health -= enemyProj.damage;
+            enemyProj.health -= ship.damage;
         }
+        // Enemy Projectile and WoD collisions
+        if (CGRectIntersectsRect([[WallOfDeath getInstance] getBoundingBox], [enemyProj getBoundingBox])){
+            [enemyProj die];
+        }
+    }
+    // Ship and WoD collisions
+    if (CGRectIntersectsRect([[WallOfDeath getInstance] getBoundingBox], [ship getBoundingBox])){
+        [ship die];
     }
 }
 
@@ -190,7 +211,7 @@ const int PRECISION = 1000;
     [WallOfDeath getInstance].position = ccp(-1800, ship.position.y);
     [[WallOfDeath getInstance] pushWithXForce:100 YForce:0];
     
-    [[GameScene getEL] addChild:[WallOfDeath getInstance]];
+    [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
     
     WoDGradient* grad = [[[WoDGradient alloc]init]autorelease];
     

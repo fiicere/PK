@@ -27,4 +27,6 @@
 
 +(HelloWorldLayer*)getSL;
 
++(FocusedLayer*)getWoDL;
+
 @end

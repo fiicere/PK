@@ -18,6 +18,7 @@ static FocusedLayer * pl;
 static BackgroundLayer * bl;
 static HelloWorldLayer * sl;
 static FocusedLayer * gl;
+static FocusedLayer * wodl;
 
 
 @implementation GameScene
@@ -34,6 +35,10 @@ static FocusedLayer * gl;
     // Add Projectiles layer
     pl = [FocusedLayer node];
     
+    // Add WoD layer
+    wodl = [FocusedLayer node];
+    
+    // Gradient Layer, I presume?
     gl = [FocusedLayer node];
     
     // Add background layer
@@ -46,6 +51,7 @@ static FocusedLayer * gl;
 	[self addChild: sl z:3];
     [self addChild: el z:1];
     [self addChild: epl z:1];
+    [self addChild:wodl z:1];
     [self addChild: pl z:2];
     [self addChild: bl z:-1];
     [self addChild: gl z:-2];
@@ -62,28 +68,39 @@ static FocusedLayer * gl;
     }
 }
 
+// Enemies Layer
 +(FocusedLayer*)getEL{
     return el;
 }
 
+// Enemy Projectiles 
 +(FocusedLayer*)getEPL{
     return epl;
 }
 
+// Ship Projectiles
 +(FocusedLayer*)getPL{
     return pl;
 }
 
+// Background
 +(BackgroundLayer*)getBL{
     return bl;
 }
 
+// Gradient??
 +(FocusedLayer*)getGL{
     return gl;
 }
 
+// Ship Layer
 +(HelloWorldLayer*)getSL{
     return sl;
+}
+
+// WoD Layer
++(FocusedLayer*)getWoDL{
+    return wodl;
 }
 
 @end
