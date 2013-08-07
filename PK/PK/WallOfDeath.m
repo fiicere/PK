@@ -33,7 +33,7 @@ NSString* const WOD_FILE = @"DeathWall.tif";
     if(self){
         [self setStatsHP:WOD_HP DMG:WOD_DMG POINTS:WOD_VAL BOUNCES:WOD_BOUNCES];
         [self schedule:@selector(regenerate:)];
-
+        self.position = ccp(-1800, screenHeight/2);
     }
 	return self;
 }
