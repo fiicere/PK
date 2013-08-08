@@ -105,7 +105,6 @@ const int PRECISION = 1000;
 
 // Sets the focus of all layers to the ship
 -(void)setFocus{
-    
     [[GameScene getEL] setFocus:ship];
     [[GameScene getEPL] setFocus:ship];
     [[GameScene getPL] setFocus:ship];
@@ -152,7 +151,6 @@ const int PRECISION = 1000;
     for (PhysicsSprite *enemy in [GameScene getEL].children) {
         // Enemy and ship collisions
         if (CGRectIntersectsRect([ship getBoundingBox], [enemy getBoundingBox])) {
-            printf("Enemy hit ship!");
             ship.health -= enemy.damage;
             enemy.health -= ship.damage;
         }
@@ -171,19 +169,19 @@ const int PRECISION = 1000;
     if (Settings.getInstance.wt == DIRECTIONAL) {
         // Ship and WoD
         if (CGRectIntersectsRect([[WallOfDeath getInstance] getBoundingBox], [ship getBoundingBox])){
-            printf("\n\nWoD Position: (%f",[[WallOfDeath getInstance].parent convertToWorldSpace:[WallOfDeath getInstance].position].x);
-            printf(", %f)",[[WallOfDeath getInstance].parent convertToWorldSpace:[WallOfDeath getInstance].position].y);
-            printf("\nShip Position: (%f", [ship.parent convertToWorldSpace:ship.position].x);
-            printf(", %f)",[ship.parent convertToWorldSpace:ship.position].y);
-            
-            printf("\nWoD BoundingBox position: (%f", [[WallOfDeath getInstance] getBoundingBox].origin.x);
-            printf(", %f)", [[WallOfDeath getInstance] getBoundingBox].origin.y);
-            printf(", size: (%f", [[WallOfDeath getInstance] getBoundingBox].size.width);
-            printf(", %f)", [[WallOfDeath getInstance] getBoundingBox].size.height);
-            printf("\nShip BoundingBox position: (%f", [ship getBoundingBox].origin.x);
-            printf(", %f)", [ship getBoundingBox].origin.y);
-            printf(", size: (%f", [ship getBoundingBox].size.width);
-            printf(", %f)", [ship getBoundingBox].size.height);
+//            printf("\n\nWoD Position: (%f",[[WallOfDeath getInstance].parent convertToWorldSpace:[WallOfDeath getInstance].position].x);
+//            printf(", %f)",[[WallOfDeath getInstance].parent convertToWorldSpace:[WallOfDeath getInstance].position].y);
+//            printf("\nShip Position: (%f", [ship.parent convertToWorldSpace:ship.position].x);
+//            printf(", %f)",[ship.parent convertToWorldSpace:ship.position].y);
+//            
+//            printf("\nWoD BoundingBox position: (%f", [[WallOfDeath getInstance] getBoundingBox].origin.x);
+//            printf(", %f)", [[WallOfDeath getInstance] getBoundingBox].origin.y);
+//            printf(", size: (%f", [[WallOfDeath getInstance] getBoundingBox].size.width);
+//            printf(", %f)", [[WallOfDeath getInstance] getBoundingBox].size.height);
+//            printf("\nShip BoundingBox position: (%f", [ship getBoundingBox].origin.x);
+//            printf(", %f)", [ship getBoundingBox].origin.y);
+//            printf(", size: (%f", [ship getBoundingBox].size.width);
+//            printf(", %f)", [ship getBoundingBox].size.height);
             [ship die];
         }
         // Ship Projectiles and WoD
@@ -242,10 +240,12 @@ const int PRECISION = 1000;
     [[WallOfDeath getInstance] reset];
     [[WallOfDeath getInstance] pushWithXForce:100 YForce:0];
     
-//    if ([GameScene getWoDL].children.count == 0) {
-//        printf("Adding WoD to layer");
-//        [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
-//    }
+    printf("\n# children = %lu", (unsigned long)[GameScene getWoDL].children.count);
+    if ([GameScene getWoDL].children.count == 0) {
+        printf("\nAdding WoD to layer");
+        [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
+        printf("\nDone adding WoD");
+    }
     
 //    [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
     
