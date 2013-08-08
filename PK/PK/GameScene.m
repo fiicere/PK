@@ -16,6 +16,7 @@ static FocusedLayer * el;
 static FocusedLayer * epl;
 static FocusedLayer * pl;
 static BackgroundLayer * bl;
+static BackgroundLayer * bl2;
 static HelloWorldLayer * sl;
 static FocusedLayer * gl;
 static FocusedLayer * wodl;
@@ -43,6 +44,7 @@ static FocusedLayer * wodl;
     
     // Add background layer
     bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-1] autorelease];
+//    bl2 = [[[BackgroundLayer alloc] initWithFile:@"WhiteBackground.tif" withDepth:-2] autorelease];
     
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
@@ -53,8 +55,9 @@ static FocusedLayer * wodl;
     [self addChild: epl z:1];
     [self addChild:wodl z:1];
     [self addChild: pl z:2];
-    [self addChild: bl z:-1];
-    [self addChild: gl z:-2];
+    [self addChild: bl z:-2];
+    [self addChild: gl z:-1];
+//    [self addChild:bl2 z:-9];
     
     
     [self schedule:@selector(layerBoundaries:)];
@@ -86,6 +89,10 @@ static FocusedLayer * wodl;
 // Background
 +(BackgroundLayer*)getBL{
     return bl;
+}
+
++(BackgroundLayer*)getBL2{
+    return bl2;
 }
 
 // Gradient??

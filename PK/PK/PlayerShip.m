@@ -16,7 +16,7 @@ const CGFloat PS_DMG = 1000;
 const CGFloat PS_VAL = 0;
 const bool PS_BOUNCES = TRUE;
 
-NSString* const PS_FILE = @"Player.tif";
+NSString* const PS_FILE = @"Ship.tif";
 
 @implementation PlayerShip
 

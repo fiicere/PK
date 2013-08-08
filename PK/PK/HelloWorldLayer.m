@@ -111,6 +111,7 @@ const int PRECISION = 1000;
     [[GameScene getPL] setFocus:ship];
     [[GameScene getGL] setFocus:ship];
     [[GameScene getBL] setFocus:ship];
+//    [[GameScene getBL2] setFocus:ship];
     [[GameScene getWoDL] setFocus:ship];
     
     
