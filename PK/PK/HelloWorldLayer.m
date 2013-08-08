@@ -239,6 +239,7 @@ const int PRECISION = 1000;
 -(void) addDeathWall{
     //WallOfDeath *dw = [[WallOfDeath alloc]init];
 //    [WallOfDeath getInstance].position = ccp(-1800, ship.position.y);
+    [[WallOfDeath getInstance] reset];
     [[WallOfDeath getInstance] pushWithXForce:100 YForce:0];
     
 //    if ([GameScene getWoDL].children.count == 0) {
@@ -246,7 +247,7 @@ const int PRECISION = 1000;
 //        [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
 //    }
     
-    [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
+//    [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
     
     WoDGradient* grad = [[[WoDGradient alloc]init]autorelease];
     

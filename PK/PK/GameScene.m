@@ -12,6 +12,7 @@
 #import "HelloWorldLayer.h"
 #import "WorldBoundaries.h"
 #import "Settings.h"
+#import "WallOfDeath.h"
 
 static FocusedLayer * el;
 static FocusedLayer * epl;
@@ -44,6 +45,9 @@ static FocusedLayer * wodl;
         
         [self addChild:wodl z:4];
         [self addChild: gl z:-1];
+        if (wodl.children.count <=0) {
+            [wodl addChild:[WallOfDeath getInstance]];
+        }
     }
     
     // Add background layer

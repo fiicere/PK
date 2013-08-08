@@ -38,6 +38,12 @@ NSString* const WOD_FILE = @"DeathWall.tif";
 	return self;
 }
 
+-(void)reset{
+    self.position = ccp(-1800, screenHeight/2);
+    [self setXVel:0];
+    [self setYVel:0];
+}
+
 -(void)regenerate:(ccTime)dt{
     if (self.health < WOD_HP){
         self.health =  WOD_HP;
