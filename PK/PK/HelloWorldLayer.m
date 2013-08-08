@@ -239,20 +239,19 @@ const int PRECISION = 1000;
 //    [WallOfDeath getInstance].position = ccp(-1800, ship.position.y);
     [[WallOfDeath getInstance] reset];
     [[WallOfDeath getInstance] pushWithXForce:100 YForce:0];
+
     
-    printf("\n# children = %lu", (unsigned long)[GameScene getWoDL].children.count);
     if ([GameScene getWoDL].children.count == 0) {
-        printf("\nAdding WoD to layer");
+
+        
         [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
-        printf("\nDone adding WoD");
     }
-    
+
 //    [[GameScene getWoDL] addChild:[WallOfDeath getInstance]];
     
     WoDGradient* grad = [[[WoDGradient alloc]init]autorelease];
     
     [[GameScene getGL] addChild:grad];
-    
 }
 
 // Changes type of touch detection

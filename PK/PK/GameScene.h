@@ -22,6 +22,7 @@
 +(FocusedLayer*)getPL;
 
 +(BackgroundLayer*)getBL;
+
 +(BackgroundLayer*)getBL2;
 
 +(FocusedLayer*)getGL;

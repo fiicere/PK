@@ -39,6 +39,7 @@ NSString* const WOD_FILE = @"DeathWall.tif";
 }
 
 -(void)reset{
+    instance = [[[WallOfDeath alloc]init]autorelease];
     self.position = ccp(-1800, screenHeight/2);
     [self setXVel:0];
     [self setYVel:0];
