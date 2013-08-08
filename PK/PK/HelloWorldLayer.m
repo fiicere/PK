@@ -109,10 +109,13 @@ const int PRECISION = 1000;
     [[GameScene getEL] setFocus:ship];
     [[GameScene getEPL] setFocus:ship];
     [[GameScene getPL] setFocus:ship];
-    [[GameScene getGL] setFocus:ship];
     [[GameScene getBL] setFocus:ship];
 //    [[GameScene getBL2] setFocus:ship];
-    [[GameScene getWoDL] setFocus:ship];
+    if (Settings.getInstance.wt == DIRECTIONAL) {
+        [[GameScene getWoDL] setFocus:ship];
+        [[GameScene getGL] setFocus:ship];
+    }
+    
     
     
 }
