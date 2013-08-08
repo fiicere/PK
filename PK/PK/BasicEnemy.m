@@ -12,7 +12,7 @@
 #import "GameScene.h"
 
 const CGFloat BE_HP = 100;
-const CGFloat BE_DMG = 100;
+const CGFloat BE_DMG = 33;
 const CGFloat BE_VAL = 1;
 
 // UFO stats
