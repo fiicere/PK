@@ -11,6 +11,7 @@
 #import "BackgroundLayer.h"
 #import "HelloWorldLayer.h"
 #import "WorldBoundaries.h"
+#import "Settings.h"
 
 static FocusedLayer * el;
 static FocusedLayer * epl;
@@ -36,11 +37,14 @@ static FocusedLayer * wodl;
     // Add Projectiles layer
     pl = [FocusedLayer node];
     
-    // Add WoD layer
-    wodl = [FocusedLayer node];
-    
-    // Gradient Layer, I presume?
-    gl = [FocusedLayer node];
+    // Add WoD and Gradient layer
+    if (Settings.getInstance.wt == DIRECTIONAL) {
+        wodl = [FocusedLayer node];
+        gl = [FocusedLayer node];
+        
+        [self addChild:wodl z:4];
+        [self addChild: gl z:-1];
+    }
     
     // Add background layer
     bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-1] autorelease];
@@ -53,10 +57,9 @@ static FocusedLayer * wodl;
 	[self addChild: sl z:3];
     [self addChild: el z:1];
     [self addChild: epl z:1];
-    [self addChild:wodl z:1];
     [self addChild: pl z:2];
     [self addChild: bl z:-2];
-    [self addChild: gl z:-1];
+    
 //    [self addChild:bl2 z:-9];
     
     
