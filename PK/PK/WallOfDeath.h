@@ -15,5 +15,6 @@
 }
 
 +(WallOfDeath *) getInstance;
+-(void)reset;
 
 @end

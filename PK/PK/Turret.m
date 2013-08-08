@@ -14,7 +14,7 @@
 
 
 const CGFloat T_HP = 100;
-const CGFloat T_DMG = 100;
+const CGFloat T_DMG = 8.25;
 const CGFloat T_VAL = 2;
 
 const CGFloat FIRE_RATE = .5;

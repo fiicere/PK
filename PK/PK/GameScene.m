@@ -11,11 +11,14 @@
 #import "BackgroundLayer.h"
 #import "HelloWorldLayer.h"
 #import "WorldBoundaries.h"
+#import "Settings.h"
+#import "WallOfDeath.h"
 
 static FocusedLayer * el;
 static FocusedLayer * epl;
 static FocusedLayer * pl;
 static BackgroundLayer * bl;
+static BackgroundLayer * bl2;
 static HelloWorldLayer * sl;
 static FocusedLayer * gl;
 static FocusedLayer * wodl;
@@ -35,14 +38,18 @@ static FocusedLayer * wodl;
     // Add Projectiles layer
     pl = [FocusedLayer node];
     
-    // Add WoD layer
-    wodl = [FocusedLayer node];
-    
-    // Gradient Layer, I presume?
-    gl = [FocusedLayer node];
+    // Add WoD and Gradient layer
+    if (Settings.getInstance.wt == DIRECTIONAL) {
+        wodl = [FocusedLayer node];
+        gl = [FocusedLayer node];
+        
+        [self addChild:wodl z:4];
+        [self addChild: gl z:-1];
+    }
     
     // Add background layer
     bl = [[[BackgroundLayer alloc] initWithFile:@"Stars 2048x1536.tif" withDepth:-1] autorelease];
+//    bl2 = [[[BackgroundLayer alloc] initWithFile:@"WhiteBackground.tif" withDepth:-2] autorelease];
     
 	// 'layer' is an autorelease object.
     sl = [HelloWorldLayer node];
@@ -51,10 +58,10 @@ static FocusedLayer * wodl;
 	[self addChild: sl z:3];
     [self addChild: el z:1];
     [self addChild: epl z:1];
-    [self addChild:wodl z:1];
     [self addChild: pl z:2];
-    [self addChild: bl z:-1];
-    [self addChild: gl z:-2];
+    [self addChild: bl z:-2];
+    
+//    [self addChild:bl2 z:-9];
     
     
     [self schedule:@selector(layerBoundaries:)];
@@ -86,6 +93,10 @@ static FocusedLayer * wodl;
 // Background
 +(BackgroundLayer*)getBL{
     return bl;
+}
+
++(BackgroundLayer*)getBL2{
+    return bl2;
 }
 
 // Gradient??

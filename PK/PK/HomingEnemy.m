@@ -13,7 +13,7 @@
 
 const ccTime RETARGET_PERIOD = 2;
 const ccTime RETARGET_PAUSE = .5;
-const CGFloat HE_DAMAGE = 75;
+const CGFloat HE_DAMAGE = 16.5;
 const CGFloat HE_HEALTH = 100;
 const CGFloat HE_VALUE = 1;
 const CGFloat HE_SPEED = 400;

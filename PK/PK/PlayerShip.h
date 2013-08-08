@@ -14,4 +14,6 @@
     
 }
 
+-(void) hitAnimation;
+
 @end
