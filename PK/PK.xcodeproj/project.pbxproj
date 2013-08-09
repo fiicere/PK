@@ -1051,10 +1051,10 @@
 		46F063EC17907F8F0047725D /* Common Data */ = {
 			isa = PBXGroup;
 			children = (
-				46F063ED17907FCD0047725D /* ScoreKeeper.h */,
-				46F063EE17907FCD0047725D /* ScoreKeeper.m */,
 				46F063F91790A2D20047725D /* RandomTrajectory.h */,
 				46F063FA1790A2D20047725D /* RandomTrajectory.m */,
+				46F063ED17907FCD0047725D /* ScoreKeeper.h */,
+				46F063EE17907FCD0047725D /* ScoreKeeper.m */,
 				4698A89717A830DC0073AB63 /* Settings.h */,
 				4698A89817A830DC0073AB63 /* Settings.m */,
 				46923ECD1795CFA3004C67E7 /* WorldBoundaries.h */,
