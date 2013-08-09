@@ -35,6 +35,7 @@
 #import "RandomTrajectory.h"
 #import "WorldBoundaries.h"
 #import "Settings.h"
+#import "Clock.h"
 
 
 #import "GameScene.h"
