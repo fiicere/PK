@@ -14,6 +14,6 @@
     
 }
 
--(void) hitAnimation;
+-(void) hitWithDamage:(CGFloat)damage;
 
 @end

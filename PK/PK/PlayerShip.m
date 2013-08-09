@@ -57,28 +57,74 @@ CCSprite* hp3;
 	return self;
 }
 
--(void) hitAnimation {
-    id hit;
-    hit = [CCTintBy actionWithDuration:0.1 red:255 green:-255 blue:-255];
-    id afterHit = [CCTintBy actionWithDuration:0.1 red:-255 green:255 blue:255];
+-(void) hitWithDamage:(CGFloat)damage {
+    id hit = [CCTintBy actionWithDuration:0.2 red:255 green:-255 blue:-255];
+    id afterHit = [CCTintBy actionWithDuration:0.2 red:-255 green:255 blue:255];
+    CGFloat newhp = self.health - damage;
+    
+    if (self.health <= 1) {
+        [self die];
+    }
     
     if (self.health > 66) {
-        [hp1 runAction:hit];
-        [hp1 runAction:afterHit];
+        if ( newhp <= 66) {
+            [self removeChild:hp1 cleanup:YES];
+            self.health = 66;
+        }
+        else {
+            [hp1 runAction:hit];
+            [hp1 runAction:afterHit];
+            self.health = newhp;
+        }
     }
-    else if (33 < self.health <= 66){
-        [self removeChild:hp1 cleanup:TRUE];
-        [hp2 runAction:hit];
-        [hp2 runAction:afterHit];
+    
+    if (33 < self.health <= 66) {
+        if (newhp <= 33) {
+            [self removeChild:hp2 cleanup:YES];
+            self.health = 33;
+        }
+        else {
+            [hp2 runAction:hit];
+            [hp2 runAction:afterHit];
+            self.health = newhp;
+        }
     }
-    else if (1 < self.health <= 33) {
-        [self removeChild:hp2 cleanup:TRUE];
-        [hp3 runAction:hit];
-        [hp3 runAction:afterHit];
-    }
-    else {
-        [self removeChild:hp3 cleanup:TRUE];
+    
+    if (1 < self.health <= 33) {
+        if (newhp <= 1) {
+            [self removeChild:hp3 cleanup:YES];
+            self.health = 1;
+        }
+        else {
+            [hp3 runAction:hit];
+            [hp3 runAction:afterHit];
+            self.health = newhp;
+        }
     }
 }
+
+//-(void) hitAnimation {
+//    id hit;
+//    hit = [CCTintBy actionWithDuration:0.2 red:255 green:-255 blue:-255];
+//    id afterHit = [CCTintBy actionWithDuration:0.1 red:-255 green:255 blue:255];
+//    
+//    if (self.health > 66) {
+//        [hp1 runAction:hit];
+//        [hp1 runAction:afterHit];
+//    }
+//    else if (33 < self.health <= 66){
+//        [self removeChild:hp1 cleanup:YES];
+//        [hp2 runAction:hit];
+//        [hp2 runAction:afterHit];
+//    }
+//    else if (1 < self.health <= 33) {
+//        [self removeChild:hp2 cleanup:YES];
+//        [hp3 runAction:hit];
+//        [hp3 runAction:afterHit];
+//    }
+//    else {
+//        [self removeChild:hp3 cleanup:YES];
+//    }
+//}
 
 @end

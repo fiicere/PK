@@ -151,7 +151,7 @@ const int PRECISION = 1000;
     for (PhysicsSprite *enemy in [GameScene getEL].children) {
         // Enemy and ship collisions
         if (CGRectIntersectsRect([ship getBoundingBox], [enemy getBoundingBox])) {
-            ship.health -= enemy.damage;
+            [ship hitWithDamage:enemy.damage];
             enemy.health -= ship.damage;
         }
 
@@ -159,7 +159,7 @@ const int PRECISION = 1000;
     // Enemy Projectile and ship collisions
     for (PhysicsSprite *enemyProj in [GameScene getEPL].children) {
         if (CGRectIntersectsRect([ship getBoundingBox], [enemyProj getBoundingBox])) {
-            ship.health -= enemyProj.damage;
+            [ship hitWithDamage:enemyProj.damage];
             enemyProj.health -= ship.damage;
         }
     }
