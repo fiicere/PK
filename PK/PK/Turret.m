@@ -25,8 +25,8 @@ const CGFloat TUR_SPEED = 200;
 const bool T_BOUNCES = true;
 
 //Turret spawn data
-const CGFloat T_SR = 2.5;
-const CGFloat T_SST = 45;
+const CGFloat T_SR = 5;
+const CGFloat T_SST = 30;
 
 
 NSString* const T_FILE = @"EnemyB.tif";

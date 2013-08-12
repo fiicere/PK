@@ -14,7 +14,7 @@
 static CGFloat spawnRate = 0;
 static CGFloat startingSpawnTime = 0;
 const CGFloat PRECISION = 1000;
-const CGFloat DIFFICULTY_RAMP = 60;
+const CGFloat DIFFICULTY_RAMP = 30;
 
 @implementation SpawnedSprite
 

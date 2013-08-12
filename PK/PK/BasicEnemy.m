@@ -20,7 +20,7 @@ const int BE_VEL_MIN = 100;
 const int BE_VEL_MAX = 300;
 
 // Spawn Stats
-const CGFloat BE_SR = .8;
+const CGFloat BE_SR = 1.6;
 const CGFloat BE_SST = 0;
 
 const bool BE_BOUNCES = true;

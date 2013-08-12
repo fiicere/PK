@@ -21,8 +21,8 @@ const bool HE_BOUNCES = true;
 
 
 //Spawn Rate Data
-const CGFloat HE_SR = 2.5;
-const CGFloat HE_SST = 30;
+const CGFloat HE_SR = 5;
+const CGFloat HE_SST = 15;
 
 NSString* const he_file = @"EnemyC.tif";
 
