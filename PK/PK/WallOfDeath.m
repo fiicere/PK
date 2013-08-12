@@ -8,12 +8,15 @@
 
 #import "PhysicsSprite.h"
 #import "WallOfDeath.h"
+#import "Clock.h"
 
 
 const CGFloat WOD_HP = 1000000;
 const CGFloat WOD_DMG = 1000000;
 const CGFloat WOD_VAL = 0;
 const bool WOD_BOUNCES = TRUE;
+
+const CGFloat WOD_VEL = 50;
 
 static WallOfDeath* instance;
 
@@ -32,7 +35,7 @@ NSString* const WOD_FILE = @"DeathWall.tif";
     self = [super initWithFile:WOD_FILE];
     if(self){
         [self setStatsHP:WOD_HP DMG:WOD_DMG POINTS:WOD_VAL BOUNCES:WOD_BOUNCES];
-        [self schedule:@selector(regenerate:)];
+        [self schedule:@selector(update:)];
         self.position = ccp(-1800, screenHeight/2);
     }
 	return self;
@@ -45,10 +48,11 @@ NSString* const WOD_FILE = @"DeathWall.tif";
     [self setYVel:0];
 }
 
--(void)regenerate:(ccTime)dt{
+-(void)update:(ccTime)dt{
     if (self.health < WOD_HP){
         self.health =  WOD_HP;
     }
+    [self setXVel:(WOD_VEL * sqrt([Clock getInstance].getTime))];
 }
 
 
