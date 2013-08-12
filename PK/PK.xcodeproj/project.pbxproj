@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4666247117873641004DD174 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666247017873641004DD174 /* GameOverLayer.m */; };
 		4677950817B5743E00DBEDE7 /* Clock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677950717B5743E00DBEDE7 /* Clock.m */; };
+		4677950E17B93B7C00DBEDE7 /* SpawnedSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677950D17B93B7C00DBEDE7 /* SpawnedSprite.m */; };
 		467A56F8178211A000DD3319 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56F7178211A000DD3319 /* QuartzCore.framework */; };
 		467A56FA178211A000DD3319 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56F9178211A000DD3319 /* OpenGLES.framework */; };
 		467A56FC178211A000DD3319 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467A56FB178211A000DD3319 /* OpenAL.framework */; };
@@ -187,6 +188,8 @@
 		4666247017873641004DD174 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		4677950617B5743E00DBEDE7 /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
 		4677950717B5743E00DBEDE7 /* Clock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clock.m; sourceTree = "<group>"; };
+		4677950C17B93B7C00DBEDE7 /* SpawnedSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnedSprite.h; sourceTree = "<group>"; };
+		4677950D17B93B7C00DBEDE7 /* SpawnedSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpawnedSprite.m; sourceTree = "<group>"; };
 		467A56F4178211A000DD3319 /* PK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		467A56F7178211A000DD3319 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		467A56F9178211A000DD3319 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1029,20 +1032,22 @@
 		46F063E517905C290047725D /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				46923EBE1795ABC8004C67E7 /* BasicEnemy.h */,
+				46923EBF1795ABC8004C67E7 /* BasicEnemy.m */,
+				46F063F6179089890047725D /* HomingEnemy.h */,
+				46F063F7179089890047725D /* HomingEnemy.m */,
 				46A56D34178B562D00441334 /* PhysicsSprite.h */,
 				46A56D35178B562D00441334 /* PhysicsSprite.m */,
 				46923ECA1795BA2E004C67E7 /* PlayerShip.h */,
 				46923ECB1795BA2E004C67E7 /* PlayerShip.m */,
 				46923EC11795ACB0004C67E7 /* ShipShot.h */,
 				46923EC21795ACB0004C67E7 /* ShipShot.m */,
-				46923EC71795B6AE004C67E7 /* TurretShot.h */,
-				46923EC81795B6AE004C67E7 /* TurretShot.m */,
-				46F063F6179089890047725D /* HomingEnemy.h */,
-				46F063F7179089890047725D /* HomingEnemy.m */,
-				46923EBE1795ABC8004C67E7 /* BasicEnemy.h */,
-				46923EBF1795ABC8004C67E7 /* BasicEnemy.m */,
+				4677950C17B93B7C00DBEDE7 /* SpawnedSprite.h */,
+				4677950D17B93B7C00DBEDE7 /* SpawnedSprite.m */,
 				46923EC41795B54B004C67E7 /* Turret.h */,
 				46923EC51795B54B004C67E7 /* Turret.m */,
+				46923EC71795B6AE004C67E7 /* TurretShot.h */,
+				46923EC81795B6AE004C67E7 /* TurretShot.m */,
 				4694BE2B17A07A91006D09D0 /* WallOfDeath.h */,
 				4694BE2C17A07A92006D09D0 /* WallOfDeath.m */,
 				5AB49DCB17AC42A90041FC71 /* WoDGradient.h */,
@@ -1292,6 +1297,7 @@
 				4698A89917A830DC0073AB63 /* Settings.m in Sources */,
 				5AB49DCD17AC42A90041FC71 /* WoDGradient.m in Sources */,
 				4677950817B5743E00DBEDE7 /* Clock.m in Sources */,
+				4677950E17B93B7C00DBEDE7 /* SpawnedSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

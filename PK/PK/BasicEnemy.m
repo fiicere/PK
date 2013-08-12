@@ -15,9 +15,13 @@ const CGFloat BE_HP = 100;
 const CGFloat BE_DMG = 33;
 const CGFloat BE_VAL = 1;
 
-// UFO stats
+// Movement stats
 const int BE_VEL_MIN = 100;
 const int BE_VEL_MAX = 300;
+
+// Spawn Stats
+const CGFloat BE_SR = .8;
+const CGFloat BE_SST = 0;
 
 const bool BE_BOUNCES = true;
 
@@ -44,5 +48,12 @@ NSString* const BE_FILE = @"EnemyA.tif";
     [self pushWithXForce:t.trajdX*vel/t.norm YForce:t.trajdY*vel/t.norm];
     
     [t dealloc];
+}
+
++(CGFloat)getSR{
+    return BE_SR;
+}
++(CGFloat)getSST{
+    return BE_SST;
 }
 @end

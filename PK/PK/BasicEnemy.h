@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "PhysicsSprite.h"
+#import "SpawnedSprite.h"
 
-@interface BasicEnemy : PhysicsSprite {
+@interface BasicEnemy : SpawnedSprite {
     
 }
 

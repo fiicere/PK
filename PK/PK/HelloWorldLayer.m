@@ -52,13 +52,6 @@ CGFloat screenWidth;
 const double PROJ_SPEED = 750;
 const int RECOIL = -100;
 
-//.8, 2.5, 2.5
-
-const CGFloat BE_SR = .8;
-const CGFloat HE_SR = 2.5;
-const CGFloat T_SR = 2.5;
-const int PRECISION = 1000;
-
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
@@ -124,6 +117,7 @@ const int PRECISION = 1000;
 {
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
+    [[Clock getInstance] reset];
 }
 
 
@@ -170,19 +164,6 @@ const int PRECISION = 1000;
     if (Settings.getInstance.wt == DIRECTIONAL) {
         // Ship and WoD
         if (CGRectIntersectsRect([[WallOfDeath getInstance] getBoundingBox], [ship getBoundingBox])){
-//            printf("\n\nWoD Position: (%f",[[WallOfDeath getInstance].parent convertToWorldSpace:[WallOfDeath getInstance].position].x);
-//            printf(", %f)",[[WallOfDeath getInstance].parent convertToWorldSpace:[WallOfDeath getInstance].position].y);
-//            printf("\nShip Position: (%f", [ship.parent convertToWorldSpace:ship.position].x);
-//            printf(", %f)",[ship.parent convertToWorldSpace:ship.position].y);
-//            
-//            printf("\nWoD BoundingBox position: (%f", [[WallOfDeath getInstance] getBoundingBox].origin.x);
-//            printf(", %f)", [[WallOfDeath getInstance] getBoundingBox].origin.y);
-//            printf(", size: (%f", [[WallOfDeath getInstance] getBoundingBox].size.width);
-//            printf(", %f)", [[WallOfDeath getInstance] getBoundingBox].size.height);
-//            printf("\nShip BoundingBox position: (%f", [ship getBoundingBox].origin.x);
-//            printf(", %f)", [ship getBoundingBox].origin.y);
-//            printf(", size: (%f", [ship getBoundingBox].size.width);
-//            printf(", %f)", [ship getBoundingBox].size.height);
             [ship die];
         }
         // Ship Projectiles and WoD
@@ -206,32 +187,17 @@ const int PRECISION = 1000;
     }
 }
 
--(void)addEnemies:(ccTime)dt{
-    for(int i = 0; i<[Settings getInstance].numPlayers; i++){
-        [self moarEnemies:dt];
-    }
+-(void)spawnEnemiesOfType:(Class)class AtTime:(ccTime)dt{
+    [class spawnEnemies:dt];
 }
 
+-(void)addEnemies:(ccTime)dt{
+    [self spawnEnemiesOfType:[BasicEnemy class] AtTime:dt];
+    [self spawnEnemiesOfType:[HomingEnemy class] AtTime:dt];
+    [self spawnEnemiesOfType:[Turret class] AtTime:dt];
 
--(void)moarEnemies:(ccTime)dt{
-    // Basic Enemy
-    int rBE = fmod(arc4random(), (BE_SR * PRECISION));
-    if (rBE < dt * PRECISION){
-        [[GameScene getEL] addChild:[[[BasicEnemy alloc] init] autorelease]];
-        
-    }
-    
-    // Homing Enemy
-    rBE = fmod(arc4random(), (HE_SR * PRECISION));
-    if (rBE < dt * PRECISION){
-        [[GameScene getEL] addChild:[[[HomingEnemy alloc] init] autorelease]];
-    }
-    
-    // Turret
-    // Homing Enemy
-    rBE = fmod(arc4random(), (T_SR * PRECISION));
-    if (rBE < dt * PRECISION){
-        [[GameScene getEL] addChild:[[[Turret alloc] init] autorelease]];
+    for(int i = 0; i<[Settings getInstance].numPlayers; i++){
+//        [self moarEnemies:dt];
     }
 }
 

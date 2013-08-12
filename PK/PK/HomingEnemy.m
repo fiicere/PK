@@ -19,6 +19,11 @@ const CGFloat HE_VALUE = 1;
 const CGFloat HE_SPEED = 400;
 const bool HE_BOUNCES = true;
 
+
+//Spawn Rate Data
+const CGFloat HE_SR = 2.5;
+const CGFloat HE_SST = 30;
+
 NSString* const he_file = @"EnemyC.tif";
 
 @implementation HomingEnemy
@@ -73,6 +78,13 @@ NSString* const he_file = @"EnemyC.tif";
     
     [self pushWithXForce:t.trajdX*self.getSpeed/t.norm YForce:t.trajdY*self.getSpeed/t.norm];
     [t dealloc];
+}
+
++(CGFloat)getSR{
+    return HE_SR;
+}
++(CGFloat)getSST{
+    return HE_SST;
 }
 
 @end

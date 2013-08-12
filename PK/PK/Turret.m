@@ -24,6 +24,10 @@ const CGFloat TUR_SPEED = 200;
 
 const bool T_BOUNCES = true;
 
+//Turret spawn data
+const CGFloat T_SR = 2.5;
+const CGFloat T_SST = 45;
+
 
 NSString* const T_FILE = @"EnemyB.tif";
 
@@ -70,6 +74,13 @@ NSString* const T_FILE = @"EnemyB.tif";
     [self pushWithXForce:t.trajdX*self.getSpeed/t.norm YForce:t.trajdY*self.getSpeed/t.norm];
     [t dealloc];
 
+}
+
++(CGFloat)getSR{
+    return T_SR;
+}
++(CGFloat)getSST{
+    return T_SST;
 }
 
 
