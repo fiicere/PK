@@ -16,13 +16,14 @@ static CGFloat spawnRate = 0;
 static CGFloat startingSpawnTime = 0;
 const CGFloat PRECISION = 1000;
 const CGFloat DIFFICULTY_RAMP = 30;
+const CGFloat SPAWN_DURATION = 1.0f;
 
 @implementation SpawnedSprite
 
 -(id) initWithFile:(NSString*) filename{
     self = [super initWithFile:filename];
-    [self schedule: @selector(moveToEL:) interval: 1.0f];
-    [self runAction:[CCFadeIn actionWithDuration:1.0f]];
+    [self schedule: @selector(moveToEL:) interval: SPAWN_DURATION];
+    [self runAction:[CCFadeIn actionWithDuration:SPAWN_DURATION]];
     self.fixedPosition = true;
     return self;
 }
