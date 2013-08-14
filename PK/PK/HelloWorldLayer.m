@@ -103,6 +103,7 @@ const int RECOIL = -100;
     [[GameScene getEPL] setFocus:ship];
     [[GameScene getPL] setFocus:ship];
     [[GameScene getBL] setFocus:ship];
+    [[GameScene getHUDL] setFocus:ship];
 //    [[GameScene getBL2] setFocus:ship];
     if (Settings.getInstance.wt == DIRECTIONAL) {
         [[GameScene getWoDL] setFocus:ship];

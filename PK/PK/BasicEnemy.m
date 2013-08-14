@@ -11,16 +11,16 @@
 #import "RandomTrajectory.h"
 #import "GameScene.h"
 
-const CGFloat BE_HP = 100;
+const CGFloat BE_HP = 150;
 const CGFloat BE_DMG = 33;
 const CGFloat BE_VAL = 1;
 
 // Movement stats
 const int BE_VEL_MIN = 100;
-const int BE_VEL_MAX = 300;
+const int BE_VEL_MAX = 200;
 
 // Spawn Stats
-const CGFloat BE_SR = 1.6;
+const CGFloat BE_SR = 1;
 const CGFloat BE_SST = 0;
 
 const bool BE_BOUNCES = true;

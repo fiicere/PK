@@ -6,6 +6,7 @@
 //  Copyright 2013 Kevin Yue. All rights reserved.
 //
 
+#import "cocos2d.h"
 #import "SpawnedSprite.h"
 #import "GameScene.h"
 #import "Clock.h"
@@ -18,6 +19,14 @@ const CGFloat DIFFICULTY_RAMP = 30;
 
 @implementation SpawnedSprite
 
+-(id) initWithFile:(NSString*) filename{
+    self = [super initWithFile:filename];
+    [self schedule: @selector(moveToEL:) interval: 1.0f];
+    [self runAction:[CCFadeIn actionWithDuration:1.0f]];
+    self.fixedPosition = true;
+    return self;
+}
+
 +(void)spawnEnemies:(ccTime)dt{
     // Check if should be spawning
     if([Clock getInstance].getTime < [self getSST]){
@@ -27,9 +36,8 @@ const CGFloat DIFFICULTY_RAMP = 30;
     else{
         for(int i=0; i<[self dangerLevel]; i++){
             int thresh = fmod(arc4random(), ([self getSR] * PRECISION));
-            if (thresh < dt * PRECISION){
-                [[GameScene getEL] addChild:[[[self alloc] init] autorelease]];
-                
+            if (thresh < dt * PRECISION){                
+                [[GameScene getHUDL] addChild:[[[self alloc] init] autorelease]];
             }
         }
     }
@@ -50,5 +58,14 @@ const CGFloat DIFFICULTY_RAMP = 30;
 +(CGFloat)getSST{
     return startingSpawnTime;
 }
+
+
+-(void)moveToEL:(ccTime)dt{
+    [self unschedule: @selector(moveToEL:)];
+    [[self parent] removeChild:self cleanup:NO];
+    [[GameScene getEL] addChild:self];
+    self.fixedPosition = false;
+}
+
 
 @end

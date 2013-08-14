@@ -95,8 +95,9 @@ CGFloat agentMaxY;
     // If the position is not fixed, update location
     if(!_fixedPosition){
         [self setPosition:ccp(self.position.x + (_xVel*dt), self.position.y + (_yVel*dt))];
-        [[WorldBoundaries getInstance] updateAgent:self];
     }
+    [[WorldBoundaries getInstance] updateAgent:self];
+
     [self checkDeath];
 }
 

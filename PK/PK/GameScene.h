@@ -31,4 +31,7 @@
 
 +(FocusedLayer*)getWoDL;
 
++(FocusedLayer*)getHUDL;
+
+
 @end

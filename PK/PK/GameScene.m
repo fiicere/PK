@@ -22,7 +22,7 @@ static BackgroundLayer * bl2;
 static HelloWorldLayer * sl;
 static FocusedLayer * gl;
 static FocusedLayer * wodl;
-
+static FocusedLayer *hudl;
 
 @implementation GameScene
 
@@ -37,6 +37,9 @@ static FocusedLayer * wodl;
     
     // Add Projectiles layer
     pl = [FocusedLayer node];
+    
+    // Add HUD layer
+    hudl = [FocusedLayer node];
     
     // Add WoD and Gradient layer
     if (Settings.getInstance.wt == DIRECTIONAL) {
@@ -60,6 +63,7 @@ static FocusedLayer * wodl;
     [self addChild: epl z:1];
     [self addChild: pl z:2];
     [self addChild: bl z:-2];
+    [self addChild: hudl z:1];
     
 //    [self addChild:bl2 z:-9];
     
@@ -112,6 +116,11 @@ static FocusedLayer * wodl;
 // WoD Layer
 +(FocusedLayer*)getWoDL{
     return wodl;
+}
+
+// WoD Layer
++(FocusedLayer*)getHUDL{
+    return hudl;
 }
 
 @end
