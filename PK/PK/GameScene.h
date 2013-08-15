@@ -31,7 +31,9 @@
 
 +(FocusedLayer*)getWoDL;
 
-+(FocusedLayer*)getHUDL;
++(FocusedLayer*)getNonColL;
+
++(FocusedLayer*)getEXL;
 
 
 @end

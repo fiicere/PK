@@ -38,7 +38,7 @@ const CGFloat SPAWN_DURATION = 1.0f;
         for(int i=0; i<[self dangerLevel]; i++){
             int thresh = fmod(arc4random(), ([self getSR] * PRECISION));
             if (thresh < dt * PRECISION){                
-                [[GameScene getHUDL] addChild:[[[self alloc] init] autorelease]];
+                [[GameScene getNonColL] addChild:[[[self alloc] init] autorelease]];
             }
         }
     }

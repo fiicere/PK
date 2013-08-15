@@ -29,6 +29,7 @@
 #import "PlayerShip.h"
 #import "WallOfDeath.h"
 #import "WoDGradient.h"
+#import "Bomb.h"
 
 // Data Structures
 #import "ScoreKeeper.h"
@@ -51,6 +52,7 @@ CGFloat screenWidth;
 // Projectile stats
 const double PROJ_SPEED = 750;
 const int RECOIL = -100;
+const int EXP_RECOIL = -500;
 
 #pragma mark - HelloWorldLayer
 
@@ -103,8 +105,8 @@ const int RECOIL = -100;
     [[GameScene getEPL] setFocus:ship];
     [[GameScene getPL] setFocus:ship];
     [[GameScene getBL] setFocus:ship];
-    [[GameScene getHUDL] setFocus:ship];
-//    [[GameScene getBL2] setFocus:ship];
+    [[GameScene getNonColL] setFocus:ship];
+    [[GameScene getEXL] setFocus:ship];
     if (Settings.getInstance.wt == DIRECTIONAL) {
         [[GameScene getWoDL] setFocus:ship];
         [[GameScene getGL] setFocus:ship];
@@ -159,6 +161,30 @@ const int RECOIL = -100;
             enemyProj.health -= ship.damage;
         }
     }
+    
+    // Explosions and Enemies
+    for (PhysicsSprite *exp in [GameScene getEXL].children) {
+        for (PhysicsSprite *enemy in [GameScene getEL].children) {
+            if (CGRectIntersectsRect([exp getBoundingBox], [enemy getBoundingBox])) {
+                enemy.health -= exp.damage;
+                exp.health -= enemy.damage;
+            }
+        }
+    }
+
+    // Explosions and Ship
+    for (PhysicsSprite *exp in [GameScene getEXL].children) {
+        if (CGRectIntersectsRect([exp getBoundingBox], [ship getBoundingBox])){
+            CGPoint offset = ccpSub(exp.position, ship.position);
+            CGFloat norm = sqrt(offset.x*offset.x + offset.y*offset.y);
+            CGFloat normX = offset.x / norm;
+            CGFloat normY = offset.y / norm;
+            [ship pushWithXForce:normX*EXP_RECOIL YForce:normY*EXP_RECOIL];
+            [[GameScene getEXL] removeChild:exp cleanup:NO];
+            [[GameScene getPL] addChild:exp];
+
+        }
+    }
 }
 
 -(void)checkWoDCollisions{
@@ -196,10 +222,6 @@ const int RECOIL = -100;
     [self spawnEnemiesOfType:[BasicEnemy class] AtTime:dt];
     [self spawnEnemiesOfType:[HomingEnemy class] AtTime:dt];
     [self spawnEnemiesOfType:[Turret class] AtTime:dt];
-
-    for(int i = 0; i<[Settings getInstance].numPlayers; i++){
-//        [self moarEnemies:dt];
-    }
 }
 
 -(void) addDeathWall{
@@ -237,9 +259,10 @@ const int RECOIL = -100;
 // We also need to claim end-of-touch events
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint loc = [self convertTouchToNodeSpace: touch];
-    [self addProjectile:loc];
+    [self addBomb:loc];
 }
 
+// Add ShipShot
 - (void) addProjectile:(CGPoint)loc{
     // Add bullet
     ShipShot *projectile = [[ShipShot alloc] init];
@@ -254,6 +277,32 @@ const int RECOIL = -100;
     
     // Set the projectile coord to absolute reference frame
     projectile.position = ccp(screenWidth/2 - [GameScene getPL].position.x, screenHeight/2 - [GameScene getPL].position.y);
+    
+    // Set projectile speed
+    [projectile pushWithXForce:normX*PROJ_SPEED YForce:normY*PROJ_SPEED];
+    
+    // Recoil
+    [ship pushWithXForce:normX*RECOIL YForce:normY*RECOIL];
+    
+}
+
+// Add Bomb
+- (void) addBomb:(CGPoint)loc{
+    CGPoint dest = [[GameScene getNonColL] convertToNodeSpace:loc];
+
+    // Add bullet
+    Bomb *projectile = [[Bomb alloc] initWithDest:dest];
+    projectile.position = ship.position;
+    [[GameScene getNonColL] addChild:projectile];
+    
+    // Find the offset between the touch event and the projectile
+    CGPoint offset = ccpSub(loc, projectile.position);
+    CGFloat norm = sqrt(offset.x*offset.x + offset.y*offset.y);
+    CGFloat normX = offset.x / norm;
+    CGFloat normY = offset.y / norm;
+    
+    // Set the projectile coord to absolute reference frame
+    projectile.position = ccp(screenWidth/2 - [GameScene getNonColL].position.x, screenHeight/2 - [GameScene getNonColL].position.y);
     
     // Set projectile speed
     [projectile pushWithXForce:normX*PROJ_SPEED YForce:normY*PROJ_SPEED];

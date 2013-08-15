@@ -161,6 +161,8 @@
 		46F063EF17907FCD0047725D /* ScoreKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063EE17907FCD0047725D /* ScoreKeeper.m */; };
 		46F063F8179089890047725D /* HomingEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063F7179089890047725D /* HomingEnemy.m */; };
 		46F063FB1790A2D20047725D /* RandomTrajectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F063FA1790A2D20047725D /* RandomTrajectory.m */; };
+		46FB5F2917BD4125006E2CEE /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FB5F2817BD4125006E2CEE /* Bomb.m */; };
+		46FB5F2C17BD459F006E2CEE /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FB5F2B17BD459F006E2CEE /* Explosion.m */; };
 		5A1FF4BE179F21BA00666D69 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FF4BD179F21BA00666D69 /* MenuScene.m */; };
 		5A3CA05F17A6ED2C006CF265 /* EnemyShot.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */; };
 		5A3CA06117A6EE3C006CF265 /* DeathWall.tif in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA06017A6EE3C006CF265 /* DeathWall.tif */; };
@@ -504,6 +506,10 @@
 		46F063F7179089890047725D /* HomingEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomingEnemy.m; sourceTree = "<group>"; };
 		46F063F91790A2D20047725D /* RandomTrajectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomTrajectory.h; sourceTree = "<group>"; };
 		46F063FA1790A2D20047725D /* RandomTrajectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomTrajectory.m; sourceTree = "<group>"; };
+		46FB5F2717BD4125006E2CEE /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
+		46FB5F2817BD4125006E2CEE /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
+		46FB5F2A17BD459F006E2CEE /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
+		46FB5F2B17BD459F006E2CEE /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
 		5A1FF4BC179F21BA00666D69 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		5A1FF4BD179F21BA00666D69 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		5A3CA05E17A6ED2C006CF265 /* EnemyShot.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EnemyShot.tif; path = Resources/EnemyShot.tif; sourceTree = "<group>"; };
@@ -1034,6 +1040,10 @@
 			children = (
 				46923EBE1795ABC8004C67E7 /* BasicEnemy.h */,
 				46923EBF1795ABC8004C67E7 /* BasicEnemy.m */,
+				46FB5F2717BD4125006E2CEE /* Bomb.h */,
+				46FB5F2817BD4125006E2CEE /* Bomb.m */,
+				46FB5F2A17BD459F006E2CEE /* Explosion.h */,
+				46FB5F2B17BD459F006E2CEE /* Explosion.m */,
 				46F063F6179089890047725D /* HomingEnemy.h */,
 				46F063F7179089890047725D /* HomingEnemy.m */,
 				46A56D34178B562D00441334 /* PhysicsSprite.h */,
@@ -1298,6 +1308,8 @@
 				5AB49DCD17AC42A90041FC71 /* WoDGradient.m in Sources */,
 				4677950817B5743E00DBEDE7 /* Clock.m in Sources */,
 				4677950E17B93B7C00DBEDE7 /* SpawnedSprite.m in Sources */,
+				46FB5F2917BD4125006E2CEE /* Bomb.m in Sources */,
+				46FB5F2C17BD459F006E2CEE /* Explosion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
