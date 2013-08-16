@@ -37,6 +37,7 @@
 #import "WorldBoundaries.h"
 #import "Settings.h"
 #import "Clock.h"
+#import "Touch.h"
 
 
 #import "GameScene.h"
@@ -53,6 +54,9 @@ CGFloat screenWidth;
 const double PROJ_SPEED = 750;
 const int RECOIL = -100;
 const int EXP_RECOIL = -500;
+const CGFloat HOLD_DURATION = 1;
+
+NSMapTable * touchDict;
 
 #pragma mark - HelloWorldLayer
 
@@ -81,12 +85,11 @@ const int EXP_RECOIL = -500;
         [self schedule:@selector(nextFrame:)];
         
         // to enable touch detection
-        self.isTouchEnabled = YES;
+        [self setIsTouchEnabled:YES];
         
         //[self runAction:[CCFollow actionWithTarget:ship]];
         
 	}
-    
 	return self;
 }
 
@@ -121,6 +124,7 @@ const int EXP_RECOIL = -500;
     screenHeight = CCDirector.sharedDirector.winSize.height;
     screenWidth = CCDirector.sharedDirector.winSize.width;
     [[Clock getInstance] reset];
+    touchDict = [NSMapTable new];
 }
 
 
@@ -248,18 +252,33 @@ const int EXP_RECOIL = -500;
 // TODO: Figure out what calls this...
 -(void) registerWithTouchDispatcher
 {
-	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+//	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+    [[CCTouchDispatcher sharedDispatcher] addStandardDelegate:self priority:0];
 }
 
-// We need to claim on-touch events, even if we do nothing with them
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    return YES;
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    for (UITouch * touch in touches){
+        CGPoint loc = [self convertTouchToNodeSpace:touch];
+        CGFloat time = touch.timestamp;
+        CGFloat nt = touch.tapCount;
+        Touch * t = [[Touch alloc] initWithLoc:loc Time:time NumTaps:nt];
+        [touchDict setObject:t forKey:touch];
+    }
 }
 
-// We also need to claim end-of-touch events
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    CGPoint loc = [self convertTouchToNodeSpace: touch];
-    [self addBomb:loc];
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    for (UITouch * touch in touches){
+        CGPoint loc = [self convertTouchToNodeSpace: touch];
+        Touch * t = [touchDict objectForKey:touch];
+        CGFloat touchDuration = touch.timestamp - t.time;
+        if(touchDuration < HOLD_DURATION){
+            [self addProjectile:loc];
+        }
+        else{
+            [self addBomb:loc];
+        }
+    }
 }
 
 // Add ShipShot
