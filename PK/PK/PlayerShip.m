@@ -15,6 +15,7 @@ const CGFloat PS_HP = 99;
 const CGFloat PS_DMG = 1000;
 const CGFloat PS_VAL = 0;
 const bool PS_BOUNCES = TRUE;
+bool isHit = FALSE;
 
 NSString* const PS_FILE = @"Ship.tif";
 
@@ -58,8 +59,9 @@ CCSprite* hp3;
 }
 
 -(void) hitWithDamage:(CGFloat)damage {
-    id hit = [CCTintBy actionWithDuration:0.2 red:255 green:-255 blue:-255];
-    id afterHit = [CCTintBy actionWithDuration:0.2 red:-255 green:255 blue:255];
+    id hit = [CCTintBy actionWithDuration:0.2 red:0 green:255 blue:255];
+//    id afterHit = [CCTintBy actionWithDuration:0.2 red:-255 green:0 blue:0];
+    
     CGFloat newhp = self.health - damage;
     
     if (self.health <= 1) {
@@ -72,9 +74,15 @@ CCSprite* hp3;
             self.health = 66;
         }
         else {
-            [hp1 runAction:hit];
-            [hp1 runAction:afterHit];
-            self.health = newhp;
+            if (!isHit) {
+                isHit = TRUE;
+                [hp1 runAction:hit];
+                self.health = newhp;
+//                [hp1 runAction:afterHit];
+                isHit = FALSE;
+            }
+            
+            
         }
     }
     
@@ -84,9 +92,14 @@ CCSprite* hp3;
             self.health = 33;
         }
         else {
-            [hp2 runAction:hit];
-            [hp2 runAction:afterHit];
-            self.health = newhp;
+            if (!isHit) {
+                isHit = TRUE;
+                [hp2 runAction:hit];
+                self.health = newhp;
+//                [hp2 runAction:afterHit];
+                isHit = FALSE;
+            }
+
         }
     }
     
@@ -96,9 +109,14 @@ CCSprite* hp3;
             self.health = 1;
         }
         else {
-            [hp3 runAction:hit];
-            [hp3 runAction:afterHit];
-            self.health = newhp;
+            if (!isHit) {
+                isHit = TRUE;
+                [hp3 runAction:hit];
+                self.health = newhp;
+//                [hp3 runAction:afterHit];
+                isHit = FALSE;
+            }
+
         }
     }
 }

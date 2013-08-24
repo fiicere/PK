@@ -14,13 +14,13 @@ const CGFloat EX_DMG = 300;
 const CGFloat EX_VAL = 0;
 const CGFloat EX_BOUNCES = false;
 
-const CGFloat EX_SIZE = 5;
+const CGFloat EX_SIZE = 4;
 const CGFloat EX_DUR = 1;
 
 CGFloat t;
 
 
-NSString* const EX_FILE = @"PlasmaBall.tif";
+NSString* const EX_FILE = @"Shot.tif";
 
 @implementation Explosion
 

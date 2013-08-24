@@ -54,7 +54,7 @@ CGFloat screenWidth;
 const double PROJ_SPEED = 750;
 const int RECOIL = -100;
 const int EXP_RECOIL = -500;
-const CGFloat HOLD_DURATION = 1;
+const CGFloat HOLD_DURATION = 0.5;
 
 NSMapTable * touchDict;
 
