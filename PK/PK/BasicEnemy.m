@@ -12,7 +12,7 @@
 #import "GameScene.h"
 
 const CGFloat BE_HP = 150;
-const CGFloat BE_DMG = 33;
+const CGFloat BE_DMG = 17;
 const CGFloat BE_VAL = 1;
 
 // Movement stats

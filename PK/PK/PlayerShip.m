@@ -59,8 +59,10 @@ CCSprite* hp3;
 }
 
 -(void) hitWithDamage:(CGFloat)damage {
-    id hit = [CCTintBy actionWithDuration:0.2 red:0 green:255 blue:255];
-//    id afterHit = [CCTintBy actionWithDuration:0.2 red:-255 green:0 blue:0];
+//    id hit = [CCTintBy actionWithDuration:0.2 red:0 green:255 blue:255];
+    id multihit = [CCSequence actions: [CCTintBy actionWithDuration:0.5 red:0 green:255 blue:255],
+                   [CCTintBy actionWithDuration:0.5 red:0 green:255 blue:255],
+                   [CCTintBy actionWithDuration:0.5 red:0 green:255 blue:255], nil];
     
     CGFloat newhp = self.health - damage;
     
@@ -76,13 +78,10 @@ CCSprite* hp3;
         else {
             if (!isHit) {
                 isHit = TRUE;
-                [hp1 runAction:hit];
+                [hp1 runAction:multihit];
                 self.health = newhp;
-//                [hp1 runAction:afterHit];
                 isHit = FALSE;
             }
-            
-            
         }
     }
     
@@ -94,12 +93,10 @@ CCSprite* hp3;
         else {
             if (!isHit) {
                 isHit = TRUE;
-                [hp2 runAction:hit];
+                [hp2 runAction:multihit];
                 self.health = newhp;
-//                [hp2 runAction:afterHit];
                 isHit = FALSE;
             }
-
         }
     }
     
@@ -111,9 +108,8 @@ CCSprite* hp3;
         else {
             if (!isHit) {
                 isHit = TRUE;
-                [hp3 runAction:hit];
+                [hp3 runAction:multihit];
                 self.health = newhp;
-//                [hp3 runAction:afterHit];
                 isHit = FALSE;
             }
 
